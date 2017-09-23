@@ -158,6 +158,7 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
         Cviebrock\EloquentSluggable\ServiceProvider::class,
+        Unisharp\Ckeditor\ServiceProvider::class,
 
     ],
 
