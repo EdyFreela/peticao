@@ -109,6 +109,12 @@
             margin-top:10px;
             margin-bottom: 20px;
         }
+
+        .table > tbody > tr > td > p {
+            padding-top: 8px;
+            padding-bottom: 0px;
+            margin-bottom: 0px;
+        }
                
     </style>
 
