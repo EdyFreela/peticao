@@ -38,32 +38,53 @@
                 {!! Form::text('title', null, array('placeholder' => 'Titulo','class' => 'form-control')) !!}
             </div>
         </div>
-		<div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Link:</strong>
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon3">{{ env('APP_URL') }}/</span>
                     {!! Form::text('slug', null, array('placeholder' => 'Titulo','class' => 'form-control')) !!}
+                    <span class="input-group-btn">
+                        <button class="btn btn-success" type="button" title="Visualizar" onclick="javascript:window.open('{{ env('APP_URL') }}/{{ $item->slug }}');"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                    </span>
                 </div>
             </div>
-        </div>
-		<div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Conteúdo:</strong>
-                {!! Form::textarea('conteudo', null, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
-            </div>
-        </div>
-		<div class="col-xs-12 col-sm-12 col-md-12">
+        </div>        
+        <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Imagem:</strong>
                 <img src="{{ env('APP_URL') }}/{{ env('IMAGEM_PETICAO_PATH') }}/{{ $item->imagem }}">
                 {!! Form::file('imagem', null, array('placeholder' => 'Imagem','class' => 'form-control')) !!}
             </div>
         </div>
-		<div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="form-group">
                 <strong>Objetivo:</strong>
                 {!! Form::text('objetivo', null, array('placeholder' => 'Objetivo','class' => 'form-control')) !!}
+            </div>
+        </div>        
+		<div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Conteúdo:</strong>
+                {!! Form::textarea('conteudo', null, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Petição:</strong>
+                {!! Form::textarea('peticao', null, array('placeholder' => 'Petição','class' => 'form-control')) !!}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>E-Mail com a Petição:</strong>
+                {!! Form::textarea('conteudomail', null, array('placeholder' => 'E-Mail com a Petição','class' => 'form-control')) !!}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>E-Mails de Destino:</strong>
+                {!! Form::text('mailpeticao', null, array('placeholder' => 'mailpeticao','class' => 'form-control')) !!}
             </div>
         </div>       
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
