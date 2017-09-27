@@ -181,8 +181,12 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/admin') }}"><i class="fa fa-btn fa-tachometer"></i>Painel</a></li>
-                                <li role="separator" class="divider"></li>
+                                @if(\Auth::user()->admin==1)
+                                    <li><a href="{{ url('/admin/peticoes') }}"><i class="fa fa-btn fa-tachometer"></i>Painel</a></li>
+                                    <li role="separator" class="divider"></li>
+                                @else
+                                    
+                                @endif 
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Sair</a></li>
                             </ul>
                         </li>

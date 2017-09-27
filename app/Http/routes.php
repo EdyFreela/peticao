@@ -17,15 +17,15 @@ Route::get('/', function () {
 
 Route::auth();
 
-Route::get('/admin', 'AdminController@index');
+#Route::get('/admin', 'AdminController@index', ['middleware' => ['auth', 'admin']]);
 
-Route::get('admin/peticoes',            ['as'=>'peticaos.index',     'uses' => 'PeticaoController@index',   'middleware' => 'auth']);
-Route::get('admin/peticoes/create',     ['as'=>'peticaos.create',    'uses' => 'PeticaoController@create',  'middleware' => 'auth']);
-Route::post('admin/peticoes/create',    ['as'=>'peticaos.store',     'uses' => 'PeticaoController@store',   'middleware' => 'auth']);
+Route::get('admin/peticoes',            ['as'=>'peticaos.index',     'uses' => 'PeticaoController@index',   'middleware' => ['auth', 'admin']]);
+Route::get('admin/peticoes/create',     ['as'=>'peticaos.create',    'uses' => 'PeticaoController@create',  'middleware' => ['auth', 'admin']]);
+Route::post('admin/peticoes/create',    ['as'=>'peticaos.store',     'uses' => 'PeticaoController@store',   'middleware' => ['auth', 'admin']]);
 Route::get('/{id}',                     ['as'=>'peticaos.show',      'uses' => 'PeticaoController@show']);
-Route::get('admin/peticoes/{id}/edit',  ['as'=>'peticaos.edit',      'uses' => 'PeticaoController@edit',    'middleware' => 'auth']);
-Route::patch('admin/peticoes/{id}',     ['as'=>'peticaos.update',    'uses' => 'PeticaoController@update',  'middleware' => 'auth']);
-Route::delete('admin/peticoes/{id}',    ['as'=>'peticaos.destroy',   'uses' => 'PeticaoController@destroy', 'middleware' => 'auth']);
+Route::get('admin/peticoes/{id}/edit',  ['as'=>'peticaos.edit',      'uses' => 'PeticaoController@edit',    'middleware' => ['auth', 'admin']]);
+Route::patch('admin/peticoes/{id}',     ['as'=>'peticaos.update',    'uses' => 'PeticaoController@update',  'middleware' => ['auth', 'admin']]);
+Route::delete('admin/peticoes/{id}',    ['as'=>'peticaos.destroy',   'uses' => 'PeticaoController@destroy', 'middleware' => ['auth', 'admin']]);
 
 Route::post('/mail/send',  'EmailController@send');
 Route::post('/assinar',    'AssinanteController@store');
