@@ -1,9 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 
 @section('style')
 <style>
 .progress {
-  height: 35px;
+    height: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    background-color: #d0d0d0;
+    border-radius: 4px;
+    -webkit-box-shadow: none;
+    box-shadow: inset none;
 }
 .progress .skill {
   font: normal 12px "Open Sans Web";
@@ -17,23 +23,53 @@
   font-style: normal;
   margin: 0 20px 0 0;
 }
-
 .progress-bar {
   text-align: left;
   transition-duration: 3s;
-}    
+}
+.peticao-descricao .panel{
+    border: 0px solid;
+    font-family: 'Merriweather', serif;
+}
+.peticao-assinar .panel-default>.panel-heading {
+    color: #fff;
+    background-color: #e6222e;
+}
+.peticao-assinar .panel-peticao-assinar .panel-body{
+    background-color: #eee;
+}
+.peticao-assinar .peticao-banner-compartilhar{
+    background-color: #333333;
+    color:#fff;
+}
+.btn {
+    border: 0px solid transparent;
+}
+.btn-share-facebook{
+    background-color: #3b5998;
+}
+.btn-share-twitter{
+    background-color: #00aced;
+}
+.btn-share-email{
+    background-color: #e6222e;
+}
+.btn-share-facebook, 
+.btn-share-twitter,
+.btn-share-email{
+    color:#fff;
+}
+
 </style>
 @endsection
 
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 peticao-descricao">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <h1>{{ $item->title }}</h1>
-                </div>
-                <div class="panel-body">
                     <h3>{{ formatDate($item->created_at) }}</h3>
                 </div>
                 <div class="panel-body">                    
@@ -53,9 +89,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-heading text-center"><h2>Assine está petição</h2></div>
+        <div class="col-md-4 peticao-assinar">
+            <div class="panel panel-default panel-peticao-assinar">
+                <div class="panel-heading text-center"><h2><strong>Assine está petição</strong></h2></div>
                 <div class="panel-body">
                     <p>{{ $item2['apoiantes'] }} Apoiantes</p>
                     <div class="progress skill-bar ">
@@ -93,11 +129,16 @@
                     <p>Nota: Ao assinar, você aceita receber mensagens de e-mail da IPCO.org.br. Você pode cancelar sua inscrição a qualquer momento. <a href="{{ url('pg/politica-de-privacidade') }}">Política de Privacidade</a></p>
                 </div>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-default peticao-banner-compartilhar">
                 <div class="panel-body text-center">
                     <h1>A luta começa com você.</h1>
                     <h2>Certifique-se de compartilhar esta petição.</h2>
                     <h2>Deus te abençoê.</h2>
+                    <div class="btn-group btn-group-lg" role="group" aria-label="...">
+                      <button type="button" class="btn btn-default btn-share-facebook" data-href="{{ env('APP_URL')}}/{{ $item->slug }}" data-image="{{ env('APP_URL')}}/{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" data-title="{{ $item->title }}" data-desc="Some description for this article"><i class="fa fa-facebook" aria-hidden="true"></i></button>
+                      <button type="button" class="btn btn-default btn-share-twitter" onclick="javascript:MyPopUpWin('http://twitter.com/share?text={{ $item->title }}&url={{ env('APP_URL')}}/{{ $item->slug }}&hashtags={{ $item->twitterhashtags }}, 300, 300');"><i class="fa fa-twitter" aria-hidden="true"></i></button>
+                      <button type="button" class="btn btn-default btn-share-email" data-toggle="modal" data-target="#modalShareByMail"><i class="fa fa-envelope" aria-hidden="true"></i></button>
+                    </div>                    
                 </div>
             </div>
 
@@ -149,6 +190,7 @@
     </div>
   </div>
 </div>
+
 @endsection
 
 @section('script')

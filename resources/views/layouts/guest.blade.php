@@ -10,6 +10,7 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,700">
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -23,124 +24,65 @@
         .fa-btn {
             margin-right: 6px;
         }
-
-        /* CONTENT HEADER */
-        .breadcrumb {
-            padding: 0px;
-            background: #f5f5f5;
-            list-style: none; 
-            overflow: hidden;
-            margin-top: 0px;
-            margin-bottom: 10px;
-            border-radius: 0px;
+        /* NAVBAR */
+        .navbar-inverse {
+            background-color: #081832;
         }
-        .breadcrumb>li+li:before {
-            padding: 0;
+        .navbar-brand{
+            padding: 4px 15px;
         }
-        .breadcrumb li { 
-            float: left;
-            background-color: #d4d4d4;
+        .navbar-brand .brand{
+            float:left;
+            width: 90px;
         }
-        .breadcrumb li.active a {
-            background: brown;                   /* fallback color */
-            background: #d4d4d4; ; 
-        }
-        .breadcrumb li.completed a {
-            background: brown;                   /* fallback color */
-            background: hsl(0, 0%, 69%); 
-        }
-        .breadcrumb li.active a:after {
-            border-left: 30px solid #d4d4d4; ;
-        }
-        .breadcrumb li.completed a:after {
-            border-left: 30px solid hsl(0, 0%, 69%);
-        } 
-
-        .breadcrumb li a {
-            color: white;
-            text-decoration: none; 
-            padding: 5px 0 5px 45px;
-            position: relative; 
-            display: block;
-            float: left;
-            font-size:11px;
-        }
-        .breadcrumb li a:after { 
-            content: " "; 
-            display: block; 
-            width: 0; 
-            height: 0;
-            border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
-            border-bottom: 50px solid transparent;
-            border-left: 30px solid hsla(0, 0%, 83%, 1);
-            position: absolute;
-            top: 50%;
-            margin-top: -50px; 
-            left: 100%;
-            z-index: 2; 
-        }   
-        .breadcrumb li a:before { 
-            content: " "; 
-            display: block; 
-            width: 0; 
-            height: 0;
-            border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
-            border-bottom: 50px solid transparent;
-            border-left: 30px solid white;
-            position: absolute;
-            top: 50%;
-            margin-top: -50px; 
-            margin-left: 1px;
-            left: 100%;
-            z-index: 1; 
-        }   
-        .breadcrumb li:first-child a {
-            padding-left: 15px;
-        }
-        .breadcrumb li a:hover { background: #5cb85c  ; }
-        .breadcrumb li a:hover:after { border-left-color: #5cb85c   !important; }
+        .navbar-brand .empresa{
+            float:left;
+            padding-top:20px;
+            padding-top: 12px;
+            padding-left: 10px;
+            font-family: 'Merriweather', serif;
+            color:#d19429;
+        }                
+        .navbar-brand .brand img{
+            width:100%;
+        }        
 
         h2{
             font-weight: 300;
-        } 
-
-        .container > .row > .col-md-12 > .row > .col-lg-12 > .pull-left > h2,
-        .container > .row > .col-md-12 > .row > .col-lg-12 > .pull-right > a{
-            margin-top:10px;
-            margin-bottom: 20px;
         }
-
-        .table > tbody > tr > td > p {
-            padding-top: 8px;
-            padding-bottom: 0px;
-            margin-bottom: 0px;
+        /* TEMA IPCO */ 
+        footer {
+            background-color: #081832;
+            margin-top: 30px;
+            color:#fff;
         }
-        
-        .modal {
-          text-align: center;
+        footer .container{
+            padding-bottom:20px;
         }
-
-        @media screen and (min-width: 768px) { 
-          .modal:before {
-            display: inline-block;
-            vertical-align: middle;
-            content: " ";
-            height: 100%;
-          }
+        footer h4{
+            margin-top:30px;
+            margin-bottom: 17px;
         }
-
-        .modal-dialog {
-          display: inline-block;
-          text-align: left;
-          vertical-align: middle;
-        }               
+        footer p{
+            font-size:12px;
+        }
+        footer .copy{
+            background-color: #000;
+            font-size: 10px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        footer img{
+            width: 100%;
+        }
+               
     </style>
 
     @yield('style')
 
 </head>
 <body id="app-layout">
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container">
             <div class="navbar-header">
 
@@ -154,7 +96,8 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Petição Online
+                    <div class="brand"><img src="{{ url('assets/img/selo-ipco.png') }}"></div>
+                    <div class="empresa">Instituto Plinio Corrêa de Oliveira</div>
                 </a>
             </div>
 
@@ -197,6 +140,36 @@
     </nav>
 
     @yield('content')
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-7 col-md-7">
+                <h4>SOBRE NÓS</h4>
+                    <div class="col-xs-3 col-md-2">
+                        <img src="{{ url('assets/img/selo-ipco.png') }}">
+                    </div>
+                    <div class="col-xs-9 col-md-10">
+                        <p>O Instituto Plinio Corrêa de Oliveira é uma associação civil criada com o intuito de mobilizar a sociedade com vistas a preservar os pilares básicos da Civilização Cristã que estão ameaçados pela Revolução anti-cristã; Clique aqui e saiba mais!</p>
+                        <p>Contato: contato@ipco.org.br</p>
+                    </div>
+            </div>
+            <div class="col-md-5 col-md-5 text-right">
+                <h4>SIGA-NOS</h4>
+                <div class="btn-group" role="group" aria-label="...">
+                  <button type="button" class="btn btn-default"><i class="fa fa-facebook" aria-hidden="true"></i></button>
+                  <button type="button" class="btn btn-default"><i class="fa fa-google-plus" aria-hidden="true"></i></button>
+                  <button type="button" class="btn btn-default"><i class="fa fa-rss" aria-hidden="true"></i></button>
+                  <button type="button" class="btn btn-default"><i class="fa fa-twitter" aria-hidden="true"></i></button>
+                  <button type="button" class="btn btn-default"><i class="fa fa-youtube-play" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copy text-center">
+        &copy <?php echo date('Y'); ?> Instituto Plínio Correa de Oliveira</div>    
+</footer>
+
 
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>

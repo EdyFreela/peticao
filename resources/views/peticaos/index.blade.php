@@ -30,12 +30,12 @@
 
             <table class="table table-bordered table-hover">
                 <thead>
-                    <th width="1%">#</th>
+                    <th width="1%" class="text-center">#</th>
                     <th width="*">Titulo</th>
-                    <th width="100px">Objetivo</th>
-                    <th width="100px">Assinaturas</th>
-                    <th width="150px">Data de Criação</th>
-                    <th width="80px" class="text-center">Visualizar</th>
+                    <th width="100px" class="text-center">Objetivo</th>
+                    <th width="100px" class="text-center">Assinaturas</th>
+                    <th width="150px" class="text-center">Data de Criação</th>
+                    <th width="80px" class="text-center">Exportar</th>
                     <th width="80px" class="text-center">Editar</th>
                     <th width="80px" class="text-center">Excluir</th>
                 </thead>
@@ -43,16 +43,16 @@
                     @if($items->count())
                         @foreach($items as $key => $item)
                             <tr>
-                                <td><p>{{ ++$key }}</p></td>
-                                <td><p>{{ $item->title }}</p></td>
-                                <td><p>{{ $item->objetivo }}</p></td>
-                                <td><p>{{ $item->total }}</p></td>
-                                <td><p>{{ formatDate($item->created_at) }}</p></td>
-                                <td class="text-center"><a class="btn btn-info btn-md" href="{{ URL::to('/') . '/' . $item->slug }}" target="blank"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
-                                <td class="text-center"><a class="btn btn-primary btn-md" href="{{ route('peticaos.edit',$item->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                                <td class="text-center"><p>{{ ++$key }}</p></td>
+                                <td><p><a href="{{ URL::to('/') . '/' . $item->slug }}" title="Visualizar Petição">{{ $item->title }}</a></p></td>
+                                <td class="text-center"><p>{{ $item->objetivo }}</p></td>
+                                <td class="text-center"><p>{{ $item->total }}</p></td>
+                                <td class="text-center"><p>{{ formatDate($item->created_at) }}</p></td>
+                                <td class="text-center"><a class="btn btn-info btn-md" href="{{ URL::to('/') . '/' . $item->slug }}" title="Usuários da Petição"><i class="fa fa-users" aria-hidden="true"></i></a></td>
+                                <td class="text-center"><a class="btn btn-primary btn-md" href="{{ route('peticaos.edit',$item->id) }}" title="Editar Petição"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
                                 <td class="text-center">
                                     {!! Form::open(['id' => 'item-delete-'.$item->id, 'method' => 'DELETE','route' => ['peticaos.destroy', $item->id],'style'=>'display:inline']) !!}
-                                    {!! Form::button('<i class="fa fa-trash"></i>', ['data-id' => $item->id, 'class' => 'btn btn-danger btn-md']) !!}
+                                    {!! Form::button('<i class="fa fa-trash"></i>', ['data-id' => $item->id, 'class' => 'btn btn-danger btn-md', 'title' => 'Excluir Petição']) !!}
                                     {!! Form::close() !!}                                    
                                 </td>
                             </tr>
