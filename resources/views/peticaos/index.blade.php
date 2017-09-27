@@ -31,8 +31,10 @@
             <table class="table table-bordered table-hover">
                 <thead>
                     <th width="1%">#</th>
-                    <th width="*">Title</th>
-                    <th width="200px">Creation Date</th>
+                    <th width="*">Titulo</th>
+                    <th width="100px">Objetivo</th>
+                    <th width="100px">Assinaturas</th>
+                    <th width="150px">Data de Criação</th>
                     <th width="80px" class="text-center">Visualizar</th>
                     <th width="80px" class="text-center">Editar</th>
                     <th width="80px" class="text-center">Excluir</th>
@@ -41,9 +43,11 @@
                     @if($items->count())
                         @foreach($items as $key => $item)
                             <tr>
-                                <td>{{ ++$key }}</td>
-                                <td>{{ $item->title }}</td>
-                                <td>{{ $item->created_at }}</td>
+                                <td><p>{{ ++$key }}</p></td>
+                                <td><p>{{ $item->title }}</p></td>
+                                <td><p>{{ $item->objetivo }}</p></td>
+                                <td><p>{{ $item->total }}</p></td>
+                                <td><p>{{ formatDate($item->created_at) }}</p></td>
                                 <td class="text-center"><a class="btn btn-info btn-md" href="{{ URL::to('/') . '/' . $item->slug }}" target="blank"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
                                 <td class="text-center"><a class="btn btn-primary btn-md" href="{{ route('peticaos.edit',$item->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
                                 <td class="text-center">

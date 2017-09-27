@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Peticao;
+use App\Assinante;
+use DB;
 
 class PeticaoController extends Controller
 {
@@ -16,7 +18,13 @@ class PeticaoController extends Controller
     */
     public function index(Request $request)
     {
-        $items = Peticao::orderBy('id','DESC')->paginate(5);
+        #$items = Peticao::orderBy('id','DESC')->paginate(5);
+
+        $items = DB::table('peticaos')
+                    ->leftJoin('assinantes', 'peticaos.id', '=', 'assinantes.peticao_id')
+                    ->selectRaw('peticaos.*, count(assinantes.peticao_id) as total')
+                    ->groupBy('assinantes.peticao_id')
+                    ->paginate(5);
         return view('peticaos.index',compact('items'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -41,7 +49,13 @@ class PeticaoController extends Controller
     {
 
         $this->validate($request, [
-            'title' => 'required'
+            'title' => 'required',
+            'conteudo' => 'required',
+            'peticao' => 'required',
+            'conteudomail' => 'required',
+            'mailpeticao' => 'required',
+            'objetivo' => 'required',
+            'twitterhashtags' => 'required'
         ]);
 
         $file = $request->file('imagem');
@@ -53,10 +67,14 @@ class PeticaoController extends Controller
         #$item = Peticao::create($input);
 
         $input = new Peticao(array(
-            'title'    => $request->get('title'), 
-            'conteudo' => $request->get('conteudo'), 
-            'imagem'   => $file->getClientOriginalName(), 
-            'objetivo' => $request->get('objetivo')
+            'title'           => $request->get('title'), 
+            'conteudo'        => $request->get('conteudo'), 
+            'peticao'         => $request->get('peticao'), 
+            'conteudomail'    => $request->get('conteudomail'), 
+            'mailpeticao'     => $request->get('mailpeticao'), 
+            'imagem'          => $file->getClientOriginalName(), 
+            'objetivo'        => $request->get('objetivo'),
+            'twitterhashtags' => $request->get('twitterhashtags')
         ));
 
         $input->save();
@@ -65,6 +83,23 @@ class PeticaoController extends Controller
                         ->with('success','Petição criada com sucesso');
 
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($slug)
+    {
+        $item       = DB::table('peticaos')->where('slug', $slug)->first();
+        $apoiantes  = DB::table('assinantes')->where('peticao_id', $item->id)->count();
+
+        $apoiantes_porcetagem = ( $apoiantes / $item->objetivo ) * 100;
+        $item2 = array('apoiantes' => $apoiantes, 'valuenow' => $apoiantes_porcetagem);
+
+        return view('peticaos.show',compact('item', 'item2'));
+    }    
 
     /**
      * Show the form for editing the specified resource.
@@ -91,7 +126,12 @@ class PeticaoController extends Controller
 
         $this->validate($request, [
             'title' => 'required',
-            'slug' => 'required'
+            'conteudo' => 'required',
+            'peticao' => 'required',
+            'conteudomail' => 'required',
+            'mailpeticao' => 'required',
+            'objetivo' => 'required',
+            'twitterhashtags' => 'required'
         ]);
 
         // VERIFICA SE OUVE ALTERAÇÃO NA IMAGEM
@@ -107,9 +147,13 @@ class PeticaoController extends Controller
 
         if($img_saved == $img_new){
             $input = array(
-                'title'    => $request->get('title'), 
-                'conteudo' => $request->get('conteudo'), 
-                'objetivo' => $request->get('objetivo')
+                'title'           => $request->get('title'), 
+                'conteudo'        => $request->get('conteudo'),
+                'peticao'         => $request->get('peticao'), 
+                'conteudomail'    => $request->get('conteudomail'), 
+                'mailpeticao'     => $request->get('mailpeticao'),                 
+                'objetivo'        => $request->get('objetivo'),
+                'twitterhashtags' => $request->get('twitterhashtags')
             );
         }else{
 
@@ -125,10 +169,14 @@ class PeticaoController extends Controller
             }
 
             $input = array(
-                'title'    => $request->get('title'), 
-                'conteudo' => $request->get('conteudo'), 
-                'imagem'   => $file->getClientOriginalName(), 
-                'objetivo' => $request->get('objetivo')
+                'title'           => $request->get('title'), 
+                'conteudo'        => $request->get('conteudo'), 
+                'imagem'          => $file->getClientOriginalName(), 
+                'peticao'         => $request->get('peticao'), 
+                'conteudomail'    => $request->get('conteudomail'), 
+                'mailpeticao'     => $request->get('mailpeticao'),                 
+                'objetivo'        => $request->get('objetivo'),
+                'twitterhashtags' => $request->get('twitterhashtags')
             );
         }
 
