@@ -21,6 +21,14 @@
             font-family: 'Roboto', sans-serif;
         }
 
+        body > .container{
+            min-height: 560px;
+        }
+
+        body > .container > .row{
+            margin-top: 40px;
+        }
+
         .fa-btn {
             margin-right: 6px;
         }
