@@ -59,7 +59,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="6">Não há petição cadastrada.</td>
+                            <td colspan="8">Não há petição cadastrada.</td>
                         </tr>
                     @endif
                 </tbody>

@@ -19,6 +19,9 @@
         body {
             font-family: 'Roboto', sans-serif;
         }
+        body > .container{
+            min-height: 750px;
+        }
 
         .fa-btn {
             margin-right: 6px;
@@ -149,6 +152,15 @@
           display: inline-block;
           text-align: left;
           vertical-align: middle;
+        }
+        footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            padding-bottom: 40px;
+            background-color: #d1d1d1;
+            text-align: center;
+            color: #fff;
+            font-size: 12px;
         }               
     </style>
 
@@ -216,6 +228,15 @@
     </nav>
 
     @yield('content')
+
+    <footer>
+        <div class="container">
+            Sistema de Petição Online<br>
+            Instituto Plínio Corrêa de Oliveira<br>
+            &copy <?php echo date('Y'); ?> Todos os Direitos Reservados<br>
+            by <a href="https://edydias.com.br" target="_blank">EdyDias</a>
+        </div>
+    </footer>
 
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
