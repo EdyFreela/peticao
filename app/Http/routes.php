@@ -27,5 +27,7 @@ Route::get('admin/peticoes/{id}/edit',  ['as'=>'peticaos.edit',      'uses' => '
 Route::patch('admin/peticoes/{id}',     ['as'=>'peticaos.update',    'uses' => 'PeticaoController@update',  'middleware' => ['auth', 'admin']]);
 Route::delete('admin/peticoes/{id}',    ['as'=>'peticaos.destroy',   'uses' => 'PeticaoController@destroy', 'middleware' => ['auth', 'admin']]);
 
+Route::get('user/activation/{token}', 'Auth\AuthController@activateUser')->name('user.activate');
+
 Route::post('/mail/send',  'EmailController@send');
 Route::post('/assinar',    'AssinanteController@store');
