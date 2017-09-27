@@ -41,13 +41,7 @@
                 {!! Form::text('title', null, array('placeholder' => 'Titulo','class' => 'form-control')) !!}
             </div>
         </div>
-		<div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Conteúdo:</strong>
-                {!! Form::textarea('conteudo', null, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
-            </div>
-        </div>
-		<div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Imagem:</strong>
                 <label class="btn btn-default btn-file">
@@ -55,12 +49,42 @@
                 </label>
             </div>
         </div>
-		<div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="col-xs-6 col-sm-6 col-md-6">
             <div class="form-group">
                 <strong>Objetivo:</strong>
                 {!! Form::text('objetivo', null, array('placeholder' => 'Objetivo','class' => 'form-control')) !!}
             </div>
+        </div>         
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Conteúdo:</strong>
+                {!! Form::textarea('conteudo', null, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Petição:</strong>
+                {!! Form::textarea('peticao', null, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>E-Mail com a Petição:</strong>
+                {!! Form::textarea('conteudomail', null, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>E-Mails de Destino: <span class="">Separar por virgula os destinatários</span></strong>
+                {!! Form::text('mailpeticao', null, array('placeholder' => 'Objetivo','class' => 'form-control')) !!}
+            </div>
         </div>                               
+        <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="form-group">
+                <strong>Twitter Hashtags:</strong>
+                {!! Form::text('twitterhashtags', null, array('placeholder' => 'Objetivo','class' => 'form-control')) !!}
+            </div>
+        </div>        
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 				<button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Gravar</button>
         </div>
