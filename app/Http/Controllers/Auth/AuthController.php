@@ -68,13 +68,21 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        if($data['email']==env('USER_ADMIN')){
+            return User::create([
+                'name'  => $data['name'],
+                'email' => $data['email'],
+                'admin' => '1',
+                'password' => bcrypt($data['password']),
+            ]);
+        }else{
+            return User::create([
+                'name'     => $data['name'],
+                'email'    => $data['email'],
+                'password' => bcrypt($data['password']),
+            ]);            
+        }
     }
-
 
     public function register(Request $request)
     {
