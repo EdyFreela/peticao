@@ -86,7 +86,13 @@
                 <strong>E-Mails de Destino:</strong>
                 {!! Form::text('mailpeticao', null, array('placeholder' => 'mailpeticao','class' => 'form-control')) !!}
             </div>
-        </div>       
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="form-group">
+                <strong>Twitter Hashtags:</strong>
+                {!! Form::text('twitterhashtags', null, array('placeholder' => 'Objetivo','class' => 'form-control')) !!}
+            </div>
+        </div>               
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 				<button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Gravar</button>
         </div>
