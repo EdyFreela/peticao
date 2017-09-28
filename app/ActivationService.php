@@ -34,7 +34,7 @@ class ActivationService
         $title        = 'USEMODA - Ativação da Conta';
 
         $this->mailer->send('auth.emails.activate', ['name' => $user->name, 'activateLink' => $activateLink, 'title' => $title], function ($m) use ($user) {
-            $m->to($user->email, $user->name)->subject('USEMODA - Ativação da Conta');
+            $m->to($user->email, $user->name)->subject('IPCO.org.br - Ativação da Conta');
         });
 
     }
