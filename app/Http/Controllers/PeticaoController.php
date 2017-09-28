@@ -90,7 +90,7 @@ class PeticaoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show(Request $request, $slug)
     {
         $item       = DB::table('peticaos')->where('slug', $slug)->first();
         $apoiantes  = DB::table('assinantes')->where('peticao_id', $item->id)->count();
@@ -98,7 +98,14 @@ class PeticaoController extends Controller
         $apoiantes_porcetagem = ( $apoiantes / $item->objetivo ) * 100;
         $item2 = array('apoiantes' => $apoiantes, 'valuenow' => $apoiantes_porcetagem);
 
-        return view('peticaos.show',compact('item', 'item2'));
+        $comentarios  = DB::table('comentarios')
+                            ->select('comentarios.comentario', 'comentarios.created_at', 'users.name')
+                            ->where('peticao_id', $item->id)
+                            ->leftJoin('users', 'users.id', '=', 'comentarios.user_id')
+                            ->orderBy('comentarios.created_at', 'desc')
+                            ->paginate(5);
+
+        return view('peticaos.show',compact('item', 'item2', 'comentarios'))->with('i', ($request->input('page', 1) - 1) * 5);
     }    
 
     /**

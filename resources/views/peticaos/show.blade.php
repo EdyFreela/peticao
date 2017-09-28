@@ -27,7 +27,7 @@
   text-align: left;
   transition-duration: 3s;
 }
-.peticao-descricao .panel{
+.peticao-descricao{
     border: 0px solid;
     font-family: 'Merriweather', serif;
 }
@@ -59,15 +59,25 @@
 .btn-share-email{
     color:#fff;
 }
-
+.panel-comente textarea{
+    height: 70px;
+}
+.panel-comentarios img{
+    width:48px;
+    height:48px;
+    float:left;
+    margin-right:10px;
+    margin-bottom:10px;
+    display:block;
+}
 </style>
 @endsection
 
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 peticao-descricao">
-            <div class="panel panel-default">
+        <div class="col-md-8">
+            <div class="panel panel-default peticao-descricao">
                 <div class="panel-body">
                     <h1>{{ $item->title }}</h1>
                     <h3>{{ formatDate($item->created_at) }}</h3>
@@ -88,6 +98,56 @@
                     {!! $item->conteudo !!}
                 </div>
             </div>
+
+            @if (Auth::guest())
+                <div class="panel panel-default">
+                    <div class="panel-heading"><i class="fa fa-commenting" aria-hidden="true"></i> <strong>Participe, Comente!!!</strong></div>
+                    <div class="panel-body text-center">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <a class="btn btn-success" href="{{ url('/login') }}">Acesso</a>
+                            <a class="btn btn-success" href="{{ url('/register') }}">Registre-se</a>
+                        </div>
+                    </div>
+                </div>
+            @else
+                @if (session('success'))
+                    <div class="alert alert-success" id="comente">
+                        {{ session('success') }}
+                    </div>
+                @endif            
+                {!! Form::open(array('url' => '/comentar','method'=>'POST')) !!}
+                {{ Form::hidden('peticao_id', $item->id) }}
+                    <div class="panel panel-default panel-comente">
+                        <div class="panel-heading"><i class="fa fa-commenting" aria-hidden="true"></i> <strong>Comente</strong></div>
+                        <div class="panel-body text-center">
+                            <div class="form-group">
+                                {!! Form::textarea('comentario', null, array('placeholder' => 'Participe comente!','class' => 'form-control')) !!}
+                            </div>
+                        </div>                          
+                        <div class="panel-body text-center">
+                            <button type="submit" class="btn btn-success"><i class="fa fa-commenting" aria-hidden="true"></i> Comentar</button>
+                        </div>
+                    </div>
+                {!! Form::close() !!}
+            @endif                              
+
+            <div class="panel panel-default">
+                <div class="panel-body panel-comentarios">
+                    @foreach($comentarios as $key => $comentario)
+                    <div>
+                        <div><img src="{{ asset('assets/img/comentario-avatar.jpg') }}"></div>
+                        <div>
+                            <h5><strong style="color:red;">{{ $comentario->name }}</strong> &bullet; {{ time_elapsed_string($comentario->created_at) }}</h5>
+                            <p>{{ $comentario->comentario }}</p>
+                        </div>
+                    </div>
+                    <hr>                             
+                    @endforeach
+                    {!! $comentarios->render() !!}
+                </div>
+            </div>
+
+
         </div>
         <div class="col-md-4 peticao-assinar">
             <div class="panel panel-default panel-peticao-assinar">

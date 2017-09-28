@@ -31,3 +31,4 @@ Route::get('user/activation/{token}', 'Auth\AuthController@activateUser')->name(
 
 Route::post('/mail/send',  'EmailController@send');
 Route::post('/assinar',    'AssinanteController@store');
+Route::post('/comentar',   'ComentarioController@store');
