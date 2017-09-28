@@ -21,10 +21,12 @@ class PeticaoController extends Controller
         #$items = Peticao::orderBy('id','DESC')->paginate(5);
 
         $items = DB::table('peticaos')
-                    ->leftJoin('assinantes', 'peticaos.id', '=', 'assinantes.peticao_id')
-                    ->selectRaw('peticaos.*, count(assinantes.peticao_id) as total')
-                    ->groupBy('assinantes.peticao_id')
+                    #->leftJoin('assinantes', 'peticaos.id', '=', 'assinantes.peticao_id')
+                    #->selectRaw('peticaos.*, count(assinantes.peticao_id) as total')
+                    #->groupBy('assinantes.peticao_id')
+                    ->orderBy('created_at', 'DESC')
                     ->paginate(5);
+
         return view('peticaos.index',compact('items'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
