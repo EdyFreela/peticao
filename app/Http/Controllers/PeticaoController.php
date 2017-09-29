@@ -216,4 +216,53 @@ class PeticaoController extends Controller
                         ->with('success','Petição deletada com sucesso');
     }
 
+    /**
+     * Export to CSV.
+     * http://www.maatwebsite.nl/laravel-excel/docs/export
+     * https://github.com/Maatwebsite/Laravel-Excel
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function export($id)
+    {
+        $peticao    = DB::table('peticaos')
+                            ->select('slug')
+                            ->where('id', $id)
+                            ->first();
+
+        $apoiantes  = DB::table('assinantes')
+                            ->select('nome', 'sobrenome', 'email', 'created_at')
+                            ->where('peticao_id', $id)
+                            ->get();
+
+        /*
+         * CONVERT STDCLASS TO OBJECT
+         */
+        $apoiantes_arr = array();
+
+        foreach($apoiantes as $key=>$value){
+            $apoiantes_arr[] = array(
+                                    'nome'=>$value->nome,
+                                    'sobrenome'=>$value->sobrenome,
+                                    'email'=>$value->email,
+                                    'created_at'=>$value->created_at,
+            );
+        }
+
+        $filename = $peticao->slug.'-['.date('d-m-Y-H-i-s').']';
+
+        \Excel::create($filename, function($excel) use ($apoiantes_arr) {
+
+            $excel->sheet('Excel sheet', function($sheet) use ($apoiantes_arr) {
+
+                $sheet->setOrientation('landscape');
+
+                $sheet->fromArray($apoiantes_arr);
+
+            });
+
+        })->export('csv');
+    }
+
 }

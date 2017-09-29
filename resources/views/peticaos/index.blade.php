@@ -48,7 +48,7 @@
                                 <td class="text-center"><p>{{ $item->objetivo }}</p></td>
                                 <td class="text-center"><p>0</p></td>
                                 <td class="text-center"><p>{{ formatDate($item->created_at) }}</p></td>
-                                <td class="text-center"><a class="btn btn-info btn-md" href="/exportcsv/{{ $item->id }}" target="_blank" title="Usuários da Petição"><i class="fa fa-download" aria-hidden="true"></i></a></td>
+                                <td class="text-center"><a class="btn btn-info btn-md" href="{{ route('peticaos.export',$item->id) }}" target="_blank" title="Exportar para CSV"><i class="fa fa-download" aria-hidden="true"></i></a></td>
                                 <td class="text-center"><a class="btn btn-primary btn-md" href="{{ route('peticaos.edit',$item->id) }}" title="Editar Petição"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
                                 <td class="text-center">
                                     {!! Form::open(['id' => 'item-delete-'.$item->id, 'method' => 'DELETE','route' => ['peticaos.destroy', $item->id],'style'=>'display:inline']) !!}

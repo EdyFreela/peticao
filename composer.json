@@ -9,7 +9,8 @@
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "^5.2.0",
         "cviebrock/eloquent-sluggable": "4.1",
-        "unisharp/laravel-ckeditor": "^4.6"
+        "unisharp/laravel-ckeditor": "^4.6",
+        "maatwebsite/excel": "~2.1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
