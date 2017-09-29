@@ -1,4 +1,21 @@
-@extends('layouts.app')
+@extends('layouts.guest')
+
+@section('style')
+<style>
+.btn {
+    border: 0px solid transparent;
+}
+.btn-share-facebook{
+    background-color: #3b5998;
+}
+.btn-share-twitter{
+    background-color: #00aced;
+}
+.btn-share-email{
+    background-color: #e6222e;
+}    
+</style>
+@endsection
 
 @section('content')
 <div class="container">
