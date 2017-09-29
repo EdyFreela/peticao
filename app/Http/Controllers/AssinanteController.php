@@ -41,7 +41,7 @@ class AssinanteController extends Controller
             Session::flash('message', '<h2><strong>OBRIGADO!</strong> São pessoas como você que estão fazendo a diferença.</h2>');
             return view('thanks', compact('item', 'input'));
         }else{
-            Session::flash('message', '<h2><strong>OBRIGADO!</strong> Só é permitido um voto por email para esta petição.</h2>');
+            Session::flash('message', '<h2><strong>ATENÇÃO!</strong> Só é permitido um voto por email para cada petição.</h2>');
             return view('thanks', compact('item', 'input'));
         }
     }
