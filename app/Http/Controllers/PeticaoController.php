@@ -216,8 +216,4 @@ class PeticaoController extends Controller
                         ->with('success','Petição deletada com sucesso');
     }
 
-    public function exportcsv($id){
-
-    }
-
 }
