@@ -28,6 +28,13 @@ Route::patch('admin/peticoes/{id}',      ['as'=>'peticaos.update',    'uses' => 
 Route::delete('admin/peticoes/{id}',     ['as'=>'peticaos.destroy',   'uses' => 'PeticaoController@destroy', 'middleware' => ['auth', 'admin']]);
 Route::get('admin/peticoes/export/{id}', ['as'=>'peticaos.export',    'uses' => 'PeticaoController@export',   'middleware' => ['auth', 'admin']]);
 
+Route::get('admin/configuracoes',           ['as'=>'configuracaos.index',  'uses' => 'ConfiguracaoController@index',   'middleware' => ['auth', 'admin']]);
+Route::get('admin/configuracoes/{id}/edit', ['as'=>'configuracaos.edit',   'uses' => 'ConfiguracaoController@edit',    'middleware' => ['auth', 'admin']]);
+Route::patch('admin/configuracoes/{id}',    ['as'=>'configuracaos.update', 'uses' => 'ConfiguracaoController@update',  'middleware' => ['auth', 'admin']]);
+
+
+
+
 Route::get('user/activation/{token}', 'Auth\AuthController@activateUser')->name('user.activate');
 
 Route::post('/mail/send',    'EmailController@send');

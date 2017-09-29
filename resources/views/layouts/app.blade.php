@@ -41,7 +41,13 @@
             padding: 0;
             font-size: 14px;
             line-height: 1.2;
-        }               
+        }
+        .tab-content {
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            padding: 20px;
+        }                      
 
         /* CONTENT HEADER */
         .breadcrumb {
@@ -217,6 +223,9 @@
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/') }}"><i class="fa fa-btn fa-home"></i>Inicio</a></li>
+                                @if(\Auth::user()->admin==1)
+                                    <li><a href="{{ url('/admin/configuracoes') }}"><i class="fa fa-cogs" aria-hidden="true"></i> Configurações</a></li>
+                                @endif                                
                                 <li role="separator" class="divider"></li>                                
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Sair</a></li>
                             </ul>
