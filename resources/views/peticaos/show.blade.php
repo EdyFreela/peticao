@@ -151,7 +151,7 @@
         </div>
         <div class="col-md-4 peticao-assinar">
             <div class="panel panel-default panel-peticao-assinar">
-                <div class="panel-heading text-center"><h2><strong>Assine está petição</strong></h2></div>
+                <div class="panel-heading text-center"><h2><strong>Assine Já</strong></h2></div>
                 <div class="panel-body">
                     <p>{{ $item2['apoiantes'] }} Apoiantes</p>
                     <div class="progress skill-bar ">
@@ -186,7 +186,7 @@
                     {!! Form::close() !!}
                 </div>
                 <div class="panel-body">
-                    <p>Nota: Ao assinar, você aceita receber mensagens de e-mail da IPCO.org.br. Você pode cancelar sua inscrição a qualquer momento. <a href="{{ url('pg/politica-de-privacidade') }}">Política de Privacidade</a></p>
+                    <p>Nota: Ao assinar, você aceita receber atualizações da IPCO.org.br. Você pode cancelar sua inscrição a qualquer momento. <a href="{{ url('pg/politica-de-privacidade') }}">Política de Privacidade</a></p>
                 </div>
             </div>
             <div class="panel panel-default peticao-banner-compartilhar">
