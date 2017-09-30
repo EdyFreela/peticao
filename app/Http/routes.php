@@ -26,14 +26,14 @@ Route::get('/{id}',                      ['as'=>'peticaos.show',      'uses' => 
 Route::get('admin/peticoes/{id}/edit',   ['as'=>'peticaos.edit',      'uses' => 'PeticaoController@edit',    'middleware' => ['auth', 'admin']]);
 Route::patch('admin/peticoes/{id}',      ['as'=>'peticaos.update',    'uses' => 'PeticaoController@update',  'middleware' => ['auth', 'admin']]);
 Route::delete('admin/peticoes/{id}',     ['as'=>'peticaos.destroy',   'uses' => 'PeticaoController@destroy', 'middleware' => ['auth', 'admin']]);
-Route::get('admin/peticoes/export/{id}', ['as'=>'peticaos.export',    'uses' => 'PeticaoController@export',   'middleware' => ['auth', 'admin']]);
+Route::get('admin/peticoes/export/{id}', ['as'=>'peticaos.export',    'uses' => 'PeticaoController@export',  'middleware' => ['auth', 'admin']]);
 
 Route::get('admin/configuracoes',           ['as'=>'configuracaos.index',  'uses' => 'ConfiguracaoController@index',   'middleware' => ['auth', 'admin']]);
 Route::get('admin/configuracoes/{id}/edit', ['as'=>'configuracaos.edit',   'uses' => 'ConfiguracaoController@edit',    'middleware' => ['auth', 'admin']]);
 Route::patch('admin/configuracoes/{id}',    ['as'=>'configuracaos.update', 'uses' => 'ConfiguracaoController@update',  'middleware' => ['auth', 'admin']]);
 
-
-
+Route::get('user/profile/{id}/edit',     ['as'=>'profile.edit',       'uses' => 'ProfileController@edit',    'middleware' => ['auth']]);
+Route::patch('user/profile/{id}',        ['as'=>'profile.update',     'uses' => 'ProfileController@update',  'middleware' => ['auth']]);
 
 Route::get('user/activation/{token}', 'Auth\AuthController@activateUser')->name('user.activate');
 

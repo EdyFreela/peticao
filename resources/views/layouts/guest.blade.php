@@ -33,6 +33,25 @@
             margin-right: 6px;
         }
         /* NAVBAR */
+        .dropdown-toggle-login{
+            margin: 0;
+            padding: 0;
+        }
+        .dropdown-toggle-login > div{
+            float:left;
+            margin-top: -3px;
+            margin-right: 5px;
+        }
+        .dropdown-toggle-login > div > p{
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            line-height: 1.2;
+        }
+        .dropdown-login-avatar{
+            width: 28px;
+            border-radius: 100%
+        }        
         .navbar-inverse {
             background-color: #081832;
         }
@@ -127,8 +146,23 @@
                         <li><a href="{{ url('/register') }}">Registrar</a></li>
                     @else
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                            <a href="#" class="dropdown-toggle dropdown-toggle-login" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <div>
+                                    <p><strong>{{ Auth::user()->name }}</strong></p>
+                                    @if(\Auth::user()->admin==1)
+                                        <p>Administrador</p>
+                                    @else
+                                        <p>Usuário</p>
+                                    @endif                                          
+                                </div>
+                                <div>
+                                    @if(\Auth::user()->avatar==null)
+                                        <img src="{{ asset('/assets/img/user/default_avatar.jpg') }}" class="dropdown-login-avatar">
+                                    @else
+                                        <img src="{{ asset('/assets/img/user') }}/{{ Auth::user()->avatar }}" class="dropdown-login-avatar">
+                                    @endif
+                                </div>
+                                <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
@@ -137,7 +171,9 @@
                                     <li role="separator" class="divider"></li>
                                 @else
                                     
-                                @endif 
+                                @endif
+                                <li><a href="{{ route('profile.edit',Auth::user()->id) }}"><i class="fa fa-btn fa-user" aria-hidden="true"></i> Perfil</a></li> 
+                                <li role="separator" class="divider"></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Sair</a></li>
                             </ul>
                         </li>

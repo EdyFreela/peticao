@@ -42,6 +42,10 @@
             font-size: 14px;
             line-height: 1.2;
         }
+        .dropdown-login-avatar{
+            width: 28px;
+            border-radius: 100%
+        }        
         .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
             color: #555;
             cursor: default;
@@ -227,12 +231,20 @@
                                         <p>Usuário</p>
                                     @endif                                          
                                 </div>
+                                <div>
+                                    @if(\Auth::user()->avatar==null)
+                                        <img src="{{ asset('/assets/img/user/default_avatar.jpg') }}" class="dropdown-login-avatar">
+                                    @else
+                                        <img src="{{ asset('/assets/img/user') }}/{{ Auth::user()->avatar }}" class="dropdown-login-avatar">
+                                    @endif
+                                </div>
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/') }}"><i class="fa fa-btn fa-home"></i>Inicio</a></li>
+                                <li><a href="{{ route('profile.edit',Auth::user()->id) }}"><i class="fa fa-btn fa-user" aria-hidden="true"></i> Perfil</a></li>
                                 @if(\Auth::user()->admin==1)
-                                    <li><a href="{{ url('/admin/configuracoes') }}"><i class="fa fa-cogs" aria-hidden="true"></i> Configurações</a></li>
+                                    <li><a href="{{ url('/admin/configuracoes') }}"><i class="fa fa-btn fa-cogs" aria-hidden="true"></i> Configurações</a></li>
                                 @endif                                
                                 <li role="separator" class="divider"></li>                                
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Sair</a></li>
