@@ -68,7 +68,7 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        if($data['email']==env('USER_ADMIN')){
+        if($data['email']==env('USER_DEVEL') || $data['email']==env('USER_ADMIN')){
             return User::create([
                 'name'  => $data['name'],
                 'email' => $data['email'],
