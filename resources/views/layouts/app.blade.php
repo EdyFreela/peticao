@@ -42,6 +42,14 @@
             font-size: 14px;
             line-height: 1.2;
         }
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+            color: #555;
+            cursor: default;
+            background-color: #fff;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            border-top: 2px solid orange;
+        }        
         .tab-content {
             border-left: 1px solid #ddd;
             border-right: 1px solid #ddd;

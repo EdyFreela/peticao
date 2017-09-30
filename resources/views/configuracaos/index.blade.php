@@ -116,7 +116,7 @@
                     </div>
 
                     <div class="tab-pane" id="2">
-                        <h3>Notice the gap between the content and tab after applying a background color</h3>
+                        <h3><i class="fa fa-plus" aria-hidden="true"></i></h3>
                     </div>
                 </div>
             </div>

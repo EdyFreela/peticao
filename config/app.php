@@ -160,6 +160,7 @@ return [
         Cviebrock\EloquentSluggable\ServiceProvider::class,
         Unisharp\Ckeditor\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        App\Providers\ConfiguracaosServiceProvider::class,
 
     ],
 
