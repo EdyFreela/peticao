@@ -35,8 +35,25 @@ Route::patch('admin/configuracoes/{id}',    ['as'=>'configuracaos.update', 'uses
 Route::get('user/profile/{id}/edit',     ['as'=>'profile.edit',       'uses' => 'ProfileController@edit',    'middleware' => ['auth']]);
 Route::patch('user/profile/{id}',        ['as'=>'profile.update',     'uses' => 'ProfileController@update',  'middleware' => ['auth']]);
 
+Route::get('admin/assinantes',             ['as'=>'assinantes.index',     'uses' => 'AssinanteController@index',   'middleware' => ['auth', 'admin']]);
+Route::get('admin/assinantes/create',      ['as'=>'assinantes.create',    'uses' => 'AssinanteController@create',  'middleware' => ['auth', 'admin']]);
+Route::post('admin/assinantes/create',     ['as'=>'assinantes.store',     'uses' => 'AssinanteController@store',   'middleware' => ['auth', 'admin']]);
+Route::get('admin/assinantes/{id}',        ['as'=>'assinantes.show',      'uses' => 'AssinanteController@show',    'middleware' => ['auth', 'admin']]);
+Route::get('admin/assinantes/{id}/edit',   ['as'=>'assinantes.edit',      'uses' => 'AssinanteController@edit',    'middleware' => ['auth', 'admin']]);
+Route::patch('admin/assinantes/{id}',      ['as'=>'assinantes.update',    'uses' => 'AssinanteController@update',  'middleware' => ['auth', 'admin']]);
+Route::delete('admin/assinantes/{id}',     ['as'=>'assinantes.destroy',   'uses' => 'AssinanteController@destroy', 'middleware' => ['auth', 'admin']]);
+
+Route::get('admin/usuarios',             ['as'=>'usuarios.index',     'uses' => 'UsuarioController@index',   'middleware' => ['auth', 'admin']]);
+Route::get('admin/usuarios/create',      ['as'=>'usuarios.create',    'uses' => 'UsuarioController@create',  'middleware' => ['auth', 'admin']]);
+Route::post('admin/usuarios/create',     ['as'=>'usuarios.store',     'uses' => 'UsuarioController@store',   'middleware' => ['auth', 'admin']]);
+Route::get('admin/usuarios/{id}',        ['as'=>'usuarios.show',      'uses' => 'UsuarioController@show',    'middleware' => ['auth', 'admin']]);
+Route::get('admin/usuarios/{id}/edit',   ['as'=>'usuarios.edit',      'uses' => 'UsuarioController@edit',    'middleware' => ['auth', 'admin']]);
+Route::patch('admin/usuarios/{id}',      ['as'=>'usuarios.update',    'uses' => 'UsuarioController@update',  'middleware' => ['auth', 'admin']]);
+Route::delete('admin/usuarios/{id}',     ['as'=>'usuarios.destroy',   'uses' => 'UsuarioController@destroy', 'middleware' => ['auth', 'admin']]);
+
+
 Route::get('user/activation/{token}', 'Auth\AuthController@activateUser')->name('user.activate');
 
 Route::post('/mail/send',    'EmailController@send');
-Route::post('/assinar',      'AssinanteController@store');
+Route::post('/assinar',      'AssinanteController@assinar');
 Route::post('/comentar',     'ComentarioController@store');

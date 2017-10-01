@@ -25,7 +25,11 @@
 
         .fa-btn {
             margin-right: 6px;
+            min-width: 16px;
         }
+        .dropdown-menu>li>a {
+            line-height: 2;
+        }        
         /* NAVBAR */
         .dropdown-toggle-login{
             margin: 0;
@@ -211,6 +215,7 @@
                     
                 @else
                     <li><a href="{{ url('/admin/peticoes') }}">Petições</a></li>
+                    <li><a href="{{ url('/admin/assinantes') }}">Assinantes</a></li>
                 @endif
                 </ul>
 
@@ -244,6 +249,7 @@
                                 <li><a href="{{ url('/') }}"><i class="fa fa-btn fa-home"></i>Inicio</a></li>
                                 <li><a href="{{ route('profile.edit',Auth::user()->id) }}"><i class="fa fa-btn fa-user" aria-hidden="true"></i> Perfil</a></li>
                                 @if(\Auth::user()->admin==1)
+                                    <li><a href="{{ url('/admin/usuarios') }}"><i class="fa fa-btn fa-lock" aria-hidden="true"></i> Administradores</a></li>
                                     <li><a href="{{ url('/admin/configuracoes') }}"><i class="fa fa-btn fa-cogs" aria-hidden="true"></i> Configurações</a></li>
                                 @endif                                
                                 <li role="separator" class="divider"></li>                                

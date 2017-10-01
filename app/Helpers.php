@@ -41,6 +41,15 @@ function formatDateBR($date)
     return $day.'/'.$month.'/'.$year;
 }
 
+function formatDateTimeBR($date)
+{ 
+    $year  = substr($date, 0, 4);
+    $month = substr($date, 5, 2); 
+    $day   = substr($date, 8, 2);
+
+    return $day.'/'.$month.'/'.$year.' '.substr($date, 10, 9);
+}
+
 function time_elapsed_string($datetime, $full = false) {
     $now = new DateTime;
     $ago = new DateTime($datetime);

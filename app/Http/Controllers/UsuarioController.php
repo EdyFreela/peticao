@@ -11,7 +11,7 @@ use App\User;
 use DB;
 use Session;
 
-class AssinanteController extends Controller
+class UsuarioController extends Controller
 {
     /**
      * Get the index name for the model.
@@ -20,9 +20,9 @@ class AssinanteController extends Controller
     */
     public function index(Request $request)
     {
-        $items = User::orderBy('name','ASC')->where('admin', '!=', '1')->paginate(10);
+        $items = User::orderBy('name','ASC')->where('admin', '=', '1')->paginate(10);
 
-        return view('assinantes.index',compact('items'))
+        return view('usuarios.index',compact('items'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -33,7 +33,7 @@ class AssinanteController extends Controller
     */
     public function create()
     {
-        return view('assinantes.create');
+        return view('usuarios.create');
     }
 
     /**
@@ -54,14 +54,14 @@ class AssinanteController extends Controller
             'name'      => $request->get('name'), 
             'email'     => $request->get('email'), 
             'password'  => bcrypt($request->get('password')), 
-            'admin'     => '0', 
+            'admin'     => '1', 
             'activated' => '1'
         ));
 
         $input->save();
 
-        return redirect()->route('assinantes.index')
-                        ->with('success','Usuário criado com sucesso');
+        return redirect()->route('usuarios.index')
+                        ->with('success','Administrador criado com sucesso');
     }
 
     /**
@@ -76,7 +76,7 @@ class AssinanteController extends Controller
                             ->where('id', $id)
                             ->get();
 
-        return view('assinantes.show',compact('item'));
+        return view('usuarios.show',compact('item'));
     }
 
     /**
@@ -89,7 +89,7 @@ class AssinanteController extends Controller
     {
         $item = User::find($id);
 
-        return view('assinantes.edit',compact('item'));
+        return view('usuarios.edit',compact('item'));
     }
 
     /**
@@ -125,8 +125,8 @@ class AssinanteController extends Controller
 
         User::find($id)->update($input);
 
-        return redirect()->route('assinantes.index')
-                        ->with('success','Assinante atualizado com sucesso');
+        return redirect()->route('usuarios.index')
+                        ->with('success','Administrador atualizado com sucesso');
     }
 
     /**
@@ -139,41 +139,7 @@ class AssinanteController extends Controller
     {
         
         User::find($id)->delete();
-        return redirect()->route('peticaos.index')
-                        ->with('success','Assinante deletado com sucesso');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function assinar(Request $request)
-    {
-        $id = $request->get('peticao_id');
-
-        $item = Peticao::find($id);
-
-        $input = new Assinante(array(
-            'peticao_id'  => $id,
-            'nome'        => $request->get('nome'),
-            'sobrenome'   => $request->get('sobrenome'),
-            'email'       => $request->get('email')
-        ));
-
-        $votou = DB::table('assinantes')->where([
-            ['peticao_id', '=', $id],
-            ['email', '=', $request->get('email')],
-        ])->count();
-
-        if($votou<1){
-            $input->save();
-            Session::flash('message', '<h2><strong>OBRIGADO!</strong> São pessoas como você que estão fazendo a diferença.</h2>');
-            return view('thanks', compact('item', 'input'));
-        }else{
-            Session::flash('message', '<h2><strong>ATENÇÃO!</strong> Só é permitido um voto por email para cada petição.</h2>');
-            return view('thanks', compact('item', 'input'));
-        }
+        return redirect()->route('usuarios.index')
+                        ->with('success','Administrador deletado com sucesso');
     }
 }
