@@ -63,18 +63,31 @@ class ProfileController extends Controller
     	        }
             }
 
-	        $input = array(
-	            'name'     => $request->get('name'), 
-	            'password' => bcrypt($request->get('passw')),
-	        	'avatar'   => $file->getClientOriginalName()
-	        );
+            if($request->passw != null || $request->passw != ''){
+    	        $input = array(
+    	            'name'     => $request->get('name'), 
+    	            'password' => bcrypt($request->get('passw')),
+    	        	'avatar'   => $file->getClientOriginalName()
+    	        );
+            }else{
+                $input = array(
+                    'name'     => $request->get('name'),
+                    'avatar'   => $file->getClientOriginalName()
+                );
+            }
 
     	}else{
     		
-	        $input = array(
-	            'name'     => $request->get('name'), 
-	            'password' => bcrypt($request->get('passw'))
-	        );
+            if($request->passw != null || $request->passw != ''){
+                $input = array(
+                    'name'     => $request->get('name'), 
+                    'password' => bcrypt($request->get('passw'))
+                );
+            }else{
+                $input = array(
+                    'name'     => $request->get('name')
+                );
+            }
     	}
 
         User::find($id)->update($input);

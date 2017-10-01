@@ -52,10 +52,14 @@
 			</ul>
 		</div>
 	@endif
-
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p><i class="fa fa-check" aria-hidden="true"></i> {{ $message }}</p>
+        </div>
+    @endif
     <div id="exTab2"> 
         <ul class="nav nav-tabs">
-            <li class="active"><a  href="#1" data-toggle="tab"><i class="fa fa-envelope" aria-hidden="true"></i> Configurações</a></li>
+            <li class="active"><a  href="#1" data-toggle="tab"><i class="fa fa-user" aria-hidden="true"></i> Dados Pessoais</a></li>
             <!-- <li><a href="#2" data-toggle="tab"><i class="fa fa-list" aria-hidden="true"></i> Acessos</a></li> -->
         </ul>
 
