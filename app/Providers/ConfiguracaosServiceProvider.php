@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use DB;
+use Schema;
 
 class ConfiguracaosServiceProvider extends ServiceProvider
 {
@@ -19,16 +20,18 @@ class ConfiguracaosServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        $conf = DB::table('configuracaos')
-                    ->select('type', 'name', 'value')
-                    ->get();
+        if (Schema::hasTable('configuracaos')){
+            $conf = DB::table('configuracaos')
+                        ->select('type', 'name', 'value')
+                        ->get();
 
-        foreach($conf as $key=>$val){
-          $type  = $val->type;
-          $name  = $val->name;
-          $value = $val->value;
+            foreach($conf as $key=>$val){
+              $type  = $val->type;
+              $name  = $val->name;
+              $value = $val->value;
 
-          config([$type.'.'.$name => $value]);
+              config([$type.'.'.$name => $value]);
+            }
         }
     }
 
