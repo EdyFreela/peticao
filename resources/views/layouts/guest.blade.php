@@ -204,11 +204,11 @@
             <div class="col-md-5 col-md-5 text-right">
                 <h4>SIGA-NOS</h4>
                 <div class="btn-group" role="group" aria-label="...">
-                  <button type="button" class="btn btn-default"><i class="fa fa-facebook" aria-hidden="true"></i></button>
-                  <button type="button" class="btn btn-default"><i class="fa fa-google-plus" aria-hidden="true"></i></button>
-                  <button type="button" class="btn btn-default"><i class="fa fa-rss" aria-hidden="true"></i></button>
-                  <button type="button" class="btn btn-default"><i class="fa fa-twitter" aria-hidden="true"></i></button>
-                  <button type="button" class="btn btn-default"><i class="fa fa-youtube-play" aria-hidden="true"></i></button>
+                  <button type="button" class="btn btn-default" onclick="window.open('https://www.facebook.com/Inst.PCO')"><i class="fa fa-facebook" aria-hidden="true"></i></button>
+                  <button type="button" class="btn btn-default" onclick="window.open('https://plus.google.com/u/0/+InstitutoPlinioCorr%C3%AAadeOliveiraIPCO')"><i class="fa fa-google-plus" aria-hidden="true"></i></button>
+                  <button type="button" class="btn btn-default" onclick="window.open('http://feeds.feedburner.com/feedipco')"><i class="fa fa-rss" aria-hidden="true"></i></button>
+                  <button type="button" class="btn btn-default" onclick="window.open('https://twitter.com/InstitutoPCO')"><i class="fa fa-twitter" aria-hidden="true"></i></button>
+                  <button type="button" class="btn btn-default" onclick="window.open('https://www.youtube.com/user/caravanaipco')"><i class="fa fa-youtube-play" aria-hidden="true"></i></button>
                 </div>
             </div>
         </div>
