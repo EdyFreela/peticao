@@ -19,6 +19,8 @@ class CreateAssinantesTable extends Migration
            $table->string('nome');
            $table->string('sobrenome');
            $table->string('email');
+           $table->string('cidade');
+           $table->string('estado');
            $table->string('ip');
            $table->timestamps();
         });

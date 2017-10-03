@@ -19,11 +19,10 @@ class CreatePeticaosTable extends Migration
            $table->string('slug');
            $table->longText('conteudo');
            $table->longText('peticao');
-           $table->longText('conteudomail');
-           $table->longText('mailpeticao');
            $table->string('twitterhashtags');
            $table->string('imagem');
            $table->string('objetivo');
+           $table->string('mostrar_progresso');
            $table->timestamps();
         });
     }

@@ -1,5 +1,22 @@
 @extends('layouts.app')
 
+@section('style')
+    <style>
+        .tab-content {
+            min-height: 400px;
+        }
+        .btn-file{
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            padding-top: 10px;
+        }
+        #img-upload{
+            width: 100%;
+        }         
+    </style>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -32,6 +49,32 @@
 	@endif
 	{!! Form::model($item, ['method' => 'PATCH','route' => ['peticaos.update', $item->id], 'files' => true]) !!}
 	<div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="form-group">
+                <strong>Mostrar Progresso:</strong>
+                {!! Form::select('mostrar_progresso', ['S' => 'Mostrar Progresso da Petição', 'N' => 'Não Mostrar Progresso da Petição'], $item->mostrar_progresso, array('class' => 'form-control')) !!}
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-3">
+            <div class="form-group">
+                <strong>Objetivo:</strong>
+                {!! Form::text('objetivo', null, array('placeholder' => 'Objetivo','class' => 'form-control')) !!}
+            </div>
+        </div>        
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="panel panel-default text-center"> 
+                <div class="panel-body">
+                    <div class="form-group text-center">
+                        <img id='img-upload' src="{{ env('APP_URL') }}/{{ env('IMAGEM_PETICAO_PATH') }}/{{ $item->imagem }}" />
+                        <div class="col-lg-12 col-sm-12 col-12" style="margin-top: -35px;">
+                            <label class="btn btn-success btn-file">
+                                <i class="fa fa-pencil" aria-hidden="true"></i><input name="imagem" type="file" style="display: none;" id="imgInp">
+                            </label>
+                        </div>                            
+                    </div>                   
+                </div>       
+            </div>
+        </div>        
 		<div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Titulo:</strong>
@@ -50,19 +93,6 @@
                 </div>
             </div>
         </div>        
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Imagem:</strong>
-                <img src="{{ env('APP_URL') }}/{{ env('IMAGEM_PETICAO_PATH') }}/{{ $item->imagem }}">
-                {!! Form::file('imagem', null, array('placeholder' => 'Imagem','class' => 'form-control')) !!}
-            </div>
-        </div>
-        <div class="col-xs-6 col-sm-6 col-md-6">
-            <div class="form-group">
-                <strong>Objetivo:</strong>
-                {!! Form::text('objetivo', null, array('placeholder' => 'Objetivo','class' => 'form-control')) !!}
-            </div>
-        </div>        
 		<div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Conteúdo:</strong>
@@ -73,18 +103,6 @@
             <div class="form-group">
                 <strong>Petição:</strong>
                 {!! Form::textarea('peticao', null, array('placeholder' => 'Petição','class' => 'form-control')) !!}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>E-Mail com a Petição:</strong>
-                {!! Form::textarea('conteudomail', null, array('placeholder' => 'E-Mail com a Petição','class' => 'form-control')) !!}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>E-Mails de Destino:</strong>
-                {!! Form::text('mailpeticao', null, array('placeholder' => 'mailpeticao','class' => 'form-control')) !!}
             </div>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6">
@@ -106,6 +124,46 @@
     <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
     <script>
         $('textarea').ckeditor();
-        // $('.textarea').ckeditor(); // if class is prefered.
+    </script>
+
+    <script>
+    $(document).ready( function() {
+        $(document).on('change', '.btn-file :file', function() {
+
+            var input = $(this),
+            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            input.trigger('fileselect', [label]);
+        });
+
+        $('.btn-file :file').on('fileselect', function(event, label) {
+
+            var input = $(this).parents('.input-group').find(':text'),
+                log = label;
+            
+            if( input.length ) {
+                input.val(log);
+            } else {
+                //if( log ) alert(log);
+            }
+        
+        });
+        function readURL(input) {
+            
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                
+                reader.onload = function (e) {
+                    $('#img-upload').attr('src', e.target.result);
+                }
+                
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imgInp").change(function(){
+
+            readURL(this);
+        });     
+    });
     </script>
 @endsection

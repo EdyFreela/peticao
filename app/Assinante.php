@@ -9,7 +9,7 @@ class Assinante extends Model
 {
 
     public $fillable = [
-        'peticao_id', 'nome', 'sobrenome', 'email', 'ip'
+        'peticao_id', 'nome', 'sobrenome', 'email', 'cidade', 'estado', 'ip'
     ];
 
 }

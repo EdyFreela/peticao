@@ -21,9 +21,9 @@ class PeticaoController extends Controller
         #$items = Peticao::orderBy('id','DESC')->paginate(5);
 
         $items = DB::table('peticaos')
-                    ->leftJoin('assinantes', 'peticaos.id', '=', 'assinantes.peticao_id')
-                    ->selectRaw('peticaos.*, count(assinantes.peticao_id) as total')
-                    ->groupBy('assinantes.peticao_id')
+                    #->leftJoin('assinantes', 'peticaos.id', '=', 'assinantes.peticao_id')
+                    #->selectRaw('peticaos.*, count(assinantes.peticao_id) as total')
+                    #->groupBy('assinantes.peticao_id')
                     ->orderBy('created_at', 'DESC')
                     ->paginate(5);
 
@@ -51,12 +51,11 @@ class PeticaoController extends Controller
     {
 
         $this->validate($request, [
+            'objetivo' => 'required|numeric',
+            'imagem' => 'required',
             'title' => 'required',
             'conteudo' => 'required',
             'peticao' => 'required',
-            'conteudomail' => 'required',
-            'mailpeticao' => 'required',
-            'objetivo' => 'required',
             'twitterhashtags' => 'required'
         ]);
 
@@ -64,19 +63,14 @@ class PeticaoController extends Controller
 
         $file->move(env('IMAGEM_PETICAO_PATH'), $file->getClientOriginalName());
 
-        #$input = $request->all();
-        
-        #$item = Peticao::create($input);
-
         $input = new Peticao(array(
-            'title'           => $request->get('title'), 
-            'conteudo'        => $request->get('conteudo'), 
-            'peticao'         => $request->get('peticao'), 
-            'conteudomail'    => $request->get('conteudomail'), 
-            'mailpeticao'     => $request->get('mailpeticao'), 
-            'imagem'          => $file->getClientOriginalName(), 
-            'objetivo'        => $request->get('objetivo'),
-            'twitterhashtags' => $request->get('twitterhashtags')
+            'title'             => $request->get('title'), 
+            'conteudo'          => $request->get('conteudo'), 
+            'peticao'           => $request->get('peticao'), 
+            'imagem'            => $file->getClientOriginalName(), 
+            'objetivo'          => $request->get('objetivo'),
+            'twitterhashtags'   => $request->get('twitterhashtags'),
+            'mostrar_progresso' => $request->get('mostrar_progresso')
         ));
 
         $input->save();
@@ -134,12 +128,10 @@ class PeticaoController extends Controller
     {
 
         $this->validate($request, [
+            'objetivo' => 'required|numeric',
             'title' => 'required',
             'conteudo' => 'required',
             'peticao' => 'required',
-            'conteudomail' => 'required',
-            'mailpeticao' => 'required',
-            'objetivo' => 'required',
             'twitterhashtags' => 'required'
         ]);
 
@@ -156,13 +148,12 @@ class PeticaoController extends Controller
 
         if($img_saved == $img_new){
             $input = array(
-                'title'           => $request->get('title'), 
-                'conteudo'        => $request->get('conteudo'),
-                'peticao'         => $request->get('peticao'), 
-                'conteudomail'    => $request->get('conteudomail'), 
-                'mailpeticao'     => $request->get('mailpeticao'),                 
-                'objetivo'        => $request->get('objetivo'),
-                'twitterhashtags' => $request->get('twitterhashtags')
+                'title'             => $request->get('title'), 
+                'conteudo'          => $request->get('conteudo'),
+                'peticao'           => $request->get('peticao'),                  
+                'objetivo'          => $request->get('objetivo'),
+                'twitterhashtags'   => $request->get('twitterhashtags'),
+                'mostrar_progresso' => $request->get('mostrar_progresso')
             );
         }else{
 
@@ -178,14 +169,13 @@ class PeticaoController extends Controller
             }
 
             $input = array(
-                'title'           => $request->get('title'), 
-                'conteudo'        => $request->get('conteudo'), 
-                'imagem'          => $file->getClientOriginalName(), 
-                'peticao'         => $request->get('peticao'), 
-                'conteudomail'    => $request->get('conteudomail'), 
-                'mailpeticao'     => $request->get('mailpeticao'),                 
-                'objetivo'        => $request->get('objetivo'),
-                'twitterhashtags' => $request->get('twitterhashtags')
+                'title'             => $request->get('title'), 
+                'conteudo'          => $request->get('conteudo'), 
+                'imagem'            => $file->getClientOriginalName(), 
+                'peticao'           => $request->get('peticao'),                  
+                'objetivo'          => $request->get('objetivo'),
+                'twitterhashtags'   => $request->get('twitterhashtags'),
+                'mostrar_progresso' => $request->get('mostrar_progresso')
             );
         }
 

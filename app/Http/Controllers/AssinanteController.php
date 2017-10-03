@@ -159,7 +159,9 @@ class AssinanteController extends Controller
             'peticao_id'  => $id,
             'nome'        => $request->get('nome'),
             'sobrenome'   => $request->get('sobrenome'),
-            'email'       => $request->get('email')
+            'email'       => $request->get('email'),
+            'cidade'      => $request->get('cidade'),
+            'estado'      => $request->get('estado')
         ));
 
         $votou = DB::table('assinantes')->where([

@@ -152,14 +152,16 @@
         <div class="col-md-4 peticao-assinar">
             <div class="panel panel-default panel-peticao-assinar">
                 <div class="panel-heading text-center"><h2><strong>Assine Já</strong></h2></div>
+                @if($item->mostrar_progresso!='N')
                 <div class="panel-body">
                     <p>{{ $item2['apoiantes'] }} Apoiantes</p>
                     <div class="progress skill-bar ">
                         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ $item2['valuenow'] }}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>                    
-                    <h2 class="text-center">Objetivo {{ $item->objetivo}}</h2>
+                    <h2 class="text-center">Objetivo {{ $item->objetivo }}</h2>
                 </div>
-                <div class="panel-body">{!! $item->peticao !!}</div>
+                @endif
+                <div class="panel-body text-center"><button class="btn btn-warning btn-lg" data-toggle="modal" data-target="#modalPeticao"><i class="fa fa-eye" aria-hidden="true"></i> Ler Petição</button></div>
                 <div class="panel-body">
                     {!! Form::open(array('url' => '/assinar','method'=>'POST')) !!}
                     {{ Form::hidden('peticao_id', $item->id) }}
@@ -178,7 +180,17 @@
                             <div class="form-group">
                                 {!! Form::text('email', null, array('placeholder' => 'E-mail','class' => 'form-control input-lg')) !!}
                             </div>
-                        </div>                                                
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-8">
+                            <div class="form-group">
+                                {!! Form::text('cidade', null, array('placeholder' => 'Cidade','class' => 'form-control input-lg')) !!}
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4">
+                            <div class="form-group">
+                                {!! Form::text('estado', null, array('placeholder' => 'Estado','class' => 'form-control input-lg')) !!}
+                            </div>
+                        </div>                                                                                                
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                             <button type="submit" class="btn btn-success btn-lg"><i class="fa fa-check" aria-hidden="true"></i> Assinar</button>
@@ -250,7 +262,22 @@
     </div>
   </div>
 </div>
-
+<!-- Modal -->
+<div class="modal fade" id="modalPeticao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="myModalLabel">{{ $item->title }}</h3>
+      </div>
+      <div class="modal-body">
+        {!! $item->peticao !!}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 @section('script')
