@@ -83,10 +83,9 @@
             </div>
 
             <div class="login-footer">
-                <a href="{{ url('/terms') }}">Termos</a>
-                <a href="{{ url('/privacy') }}">Privacidade</a>
-                <a href="{{ url('/security') }}">Segurança</a>
-                <a href="{{ url('/contact') }}">Contate-nos</a>
+                <a href="{{ url('/pg/termos-de-uso') }}">Termos</a>
+                <a href="{{ url('/pg/politica-de-privacidade') }}">Privacidade</a>
+                <a href="https://ipco.org.br/fale-conosco" target="_blank">Contate-nos</a>
             </div>
 
         </div>

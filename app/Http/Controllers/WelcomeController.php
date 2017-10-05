@@ -18,9 +18,15 @@ class WelcomeController extends Controller
     {
 
         $items = Peticao::orderBy('created_at','ASC')
+                    ->limit(5)
                     ->get();
 
-        return view('welcome', compact('items'));
+        $items2 = Peticao::orderBy('created_at','ASC')
+
+                    ->limit(3)
+                    ->get();
+
+        return view('welcome', compact('items', 'items2'));
     }
 
 }

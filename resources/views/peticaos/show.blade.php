@@ -193,18 +193,18 @@
                         </div>                                                                                                
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                            <button type="submit" class="btn btn-success btn-lg"><i class="fa fa-check" aria-hidden="true"></i> Assinar</button>
+                        <button type="submit" class="btn btn-success btn-lg"><i class="fa fa-check" aria-hidden="true"></i> Assinar</button>
                     </div>                    
                     {!! Form::close() !!}
                 </div>
                 <div class="panel-body">
-                    <p>Nota: Ao assinar, você aceita receber atualizações da IPCO.org.br. Você pode cancelar sua inscrição a qualquer momento. <a href="{{ url('pg/politica-de-privacidade') }}">Política de Privacidade</a></p>
+                    <p>Nota: Ao assinar, você aceita receber atualizações da IPCO. Você pode cancelar sua inscrição a qualquer momento. <a href="{{ url('pg/politica-de-privacidade') }}">Política de Privacidade</a></p>
                 </div>
             </div>
             <div class="panel panel-default peticao-banner-compartilhar">
                 <div class="panel-body text-center">
                     <h1>A luta começa com você.</h1>
-                    <h2>Certifique-se de compartilhar esta petição.</h2>
+                    <h2>Não esqueça de compartilhar esta petição.</h2>
                     <h2>Deus te abençoê.</h2>
                     <div class="btn-group btn-group-lg" role="group" aria-label="...">
                       <button type="button" class="btn btn-default btn-share-facebook" data-href="{{ env('APP_URL')}}/{{ $item->slug }}" data-image="{{ env('APP_URL')}}/{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" data-title="{{ $item->title }}" data-desc="Some description for this article"><i class="fa fa-facebook" aria-hidden="true"></i></button>

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Campanhas IPCO.org.br</title>
+    <title>Entre em Ação!</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
@@ -107,6 +107,22 @@
         footer img{
             width: 100%;
         }
+
+        /* Extra Small Devices, Phones */ 
+        @media only screen and (min-width : 320px) {
+            body > .container > .row {
+                margin-top: 0px;
+            }            
+            .empresa{
+                display:none;
+            }
+            footer img{
+                width:110%;
+            }
+            .footer-siganos{
+                text-align: center;
+            }
+        }        
                
     </style>
 
@@ -191,17 +207,16 @@
 <footer>
     <div class="container">
         <div class="row">
-            <div class="col-xs-7 col-md-7">
-                <h4>SOBRE NÓS</h4>
+            <div class="col-xs-12 col-md-7">
+                <h4>Ação Jovem IPCO</h4>
                     <div class="col-xs-3 col-md-2">
                         <img src="{{ url('assets/img/selo-ipco.png') }}">
                     </div>
                     <div class="col-xs-9 col-md-10">
-                        <p>O Instituto Plinio Corrêa de Oliveira é uma associação civil criada com o intuito de mobilizar a sociedade com vistas a preservar os pilares básicos da Civilização Cristã que estão ameaçados pela Revolução anti-cristã; Clique aqui e saiba mais!</p>
-                        <p>Contato: contato@ipco.org.br</p>
+                        <p>A Ação Jovem do IPCO é o setor de promoção de campanhas e atividades públicas do Instituto Plinio Corrêa de Oliveira realizadas com o intuito de defender e preservar os pilares básicos da Civilização Cristã” Junte-se a nós! Saiba mais em <a href="mailto:campanhas@ipco.org.br">campanhas@ipco.org.br</a></p>
                     </div>
             </div>
-            <div class="col-md-5 col-md-5 text-right">
+            <div class="col-xs-12 col-md-5 text-right footer-siganos">
                 <h4>SIGA-NOS</h4>
                 <div class="btn-group" role="group" aria-label="...">
                   <button type="button" class="btn btn-default" onclick="window.open('https://www.facebook.com/Inst.PCO')"><i class="fa fa-facebook" aria-hidden="true"></i></button>
