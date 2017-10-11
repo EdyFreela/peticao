@@ -14,13 +14,18 @@
 		</div>
 		<div style="padding:20px;">
 
-			<p>Caro <strong>{{ $name }}</strong>,</p>
-			<p>Obrigado por se inscrever na Ação Jovem do IPCO.</p>
-			<p>Para completar seu cadastro você deve clicar no link de confirmação abaixo:</p>
-			<a href="{{ $activateLink }}">{{ $activateLink }}</a>
-			<p>Se depois de clicar no link algo der errado, simplesmente copie e cole-o em uma nova janela do navegador.</p>
-			<p>Se ainda assim você encontrar algum problema, por favor, escreva-nos através deste endereço de e-mail: contato@ipco.org.br</p>
-			<p>Cordialmente,</p>
+			<p>Caro <strong>{{ $nome }}</strong>,</p>
+
+			<p>Meu muito obrigado por ter assinado a petição:<br> <strong><a href="{{ $link }}">{{ $titulo }}</a></strong></p>
+
+			<p>Cada pessoa conta nessa batalha espiritual. Então, estou escrevendo para pedir que você compartilhe essa petição com todos os seus amigos que poderiam também participar desse esforço. E, quem sabe, toda sua lista de contatos.</p>
+
+			<p>Simplesmente envie essa mensagem para seus amigos. É simples.</p>
+
+			<p>Estou contando com você porque eu não posso fazer isso sozinho.</p>
+
+			<p>Possa Deus, Nosso Senhor, abençoar e recompensar sua ajuda!</p>
+
 			<p>Allysson Vidal</p>
 			<p>Ação Jovem IPCO</p>
 

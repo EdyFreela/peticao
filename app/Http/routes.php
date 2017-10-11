@@ -52,7 +52,7 @@ Route::delete('admin/usuarios/{id}',     ['as'=>'usuarios.destroy',   'uses' => 
 Route::get('user/activation/{token}', 'Auth\AuthController@activateUser')->name('user.activate');
 
 Route::post('/mail/send',    'EmailController@send');
-Route::post('/assinar',      'AssinanteController@assinar');
+Route::post('/{id}',         'AssinanteController@assinar');
 Route::post('/comentar',     'ComentarioController@store');
 
 Route::get('/pg/politica-de-privacidade', 'PgController@privacy');

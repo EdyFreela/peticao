@@ -163,7 +163,8 @@
                 @endif
                 <div class="panel-body text-center"><button class="btn btn-warning btn-lg" data-toggle="modal" data-target="#modalPeticao"><i class="fa fa-eye" aria-hidden="true"></i> Ler Petição</button></div>
                 <div class="panel-body">
-                    {!! Form::open(array('url' => '/assinar','method'=>'POST')) !!}
+
+                    {!! Form::open(array('url' => url('/', $item->slug), 'method'=>'POST')) !!}
                     {{ Form::hidden('peticao_id', $item->id) }}
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">

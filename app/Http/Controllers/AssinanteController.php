@@ -10,6 +10,7 @@ use App\Assinante;
 use App\User;
 use DB;
 use Session;
+use Mail;
 
 class AssinanteController extends Controller
 {
@@ -169,12 +170,28 @@ class AssinanteController extends Controller
             ['email', '=', $request->get('email')],
         ])->count();
 
+        $nome      = $request->get('nome').' '.$request->get('sobrenome');
+        $titulo    = $item->title;
+        $link      = url($item->slug);
+        $mailTo    = $request->get('email');
+
+        Mail::send('emails.thanks', ['nome' => $nome, 'titulo' => $titulo, 'link' => $link], function ($message) use ($mailTo) {
+            $mailFrom = DB::table('configuracaos')
+                            ->where([
+                                ['type', '=', 'mail'],
+                                ['name', '=', 'username'],
+                            ])->value('value');
+            $message->from($mailFrom, 'Campanhas IPCO.org.br');
+            $message->to($mailTo);
+            $message->subject('Obrigado por assinar!');
+        });
+
         if($votou<1){
             $input->save();
-            Session::flash('message', '<h2><strong>OBRIGADO!</strong> São pessoas como você que estão fazendo a diferença.</h2>');
+            Session::flash('message', '<h2><strong>OBRIGADO!</strong> São pessoas como você que estão fazendo a diferença.</h2><h2>Você assinou <strong>'.$item->title.'</strong></h2>');
             return view('thanks', compact('item', 'input'));
         }else{
-            Session::flash('message', '<h2><strong>ATENÇÃO!</strong> Só é permitido um voto por email para cada petição.</h2>');
+            Session::flash('message', '<h2>Obrigado por não ser omisso ou acomodado!</h2><h2>Felizmente, você já assinou essa petição!</h2>');
             return view('thanks', compact('item', 'input'));
         }
     }
