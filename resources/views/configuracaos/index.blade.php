@@ -8,7 +8,7 @@
 
             <div>
                 <ul class="breadcrumb">
-                    <li class="completed"><a href="{{ url('admin') }}">Painel</a></li>
+                    <li class="completed"><a href="{{ url('admin/peticoes') }}">Painel</a></li>
                     <li><a href="javascript:void(0);">Configurações</a></li>
                 </ul>
             </div>

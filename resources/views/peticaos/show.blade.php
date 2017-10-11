@@ -199,14 +199,13 @@
                     {!! Form::close() !!}
                 </div>
                 <div class="panel-body">
-                    <p>Nota: Ao assinar, você aceita receber atualizações da IPCO. Você pode cancelar sua inscrição a qualquer momento. <a href="{{ url('pg/politica-de-privacidade') }}">Política de Privacidade</a></p>
+                    <p>Nota: Ao assinar, você aceita receber atualizações do IPCO. Você pode cancelar sua inscrição a qualquer momento. <a href="{{ url('pg/politica-de-privacidade') }}">Política de Privacidade</a></p>
                 </div>
             </div>
             <div class="panel panel-default peticao-banner-compartilhar">
                 <div class="panel-body text-center">
                     <h1>A luta começa com você.</h1>
                     <h2>Não esqueça de compartilhar esta petição.</h2>
-                    <h2>Deus te abençoê.</h2>
                     <div class="btn-group btn-group-lg" role="group" aria-label="...">
                       <button type="button" class="btn btn-default btn-share-facebook" data-href="{{ env('APP_URL')}}/{{ $item->slug }}" data-image="{{ env('APP_URL')}}/{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" data-title="{{ $item->title }}" data-desc="Some description for this article"><i class="fa fa-facebook" aria-hidden="true"></i></button>
                       <button type="button" class="btn btn-default btn-share-twitter" onclick="javascript:MyPopUpWin('http://twitter.com/share?text={{ $item->title }}&url={{ env('APP_URL')}}/{{ $item->slug }}&hashtags={{ $item->twitterhashtags }}, 300, 300');"><i class="fa fa-twitter" aria-hidden="true"></i></button>

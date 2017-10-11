@@ -8,7 +8,7 @@
 
             <div>
                 <ul class="breadcrumb">
-                    <li class="completed"><a href="{{ url('admin') }}">Painel</a></li>
+                    <li class="completed"><a href="{{ url('admin/peticoes') }}">Painel</a></li>
                     <li><a href="javascript:void(0);">Petições</a></li>
                 </ul>
             </div>
@@ -46,7 +46,12 @@
                                 <td class="text-center"><p>{{ ++$key }}</p></td>
                                 <td><p><a href="{{ URL::to('/') . '/' . $item->slug }}" title="Visualizar Petição">{{ $item->title }}</a></p></td>
                                 <td class="text-center"><p>{{ $item->objetivo }}</p></td>
-                                <td class="text-center"><p>0</p></td>
+                                <td class="text-center"><p>
+                                    <?php
+                                    $total = DB::select("SELECT COUNT(assinantes.id) as tot FROM assinantes WHERE assinantes.peticao_id = $item->id");
+                                    print_r($total[0]->tot)
+                                    ?>
+                                </p></td>
                                 <td class="text-center"><p>{{ formatDate($item->created_at) }}</p></td>
                                 <td class="text-center"><a class="btn btn-info btn-md" href="{{ route('peticaos.export',$item->id) }}" target="_blank" title="Exportar para CSV"><i class="fa fa-download" aria-hidden="true"></i></a></td>
                                 <td class="text-center"><a class="btn btn-primary btn-md" href="{{ route('peticaos.edit',$item->id) }}" title="Editar Petição"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
