@@ -70,6 +70,12 @@
     margin-bottom:10px;
     display:block;
 }
+#nomemsg, #sobrenomemsg, #emailmsg{
+  font-weight: bold;
+  color: #a94442;
+  margin-top: 10px;
+  display: block;
+}
 </style>
 @endsection
 
@@ -168,18 +174,21 @@
                     {{ Form::hidden('peticao_id', $item->id) }}
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
-                            <div class="form-group">
-                                {!! Form::text('nome', null, array('placeholder' => 'Nome','class' => 'form-control input-lg')) !!}
+                            <div class="form-group assinarnome">
+                                {!! Form::text('nome', null, array('placeholder' => 'Nome','class' => 'form-control input-lg', 'id'=>'nome')) !!}
+                                <span id="nomemsg"></span>
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
-                            <div class="form-group">
-                                {!! Form::text('sobrenome', null, array('placeholder' => 'Sobrenome','class' => 'form-control input-lg')) !!}
+                            <div class="form-group assinarsobrenome">
+                                {!! Form::text('sobrenome', null, array('placeholder' => 'Sobrenome','class' => 'form-control input-lg', 'id'=>'sobrenome')) !!}
+                                <span id="sobrenomemsg"></span>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                {!! Form::text('email', null, array('placeholder' => 'E-mail','class' => 'form-control input-lg')) !!}
+                            <div class="form-group assinaremail">
+                                {!! Form::text('email', null, array('placeholder' => 'E-mail','class' => 'form-control input-lg', 'id'=>'email')) !!}
+                                <span id="emailmsg"></span>
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-8">
@@ -194,7 +203,7 @@
                         </div>                                                                                                
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                        <button type="submit" class="btn btn-success btn-lg"><i class="fa fa-check" aria-hidden="true"></i> Assinar</button>
+                        <button type="submit" class="btn btn-success btn-lg btn-assinar"><i class="fa fa-check" aria-hidden="true"></i> Assinar</button>
                     </div>                    
                     {!! Form::close() !!}
                 </div>
@@ -331,10 +340,6 @@ $('.btn-share-facebook').click(function(){
                 //console.log(thrownError);
             }
         });
-
-
-
-
     }
 </script>
 <script>
@@ -351,4 +356,51 @@ function MyPopUpWin(url, width, height) {
     + topPosition + ",toolbar=no,menubar=no,scrollbars=no,location=no,directories=no");
 }
 </script>
+<script type="text/javascript">
+  $('button.btn-assinar').on('click', function(){
+
+      var nome      = $('#nome').val();
+      var sobrenome = $('#sobrenome').val();
+      var email     = $('#email').val();
+      var erroqtd   = 0;
+
+      if(nome.length<=2){
+        $('#nomemsg').text('Nome Inválido');
+        $(".assinarnome").addClass( "has-error has-feedback" );
+        erroqtd = 1;
+      }else{
+        $('#nomemsg').text('');
+        $(".assinarnome").removeClass( "has-error has-feedback" );
+        erroqtd = 0;
+      }
+
+      if(sobrenome.length<=2){
+        $('#sobrenomemsg').text('Sobrenome Inválido');
+        $(".assinarsobrenome").addClass( "has-error has-feedback" );
+        erroqtd = 1;
+      }else{
+        $('#sobrenomemsg').text('');
+        $(".assinarsobrenome").removeClass( "has-error has-feedback" );
+        erroqtd = 0;
+      }
+
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      var tstmail = re.test(email);
+
+      if(tstmail==false){
+        $('#emailmsg').text('E-Mail inválido');
+        $(".assinaremail").addClass( "has-error has-feedback" );
+        erroqtd = 1;
+      }else{
+        $('#emailmsg').text('');
+        $(".assinaremail").removeClass( "has-error has-feedback" );
+        erroqtd = 0;
+      }
+
+      if(erroqtd == 1){
+        return false;
+      }            
+  });
+</script>
+
 @endsection
