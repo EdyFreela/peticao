@@ -218,6 +218,7 @@
                 @else
                     <li><a href="{{ url('/admin/peticoes') }}">Petições</a></li>
                     <li><a href="{{ url('/admin/assinantes') }}">Assinantes</a></li>
+                    <li><a href="{{ url('/admin/newsletters') }}">Newsletter</a></li>
                 @endif
                 </ul>
 

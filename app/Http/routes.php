@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'WelcomeController@index')->name('welcome.index');
 
 Route::auth();
 
@@ -49,11 +49,16 @@ Route::get('admin/usuarios/{id}/edit',   ['as'=>'usuarios.edit',      'uses' => 
 Route::patch('admin/usuarios/{id}',      ['as'=>'usuarios.update',    'uses' => 'UsuarioController@update',  'middleware' => ['auth', 'admin']]);
 Route::delete('admin/usuarios/{id}',     ['as'=>'usuarios.destroy',   'uses' => 'UsuarioController@destroy', 'middleware' => ['auth', 'admin']]);
 
+Route::get('admin/newsletters',             ['as'=>'newsletters.index',     'uses' => 'NewsletterController@index',   'middleware' => ['auth', 'admin']]);
+Route::delete('admin/newsletters/{id}',     ['as'=>'newsletters.destroy',   'uses' => 'NewsletterController@destroy', 'middleware' => ['auth', 'admin']]);
+
+
 Route::get('user/activation/{token}', 'Auth\AuthController@activateUser')->name('user.activate');
 
 Route::post('/mail/send',    'EmailController@send');
 Route::post('/{id}',         'AssinanteController@assinar');
 Route::post('/comentar',     'ComentarioController@store');
+Route::post('/assinar/newsletter',   ['as'=>'newsletter.store',  'uses' => 'NewsletterController@store']);
 
 Route::get('/pg/politica-de-privacidade', 'PgController@privacy');
 Route::get('/pg/termos-de-uso',           'PgController@terms');

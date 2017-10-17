@@ -28,10 +28,14 @@
       min-height:150px;
     }
     .vcenter {
-        display: inline-block;
-        vertical-align: middle;
-        float: none;
-    }       
+        padding-top: 35px;
+    }
+    #newsmsg{
+      font-weight: bold;
+      color: #a94442;
+      margin-top: 10px;
+      display: block;
+    }    
     </style>
 @endsection
 
@@ -117,25 +121,56 @@
                 </div>
             @endif
 
+            {!! Form::open(array('route' => 'newsletter.store', 'method'=>'POST', 'id'=>'newsform')) !!}
             <div class="row">
               <div class="col-md-12">
                 <div class="panel panel-default peticao-newsletter">
                   <div class="panel-body newsletter">
-                    <div class="col-md-8">
+                    <div class="col-md-7">
                       <h1>A luta começa com você.</h1>
                       <h2>Tenha certeza de nunca perder uma campanha importante!</h2>
                     </div>
-                    <div class="col-md-4 vcenter">
-                      <div>
-                        <a class="btn btn-warning">Cadastre-se para receber nossas atualizações!</a>
+                    <div class="col-md-5 vcenter">                     
+                      <div class="col-xs-12 col-sm-12 col-md-12">
+                          @if ($message = Session::get('newsletter'))
+                              <div class="alert alert-success">
+                                  <p><i class="fa fa-check" aria-hidden="true"></i> {{ $message }}</p>
+                              </div>
+                          @endif                        
+                          <div class="form-group newsemail">
+                              {!! Form::text('email', null, array('placeholder' => 'E-Mail','class' => 'form-control', 'id'=>'email')) !!}
+                              <span id="newsmsg"></span>
+                          </div>
+                      </div>                      
+                      <div class="col-xs-12 col-sm-12 col-md-12">
+                        <button class="btn btn-warning col-xs-12 col-sm-12 col-md-12">Cadastre-se para receber nossas atualizações!</button>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            {!! Form::close() !!}
 
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+
+<script type="text/javascript">
+  $('button.btn-warning').on('click', function(){
+      var email = $('#email').val();
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      var validate = re.test(email);
+
+      if(validate==false){
+        $('#newsmsg').text('E-Mail inválido');
+        $(".newsemail").addClass( "has-error has-feedback" );
+        return false;
+      }
+  });
+</script>
+
 @endsection
