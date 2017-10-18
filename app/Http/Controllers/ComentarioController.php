@@ -20,7 +20,7 @@ class ComentarioController extends Controller
      */
     public function store(Request $request)
     {
-
+        
         $input = new Comentario(array(
             'peticao_id' => $request->get('peticao_id'),
             'user_id'    => Auth::user()->id,

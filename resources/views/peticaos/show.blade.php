@@ -121,7 +121,7 @@
                         {{ session('success') }}
                     </div>
                 @endif            
-                {!! Form::open(array('url' => '/comentar','method'=>'POST')) !!}
+                {!! Form::open(array('url' => '/comentar/peticao','method'=>'POST')) !!}
                 {{ Form::hidden('peticao_id', $item->id) }}
                     <div class="panel panel-default panel-comente">
                         <div class="panel-heading"><i class="fa fa-commenting" aria-hidden="true"></i> <strong>Comente</strong></div>

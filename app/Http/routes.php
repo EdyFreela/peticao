@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index')->name('welcome.index');
+Route::get('/',     'WelcomeController@index')->name('welcome.index');
+Route::get('/home', 'WelcomeController@index')->name('welcome.index');
 
 Route::auth();
 
@@ -55,9 +56,9 @@ Route::delete('admin/newsletters/{id}',     ['as'=>'newsletters.destroy',   'use
 
 Route::get('user/activation/{token}', 'Auth\AuthController@activateUser')->name('user.activate');
 
-Route::post('/mail/send',    'EmailController@send');
-Route::post('/{id}',         'AssinanteController@assinar');
-Route::post('/comentar',     'ComentarioController@store');
+Route::post('/mail/send',        'EmailController@send');
+Route::post('/{id}',             'AssinanteController@assinar');
+Route::post('/comentar/peticao', 'ComentarioController@store');
 Route::post('/assinar/newsletter',   ['as'=>'newsletter.store',  'uses' => 'NewsletterController@store']);
 
 Route::get('/pg/politica-de-privacidade', 'PgController@privacy');
