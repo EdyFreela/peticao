@@ -17,11 +17,11 @@ class WelcomeController extends Controller
     public function index(Request $request)
     {
 
-        $items = Peticao::orderBy('created_at','ASC')
+        $items = Peticao::orderBy('created_at','DESC')
                     ->limit(5)
                     ->get();
 
-        $items2 = Peticao::orderBy('created_at','ASC')
+        $items2 = Peticao::orderBy('created_at','DESC')
 
                     ->limit(3)
                     ->get();
