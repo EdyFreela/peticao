@@ -22,6 +22,7 @@ class CreatePeticaosTable extends Migration
            $table->string('twitterhashtags');
            $table->string('imagem');
            $table->string('objetivo');
+           $table->string('assinaturas_fisica');
            $table->string('mostrar_progresso');
            $table->timestamps();
         });

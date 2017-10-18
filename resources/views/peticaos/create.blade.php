@@ -60,7 +60,13 @@
                 <strong>Objetivo:</strong>
                 {!! Form::text('objetivo', null, array('placeholder' => 'Objetivo','class' => 'form-control')) !!}
             </div>
-        </div>                
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-3">
+            <div class="form-group">
+                <strong>Assinaturas Física:</strong>
+                {!! Form::text('assinaturas_fisica', null, array('placeholder' => '0','class' => 'form-control')) !!}
+            </div>
+        </div>                         
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="panel panel-default text-center"> 
                 <div class="panel-body">

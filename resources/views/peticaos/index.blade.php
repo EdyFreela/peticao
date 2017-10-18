@@ -49,7 +49,7 @@
                                 <td class="text-center"><p>
                                     <?php
                                     $total = DB::select("SELECT COUNT(assinantes.id) as tot FROM assinantes WHERE assinantes.peticao_id = $item->id");
-                                    print_r($total[0]->tot)
+                                    print_r($item->assinaturas_fisica + $total[0]->tot)
                                     ?>
                                 </p></td>
                                 <td class="text-center"><p>{{ formatDate($item->created_at) }}</p></td>

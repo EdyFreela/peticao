@@ -160,7 +160,7 @@
                 <div class="panel-heading text-center"><h2><strong>Assine Já</strong></h2></div>
                 @if($item->mostrar_progresso!='N')
                 <div class="panel-body">
-                    <p>{{ $item2['apoiantes'] }} Apoiantes</p>
+                    <p>{{ $item->assinaturas_fisica + $item2['apoiantes'] }} Apoiantes</p>
                     <div class="progress skill-bar ">
                         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ $item2['valuenow'] }}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>                    

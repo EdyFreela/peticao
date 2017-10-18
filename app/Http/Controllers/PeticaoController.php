@@ -69,6 +69,7 @@ class PeticaoController extends Controller
             'peticao'           => $request->get('peticao'), 
             'imagem'            => $file->getClientOriginalName(), 
             'objetivo'          => $request->get('objetivo'),
+            'assinaturas_fisica'=> $request->get('assinaturas_fisica'),
             'twitterhashtags'   => $request->get('twitterhashtags'),
             'mostrar_progresso' => $request->get('mostrar_progresso')
         ));
@@ -91,7 +92,7 @@ class PeticaoController extends Controller
         $item       = DB::table('peticaos')->where('slug', $slug)->first();
         $apoiantes  = DB::table('assinantes')->where('peticao_id', $item->id)->count();
 
-        $apoiantes_porcetagem = ( $apoiantes / $item->objetivo ) * 100;
+        $apoiantes_porcetagem = ( ($item->assinaturas_fisica + $apoiantes) / $item->objetivo ) * 100;
         $item2 = array('apoiantes' => $apoiantes, 'valuenow' => $apoiantes_porcetagem);
 
         $comentarios  = DB::table('comentarios')
@@ -129,6 +130,7 @@ class PeticaoController extends Controller
 
         $this->validate($request, [
             'objetivo' => 'required|numeric',
+            'assinaturas_fisica' => 'numeric',
             'title' => 'required',
             'conteudo' => 'required',
             'peticao' => 'required',
@@ -152,6 +154,7 @@ class PeticaoController extends Controller
                 'conteudo'          => $request->get('conteudo'),
                 'peticao'           => $request->get('peticao'),                  
                 'objetivo'          => $request->get('objetivo'),
+                'assinaturas_fisica'=> $request->get('assinaturas_fisica'),
                 'twitterhashtags'   => $request->get('twitterhashtags'),
                 'mostrar_progresso' => $request->get('mostrar_progresso')
             );
@@ -174,6 +177,7 @@ class PeticaoController extends Controller
                 'imagem'            => $file->getClientOriginalName(), 
                 'peticao'           => $request->get('peticao'),                  
                 'objetivo'          => $request->get('objetivo'),
+                'assinaturas_fisica'=> $request->get('assinaturas_fisica'),
                 'twitterhashtags'   => $request->get('twitterhashtags'),
                 'mostrar_progresso' => $request->get('mostrar_progresso')
             );

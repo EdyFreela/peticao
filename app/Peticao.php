@@ -11,7 +11,7 @@ class Peticao extends Model
     use Sluggable;
 
     public $fillable = [
-        'title', 'slug', 'conteudo', 'peticao', 'mostrar_progresso', 'imagem', 'objetivo', 'twitterhashtags'
+        'title', 'slug', 'conteudo', 'peticao', 'mostrar_progresso', 'imagem', 'objetivo', 'assinaturas_fisica', 'twitterhashtags'
     ];
 
     /**
