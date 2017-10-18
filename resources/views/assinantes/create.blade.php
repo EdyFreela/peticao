@@ -30,14 +30,27 @@
             </ul>
         </div>
     @endif
+
     {!! Form::open(array('route' => 'assinantes.store','method'=>'POST', 'files' => true)) !!}
-    <div class="row">        
+    <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                <strong>Petição:</strong>
+                {!! Form::select('peticao_id', $items, null, array('class' => 'form-control')) !!}
+            </div>
+        </div>           
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group">
                 <strong>Nome:</strong>
-                {!! Form::text('name', null, array('placeholder' => 'Nome','class' => 'form-control')) !!}
+                {!! Form::text('nome', null, array('placeholder' => 'Nome','class' => 'form-control')) !!}
             </div>
         </div>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group">
+                <strong>Sobrenome:</strong>
+                {!! Form::text('sobrenome', null, array('placeholder' => 'Sobrenome','class' => 'form-control')) !!}
+            </div>
+        </div>        
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>E-Mail:</strong>
@@ -46,16 +59,16 @@
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="form-group">
-                <strong>Senha:</strong>
-                {!! Form::password('password', ['class' => 'form-control']) !!}
-            </div>
-        </div>         
-        <div class="col-xs-12 col-sm-6 col-md-6">
-            <div class="form-group">
-                <strong>Confirmar Senha:</strong>
-                {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
+                <strong>Cidade:</strong>
+                {!! Form::text('cidade', null, array('placeholder' => 'Cidade','class' => 'form-control')) !!}
             </div>
         </div>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group">
+                <strong>Estado:</strong>
+                {!! Form::text('estado', null, array('placeholder' => 'Estado','class' => 'form-control')) !!}
+            </div>
+        </div> 
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             <hr>
             <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Gravar</button>

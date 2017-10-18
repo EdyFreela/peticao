@@ -21,7 +21,9 @@ class AssinanteController extends Controller
     */
     public function index(Request $request)
     {
-        $items = User::orderBy('name','ASC')->where('admin', '!=', '1')->paginate(10);
+        $items = Assinante::orderBy('nome','ASC')
+                    ->groupBy('email')
+                    ->paginate(10);
 
         return view('assinantes.index',compact('items'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
@@ -34,7 +36,9 @@ class AssinanteController extends Controller
     */
     public function create()
     {
-        return view('assinantes.create');
+        $items = DB::table('peticaos')->lists('title', 'id');
+
+        return view('assinantes.create', compact('items'));
     }
 
     /**
@@ -46,38 +50,24 @@ class AssinanteController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed'
+            'nome' => 'required|max:255',
+            'sobrenome' => 'required|max:255',
+            'email' => 'required|email|max:255|unique_with:assinantes,email,peticao_id'
         ]);
 
-        $input = new User(array(
-            'name'      => $request->get('name'), 
-            'email'     => $request->get('email'), 
-            'password'  => bcrypt($request->get('password')), 
-            'admin'     => '0', 
-            'activated' => '1'
+        $input = new Assinante(array(
+            'peticao_id' => $request->get('peticao_id'), 
+            'nome'       => $request->get('nome'), 
+            'sobrenome'  => $request->get('sobrenome'), 
+            'email'      => $request->get('email'), 
+            'cidade'     => $request->get('cidade'), 
+            'estado'     => $request->get('estado')
         ));
 
         $input->save();
 
         return redirect()->route('assinantes.index')
-                        ->with('success','Usuário criado com sucesso');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, $id)
-    {
-        $item       = DB::table('users')
-                            ->where('id', $id)
-                            ->get();
-
-        return view('assinantes.show',compact('item'));
+                        ->with('success','Assinatura criada com sucesso');
     }
 
     /**
@@ -88,46 +78,14 @@ class AssinanteController extends Controller
      */
     public function edit($id)
     {
-        $item = User::find($id);
 
-        return view('assinantes.edit',compact('item'));
-    }
+        $items = DB::table('assinantes')
+                    ->select('assinantes.id', 'peticaos.title', 'assinantes.created_at')
+                    ->where('email', $id)
+                    ->leftJoin('peticaos', 'peticaos.id', '=', 'assinantes.peticao_id')
+                    ->get();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-
-        if($request->get('password')==null || $request->get('password')==''){
-            $this->validate($request, [
-                'name' => 'required|max:255'
-            ]);
-
-            $input = array(
-                'name'     => $request->get('name')
-            );
-
-        }else{
-            $this->validate($request, [
-                'name' => 'required|max:255',
-                'password' => 'required|min:6|confirmed'
-            ]);            
-
-            $input = array(
-                'name'     => $request->get('name'), 
-                'password' => $request->get('password')
-            );
-        }
-
-        User::find($id)->update($input);
-
-        return redirect()->route('assinantes.index')
-                        ->with('success','Assinante atualizado com sucesso');
+        return view('assinantes.edit',compact('items'));
     }
 
     /**
@@ -138,10 +96,18 @@ class AssinanteController extends Controller
      */
     public function destroy($id)
     {
-        
-        User::find($id)->delete();
-        return redirect()->route('peticaos.index')
-                        ->with('success','Assinante deletado com sucesso');
+        if(filter_var($id, FILTER_VALIDATE_EMAIL)) {
+            // Excluir Assinante
+            Assinante::where('email', $id)->delete();
+            return redirect()->route('assinantes.index')
+                            ->with('success','Assinante deletado com sucesso'); 
+        }
+        else {
+            // Excluir Assinatura
+            Assinante::find($id)->delete();
+            return redirect()->route('assinantes.index')
+                            ->with('success','Assinatura deletada com sucesso');
+        }
     }
 
     /**

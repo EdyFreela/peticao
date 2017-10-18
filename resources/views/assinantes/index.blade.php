@@ -40,11 +40,9 @@
             <table class="table table-bordered table-hover">
                 <thead>
                     <th width="1%" class="text-center">#</th>
-                    <th width="*">Titulo</th>
+                    <th width="*">Nome</th>
                     <th width="250px">E-Mail</th>
-                    <th width="150px" class="text-center">Data de Criação</th>
-                    <th width="80px" class="text-center">Visualizar</th>
-                    <th width="80px" class="text-center">Editar</th>
+                    <th width="80px" class="text-center">Petições</th>
                     <th width="80px" class="text-center">Excluir</th>
                 </thead>
                 <tbody>
@@ -52,14 +50,12 @@
                         @foreach($items as $key => $item)
                             <tr>
                                 <td class="text-center"><p>{{ ++$key }}</p></td>
-                                <td><p>{{ $item->name }}</p></td>
+                                <td><p>{{$item->nome}} {{$item->sobrenome}}</p></td>
                                 <td><p>{{ $item->email }}</p></td>
-                                <td class="text-center"><p>{{ formatDate($item->created_at) }}</p></td>
-                                <td class="text-center"><a class="btn btn-info btn-md" href="{{ route('assinantes.show',$item->id) }}" title="Visualizar"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
-                                <td class="text-center"><a class="btn btn-primary btn-md" href="{{ route('assinantes.edit',$item->id) }}" title="Editar Usuário"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                                <td class="text-center"><a class="btn btn-primary btn-md" href="{{ route('assinantes.edit',$item->email) }}" title="Petições Assinadas"><i class="fa fa-check-square-o" aria-hidden="true"></i></a></td>
                                 <td class="text-center">
-                                    {!! Form::open(['id' => 'item-delete-'.$item->id, 'method' => 'DELETE','route' => ['assinantes.destroy', $item->id],'style'=>'display:inline']) !!}
-                                    {!! Form::button('<i class="fa fa-trash"></i>', ['data-id' => $item->id, 'class' => 'btn btn-danger btn-md', 'title' => 'Excluir Assinante']) !!}
+                                    {!! Form::open(['id' => 'item-delete-'.$item->id, 'method' => 'DELETE','route' => ['assinantes.destroy', $item->email],'style'=>'display:inline']) !!}
+                                    {!! Form::button('<i class="fa fa-trash"></i>', ['data-id' => $item->id, 'class' => 'btn btn-danger btn-md', 'title' => 'Excluir Assinante de todas petições']) !!}
                                     {!! Form::close() !!}                                    
                                 </td>
                             </tr>

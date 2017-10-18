@@ -24,7 +24,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 Nome:
-                <h4>{{$item[0]->name}}</h4>
+                <h4>{{$item[0]->nome}} {{$item[0]->sobrenome}}</h4>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
