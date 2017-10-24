@@ -226,7 +226,7 @@ class PeticaoController extends Controller
                             ->first();
 
         $apoiantes  = DB::table('assinantes')
-                            ->select('nome', 'sobrenome', 'email', 'created_at')
+                            ->select('nome', 'sobrenome', 'email', 'cidade', 'estado', 'created_at')
                             ->where('peticao_id', $id)
                             ->get();
 
@@ -240,6 +240,8 @@ class PeticaoController extends Controller
                                     'nome'=>$value->nome,
                                     'sobrenome'=>$value->sobrenome,
                                     'email'=>$value->email,
+                                    'cidade'=>$value->cidade,
+                                    'estado'=>$value->estado,
                                     'created_at'=>$value->created_at,
             );
         }
