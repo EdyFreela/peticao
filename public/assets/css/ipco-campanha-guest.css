@@ -1,0 +1,221 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+body > .container{
+    min-height: 560px;
+}
+
+body > .container > .row{
+    margin-top: 40px;
+}
+
+.fa-btn {
+    margin-right: 6px;
+}
+
+/* NAVBAR */
+.navbar {
+    min-height: 100px;
+    border: 0px solid transparent;
+}
+.navbar-inverse .navbar-toggle {
+    border-color: #081832;
+}
+.brand #full{
+   display: block;
+}
+.brand #mini{
+   display: none;
+}
+.navbar-brand{
+    height:100px;
+    padding: 0px 15px;
+}
+.navbar-brand .brand{
+    width: 100px;
+}
+.navbar .titulo-ipco-full{
+    list-style: none;
+    color: #d29428;
+    font-size: 22px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    display: block;
+    font-family: 'Merriweather', serif;
+}
+.navbar .titulo-ipco-full li span{
+    font-size:28px !important;
+}
+.navbar .titulo-ipco-mini{
+    list-style: none;
+    color: #d29428;
+    font-size: 23px;
+    margin-top: 9px;
+    margin-bottom: 0px;
+    float: left;
+    padding-left: 0px;
+    display: none;
+    font-family: 'Merriweather', serif;
+}
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+  position: sticky;
+  top: 0;
+}
+@media only screen and (max-width : 770px) {
+    .navbar {
+        min-height: 30px;
+    }    
+    .container>.navbar-header {
+        min-height: 30px;
+    }
+    .brand #full{
+        display: none;
+    }   
+    .brand #mini{
+        display:block;
+    }
+    .navbar-brand{
+        height:50px;
+        padding: 0px 15px;
+    }    
+    .navbar-brand .brand{
+        width: 50px;
+    }
+    .navbar .titulo-ipco-full{
+        display: none;
+    }
+    .navbar .titulo-ipco-mini{
+        display: block;
+    }
+    .navbar-nav-links #quemsomos {
+        padding-left: 15px !important;
+    }
+    .navbar-collapse{
+        background-image: none !important;
+    }        
+}
+
+.dropdown-toggle-login{
+    margin: 0;
+    padding: 0;
+}
+.dropdown-toggle-login > div{
+    float:left;
+    margin-top: -3px;
+    margin-right: 5px;
+}
+.dropdown-toggle-login > div > p{
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    line-height: 1.2;
+}
+.dropdown-login-avatar{
+    width: 28px;
+    border-radius: 100%
+}        
+.navbar-inverse {
+    background-color: #081832;
+}
+
+
+.navbar-brand .empresa{
+    float:left;
+    padding-top:20px;
+    padding-top: 12px;
+    padding-left: 10px;
+    font-family: 'Merriweather', serif;
+    color:#d19429;
+}                
+.navbar-brand .brand img{
+    width:100%;
+}
+.navbar-nav-links{
+    font-family: 'Merriweather', serif;
+    font-size: 18px;
+}
+.navbar-nav-links a{
+    padding-top: 0px;
+}
+.navbar-nav-links #quemsomos{
+    padding-left: 0px;
+}
+.navbar-toggle {
+    border-radius: 0px;
+}
+@media (min-width: 768px){
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 15px;
+    }   
+}
+.btn-group-share .btn-share-facebook,
+.btn-group-share .btn-share-twitter,
+.btn-group-share .btn-share-email {
+    width: 60px;
+}
+.btn-group-share-bottom button{
+    width:100%;
+}
+#assineModal .btn-assinar{
+    width: 100%;
+}
+.peticao-banner-compartilhar .btn{
+    width: 60px;
+}
+
+
+
+h2{
+    font-weight: 300;
+}
+/* TEMA IPCO */ 
+footer {
+    background-color: #081832;
+    margin-top: 30px;
+    color:#fff;
+}
+footer .container{
+    padding-bottom:20px;
+}
+footer h4{
+    margin-top:30px;
+    margin-bottom: 17px;
+}
+footer p{
+    font-size:12px;
+}
+footer .copy{
+    background-color: #000;
+    font-size: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+footer img{
+    width: 100%;
+}
+
+@media only screen and (max-width : 770px) {
+    .btn-group-share-bottom button span{
+        display:none;
+    }
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 320px) {
+    body > .container > .row {
+        margin-top: 0px;
+    }            
+    .empresa{
+        display:none;
+    }
+    footer img{
+        width:110%;
+    }
+    .footer-siganos{
+        text-align: center;
+    }    
+}        
+  

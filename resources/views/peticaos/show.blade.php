@@ -76,6 +76,29 @@
   margin-top: 10px;
   display: block;
 }
+
+.assine-mobile {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #f6f4f6;
+    padding: 10px;
+    background-color: #fff;
+    display:none;
+    z-index: 1000;
+}
+.assine-mobile button{
+    width:100%;
+}
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 770px) {
+    .assine-mobile {
+        display:block;
+    }
+    .panel-peticao-assinar{
+        display:none;
+    }
+}
 </style>
 @endsection
 
@@ -92,10 +115,9 @@
                     <img src="{{ env('APP_URL')}}/{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" class="img-responsive">
                 </div>
                 <div class="panel-body">
-
                     <p>Compartilhe esta petição:</p>
-                    <div class="btn-group" role="group" aria-label="...">
-                      <button type="button" class="btn btn-default btn-share-facebook" data-href="{{ env('APP_URL')}}/{{ $item->slug }}" data-image="{{ env('APP_URL')}}/{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" data-title="{{ $item->title }}" data-desc="Some description for this article"><i class="fa fa-facebook" aria-hidden="true"></i></button>
+                    <div class="btn-group btn-group-lg btn-group-share" role="group" aria-label="...">
+                      <button type="button" class="btn btn-default btn-share-facebook" data-href="{{ env('APP_URL')}}/{{ $item->slug }}" data-image="{{ env('APP_URL')}}/{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" data-title="{{ $item->title }}" data-desc="{{ $item->title }}"><i class="fa fa-facebook" aria-hidden="true"></i></button>
                       <button type="button" class="btn btn-default btn-share-twitter" onclick="javascript:MyPopUpWin('http://twitter.com/share?text={{ $item->title }}&url={{ env('APP_URL')}}/{{ $item->slug }}&hashtags={{ $item->twitterhashtags }}, 300, 300');"><i class="fa fa-twitter" aria-hidden="true"></i></button>
                       <button type="button" class="btn btn-default btn-share-email" data-toggle="modal" data-target="#modalShareByMail"><i class="fa fa-envelope" aria-hidden="true"></i></button>
                     </div>                    
@@ -103,6 +125,17 @@
                 <div class="panel-body">                    
                     {!! $item->conteudo !!}
                 </div>
+                <div class="panel-body btn-group-share-bottom">
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                      <button type="button" class="btn btn-default btn-lg btn-share-facebook" data-href="{{ env('APP_URL')}}/{{ $item->slug }}" data-image="{{ env('APP_URL')}}/{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" data-title="{{ $item->title }}" data-desc="{{ $item->title }}"><i class="fa fa-facebook" aria-hidden="true"></i><span> Compartilhe</span></button>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                      <button type="button" class="btn btn-default btn-lg btn-share-twitter" onclick="javascript:MyPopUpWin('http://twitter.com/share?text={{ $item->title }}&url={{ env('APP_URL')}}/{{ $item->slug }}&hashtags={{ $item->twitterhashtags }}, 300, 300');"><i class="fa fa-twitter" aria-hidden="true"></i><span> Twitter</span></button>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                      <button type="button" class="btn btn-default btn-lg btn-share-email" data-toggle="modal" data-target="#modalShareByMail"><i class="fa fa-envelope" aria-hidden="true"></i><span> E-Mail</span></button>
+                    </div>
+                </div>                
             </div>
 
             @if (Auth::guest())
@@ -155,7 +188,7 @@
 
 
         </div>
-        <div class="col-md-4 peticao-assinar">
+        <div class="col-md-4 peticao-assinar" id="peticao-assinar">
             <div class="panel panel-default panel-peticao-assinar">
                 <div class="panel-heading text-center"><h2><strong>Assine Já</strong></h2></div>
                 @if($item->mostrar_progresso!='N')
@@ -287,6 +320,64 @@
     </div>
   </div>
 </div>
+<!-- ASSINE MOBILE -->
+<div class="assine-mobile"><button type="button" data-toggle="modal" data-target="#assineModal" class="btn btn-lg btn-danger" data-dismiss="modal">Assinar esta petição</button></div>
+
+<div class="modal fade" id="assineModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="myModalLabel">{{ $item->title }}</h3>
+      </div>
+      <div class="modal-body">
+        {!! Form::open(array('url' => url('/', $item->slug), 'method'=>'POST')) !!}
+        {{ Form::hidden('peticao_id', $item->id) }}
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group assinarnome">
+                    {!! Form::text('nome', null, array('placeholder' => 'Nome','class' => 'form-control input-lg', 'id'=>'nome')) !!}
+                    <span id="nomemsg"></span>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <div class="form-group assinarsobrenome">
+                    {!! Form::text('sobrenome', null, array('placeholder' => 'Sobrenome','class' => 'form-control input-lg', 'id'=>'sobrenome')) !!}
+                    <span id="sobrenomemsg"></span>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group assinaremail">
+                    {!! Form::text('email', null, array('placeholder' => 'E-mail','class' => 'form-control input-lg', 'id'=>'email')) !!}
+                    <span id="emailmsg"></span>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-8">
+                <div class="form-group">
+                    {!! Form::text('cidade', null, array('placeholder' => 'Cidade','class' => 'form-control input-lg')) !!}
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-4">
+                <div class="form-group">
+                    {!! Form::text('estado', null, array('placeholder' => 'Estado','class' => 'form-control input-lg')) !!}
+                </div>
+            </div>                                                                                                
+        </div>
+        {!! Form::close() !!}
+      </div>
+      <div class="modal-body">
+          <button type="submit" class="btn btn-success btn-lg btn-assinar"><i class="fa fa-check" aria-hidden="true"></i> Assinar</button>
+      </div>
+      <div class="modal-body">
+          <p>Nota: Ao assinar, você aceita receber atualizações do IPCO. Você pode cancelar sua inscrição a qualquer momento. <a href="{{ url('pg/politica-de-privacidade') }}">Política de Privacidade</a></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 @endsection
 
 @section('script')
