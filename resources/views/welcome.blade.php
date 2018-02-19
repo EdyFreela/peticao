@@ -2,16 +2,41 @@
 
 @section('style')
     <style>    
-    .carousel-inner>.item>a>img, .carousel-inner>.item>img {
-        width: 100%;
-        height: 340px;
-    }
-    .carousel-caption a{
-      color:#fff;
+    #myCarousel .carousel-inner {
+      height: 250px;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      border-left: 1px solid #eee;
+      border-right: 1px solid #eee;
+      margin-bottom: 10px;
     }    
-    .carousel-caption h3{
-      font-size: 32px;
+    #myCarousel .nav a small {
+      display:block;
     }
+    #myCarousel .nav a {
+      border-radius:0px;
+    }
+    #myCarousel img {
+      width: 100%;
+    }
+    #myCarousel h1 {
+      font-size: 27px;
+    }
+    #myCarousel .item .descricao{
+      font-size: 16px;
+    }
+    #myCarousel .nav-justified>li {
+      padding-left: 5px;
+      padding-right: 5px;
+      width: 0%;
+    }
+    #myCarousel .nav-justified > li:first-child { 
+      padding-left: 0 !important; 
+    }
+    #myCarousel .nav-justified > li:last-child { 
+      padding-right: 0 !important; 
+    }
+
     .title-recents{
       border-bottom:1px solid #ddd;
       margin-bottom: 50px;
@@ -35,7 +60,15 @@
       color: #a94442;
       margin-top: 10px;
       display: block;
-    }    
+    }
+    @media only screen and (max-width : 770px) {
+        #myCarousel{
+          display:none;
+        }
+        .title-recents{
+          display:none;
+        }                    
+    }       
     </style>
 @endsection
 
@@ -44,60 +77,61 @@
     <div class="row">
         <div class="col-md-12">
 
-            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-              <!-- Indicators -->
-              <ol class="carousel-indicators">
-                @if($items->count())
-                <?php $active2=0; ?>
-                    @foreach($items as $key => $item)
-                        <?php 
-                        if($active2==0){
-                            $active_txt2='active';
-                        }else{
-                            $active_txt2='';
-                        }
-                        ?>
-                        <li data-target="#carousel-example-generic" data-slide-to="<?php echo $active2; ?>" class="<?php echo $active_txt2; ?>"></li>
-                        <?php $active2++; ?>
-                    @endforeach
-                @endif
-              </ol>
+            <!-- INI CAROUSEL -->
 
-              <!-- Wrapper for slides -->
-              <div class="carousel-inner" role="listbox">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                
+                  <!-- Wrapper for slides -->
+                  <div class="carousel-inner">
+                    @if($items->count())
+                    <?php $active=0; ?>
+                        @foreach($items as $key => $item)
+                            <?php 
+                            if($active==0){
+                                $active_txt='active';
+                            }else{
+                                $active_txt='';
+                            }
+                            ?>
+                            <div class="item <?php echo $active_txt; ?>">
+                              <div class="col-md-6 row"><img src="{{ env('APP_URL') }}/{{ env('IMAGEM_PETICAO_PATH') }}/{{ $item->imagem }}" alt="{{ $item->title }}"></div>
+                              <div class="col-md-6">
+                                <h1>{{ $item->title }}</h1>
+                                <div class="descricao">{!! $item->descricao !!}</div>
+                                <p><a href="{{ url( $item->slug )}}">Mais</a></p>
+                              </div>
+                            </div>
+                            <?php $active++; ?>
+                        @endforeach
+                    @endif                    
+                            
+                  </div><!-- End Carousel Inner -->
 
-                @if($items->count())
-                <?php $active=0; ?>
-                    @foreach($items as $key => $item)
-                        <?php 
-                        if($active==0){
-                            $active_txt='active';
-                        }else{
-                            $active_txt='';
-                        }
-                        ?>
-                        <div class="item <?php echo $active_txt; ?>">
-                          <img src="{{ env('APP_URL') }}/{{ env('IMAGEM_PETICAO_PATH') }}/{{ $item->imagem }}" alt="{{ $item->title }}">
-                          <div class="carousel-caption">
-                            <a href="{{ url( $item->slug )}}"><h3>{{ $item->title }}</h3></a>
-                          </div>
-                        </div>
-                        <?php $active++; ?>
-                    @endforeach
-                @endif
+                  <ul class="nav nav-pills nav-justified">
+                      @if($items->count())
+                      <?php $active2=0; ?>
+                          @foreach($items as $key => $item)
+                              <?php 
+                              if($active2==0){
+                                  $active_txt2='active';
+                              }else{
+                                  $active_txt2='';
+                              }
+                              ?>
+                              <li data-target="#myCarousel" data-slide-to="<?php echo $active2; ?>" class="<?php echo $active_txt2; ?>">
+                                <img src="{{ env('APP_URL') }}/{{ env('IMAGEM_PETICAO_PATH') }}/{{ $item->imagem }}">
+                                <a href="#">{{ $item->title }}</a>
+                              </li>
+                              <?php $active2++; ?>
+                          @endforeach
+                      @endif
+                  </ul>
 
-              </div>
+                </div><!-- End Carousel -->
 
-              <!-- Controls -->
-              <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Anterior</span>
-              </a>
-              <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Próximo</span>
-              </a>
-            </div>
+
+            <!-- END CAROUSEL -->
+
 
             <div class="col-md-12 title-recents">
               <h2>Petições Recentes</h2>
@@ -160,6 +194,30 @@
 @section('script')
 
 <script type="text/javascript">
+  $(document).ready( function() {
+      $('#myCarousel').carousel({
+      interval: 7000
+    });
+    
+    var clickEvent = false;
+    $('#myCarousel').on('click', '.nav a', function() {
+        clickEvent = true;
+        $('.nav li').removeClass('active');
+        $(this).parent().addClass('active');    
+    }).on('slid.bs.carousel', function(e) {
+      if(!clickEvent) {
+        var count = $('.nav').children().length -1;
+        var current = $('.nav li.active');
+        current.removeClass('active').next().addClass('active');
+        var id = parseInt(current.data('slide-to'));
+        if(count == id) {
+          $('.nav li').first().addClass('active');  
+        }
+      }
+      clickEvent = false;
+    });
+  });
+
   $('button.btn-warning').on('click', function(){
       var email = $('#email').val();
       var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

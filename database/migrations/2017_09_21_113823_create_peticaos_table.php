@@ -17,6 +17,7 @@ class CreatePeticaosTable extends Migration
            $table->increments('id');
            $table->string('title');
            $table->string('slug');
+           $table->longText('descricao');
            $table->longText('conteudo');
            $table->longText('peticao');
            $table->string('twitterhashtags');
