@@ -54,6 +54,7 @@ class PeticaoController extends Controller
             'objetivo' => 'required|numeric',
             'imagem' => 'required',
             'title' => 'required',
+            'descricao' => 'required',
             'conteudo' => 'required',
             'peticao' => 'required',
             'twitterhashtags' => 'required'
@@ -65,6 +66,7 @@ class PeticaoController extends Controller
 
         $input = new Peticao(array(
             'title'             => $request->get('title'), 
+            'descricao'         => $request->get('descricao'), 
             'conteudo'          => $request->get('conteudo'), 
             'peticao'           => $request->get('peticao'), 
             'imagem'            => $file->getClientOriginalName(), 
@@ -132,6 +134,7 @@ class PeticaoController extends Controller
             'objetivo' => 'required|numeric',
             'assinaturas_fisica' => 'numeric',
             'title' => 'required',
+            'descricao' => 'required',
             'conteudo' => 'required',
             'peticao' => 'required',
             'twitterhashtags' => 'required'
@@ -151,6 +154,7 @@ class PeticaoController extends Controller
         if($img_saved == $img_new){
             $input = array(
                 'title'             => $request->get('title'), 
+                'descricao'         => $request->get('descricao'), 
                 'conteudo'          => $request->get('conteudo'),
                 'peticao'           => $request->get('peticao'),                  
                 'objetivo'          => $request->get('objetivo'),
@@ -173,6 +177,7 @@ class PeticaoController extends Controller
 
             $input = array(
                 'title'             => $request->get('title'), 
+                'descricao'         => $request->get('descricao'), 
                 'conteudo'          => $request->get('conteudo'), 
                 'imagem'            => $file->getClientOriginalName(), 
                 'peticao'           => $request->get('peticao'),                  

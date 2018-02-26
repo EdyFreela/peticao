@@ -89,6 +89,12 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                <strong>Descrição:</strong>
+                {!! Form::textarea('descricao', null, array('placeholder' => 'Descrição','class' => 'form-control')) !!}
+            </div>
+        </div>        
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>Link:</strong>
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon3">{{ env('APP_URL') }}/</span>

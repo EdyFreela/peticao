@@ -321,7 +321,7 @@
   </div>
 </div>
 <!-- ASSINE MOBILE -->
-<div class="assine-mobile"><button type="button" data-toggle="modal" data-target="#assineModal" class="btn btn-lg btn-danger" data-dismiss="modal">Assinar esta petição</button></div>
+<div class="assine-mobile"><button type="button" data-toggle="modal" data-target="#assineModal" class="btn btn-lg btn-danger" data-dismiss="modal">Assinar já esta petição</button></div>
 
 <div class="modal fade" id="assineModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -329,26 +329,26 @@
       <div class="modal-header">
         <h3 class="modal-title" id="myModalLabel">{{ $item->title }}</h3>
       </div>
-      <div class="modal-body">
         {!! Form::open(array('url' => url('/', $item->slug), 'method'=>'POST')) !!}
-        {{ Form::hidden('peticao_id', $item->id) }}
+        {{ Form::hidden('peticao_id', $item->id) }}      
+      <div class="modal-body">
         <div class="row">
             <div class="col-xs-6 col-sm-6 col-md-6">
-                <div class="form-group assinarnome">
-                    {!! Form::text('nome', null, array('placeholder' => 'Nome','class' => 'form-control input-lg', 'id'=>'nome')) !!}
-                    <span id="nomemsg"></span>
+                <div class="form-group assinarnome2">
+                    {!! Form::text('nome', null, array('placeholder' => 'Nome','class' => 'form-control input-lg', 'id'=>'nome2')) !!}
+                    <span id="nomemsg2"></span>
                 </div>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6">
-                <div class="form-group assinarsobrenome">
-                    {!! Form::text('sobrenome', null, array('placeholder' => 'Sobrenome','class' => 'form-control input-lg', 'id'=>'sobrenome')) !!}
-                    <span id="sobrenomemsg"></span>
+                <div class="form-group assinarsobrenome2">
+                    {!! Form::text('sobrenome', null, array('placeholder' => 'Sobrenome','class' => 'form-control input-lg', 'id'=>'sobrenome2')) !!}
+                    <span id="sobrenomemsg2"></span>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group assinaremail">
-                    {!! Form::text('email', null, array('placeholder' => 'E-mail','class' => 'form-control input-lg', 'id'=>'email')) !!}
-                    <span id="emailmsg"></span>
+                <div class="form-group assinaremail2">
+                    {!! Form::text('email', null, array('placeholder' => 'E-mail','class' => 'form-control input-lg', 'id'=>'email2')) !!}
+                    <span id="emailmsg2"></span>
                 </div>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-8">
@@ -362,16 +362,16 @@
                 </div>
             </div>                                                                                                
         </div>
-        {!! Form::close() !!}
       </div>
       <div class="modal-body">
-          <button type="submit" class="btn btn-success btn-lg btn-assinar"><i class="fa fa-check" aria-hidden="true"></i> Assinar</button>
+          <button type="submit" class="btn btn-success btn-lg btn-assinar-mobile"><i class="fa fa-check" aria-hidden="true"></i> Assinar</button>
       </div>
+      {!! Form::close() !!}
       <div class="modal-body">
           <p>Nota: Ao assinar, você aceita receber atualizações do IPCO. Você pode cancelar sua inscrição a qualquer momento. <a href="{{ url('pg/politica-de-privacidade') }}">Política de Privacidade</a></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Fechar</button>
+        <button type="submit" class="btn btn-success" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Fechar</button>
       </div>
     </div>
   </div>
@@ -504,6 +504,53 @@ function MyPopUpWin(url, width, height) {
       }else{
         $('#emailmsg').text('');
         $(".assinaremail").removeClass( "has-error has-feedback" );
+        erroqtd = 0;
+      }
+
+      if(erroqtd == 1){
+        return false;
+      }            
+  });
+</script>
+
+<script type="text/javascript">
+  $('button.btn-assinar-mobile').on('click', function(){
+
+      var nome      = $('#nome2').val();
+      var sobrenome = $('#sobrenome2').val();
+      var email     = $('#email2').val();
+      var erroqtd   = 0;
+
+      if(nome.length<=2){
+        $('#nomemsg2').text('Nome Inválido');
+        $(".assinarnome2").addClass( "has-error has-feedback" );
+        erroqtd = 1;
+      }else{
+        $('#nomemsg2').text('');
+        $(".assinarnome2").removeClass( "has-error has-feedback" );
+        erroqtd = 0;
+      }
+
+      if(sobrenome.length<=2){
+        $('#sobrenomemsg2').text('Sobrenome Inválido');
+        $(".assinarsobrenome2").addClass( "has-error has-feedback" );
+        erroqtd = 1;
+      }else{
+        $('#sobrenomemsg2').text('');
+        $(".assinarsobrenome2").removeClass( "has-error has-feedback" );
+        erroqtd = 0;
+      }
+
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      var tstmail = re.test(email);
+
+      if(tstmail==false){
+        $('#emailmsg2').text('E-Mail inválido');
+        $(".assinaremail2").addClass( "has-error has-feedback" );
+        erroqtd = 1;
+      }else{
+        $('#emailmsg2').text('');
+        $(".assinaremail2").removeClass( "has-error has-feedback" );
         erroqtd = 0;
       }
 

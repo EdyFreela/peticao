@@ -16,6 +16,12 @@
     #myCarousel .nav a {
       border-radius:0px;
     }
+    #myCarousel a {
+      color: #000;
+    }
+    #myCarousel p a {
+      color: #337ab7;
+    }    
     #myCarousel img {
       width: 100%;
     }
@@ -36,6 +42,12 @@
     #myCarousel .nav-justified > li:last-child { 
       padding-right: 0 !important; 
     }
+    .nav-pills>li.active>a, 
+    .nav-pills>li.active>a:focus, 
+    .nav-pills>li.active>a:hover {
+        color: #fff !important;
+        background-color: #337ab7;
+    }    
 
     .title-recents{
       border-bottom:1px solid #ddd;
@@ -43,6 +55,12 @@
       margin-top: 40px;
       font-family: 'Merriweather', serif;
     }
+    .peticao-recentes .titulo a{
+      color: #000;
+    }
+    .peticao-recentes .titulo a h3{
+      text-align: center;
+    }    
     .peticao-recentes .titulo{
       min-height:150px;
     }
@@ -51,6 +69,7 @@
     }
     .peticao-recentes .panel-heading{
       min-height:150px;
+      background-position: center !important;
     }
     .vcenter {
         padding-top: 35px;
@@ -94,11 +113,11 @@
                             }
                             ?>
                             <div class="item <?php echo $active_txt; ?>">
-                              <div class="col-md-6 row"><img src="{{ env('APP_URL') }}/{{ env('IMAGEM_PETICAO_PATH') }}/{{ $item->imagem }}" alt="{{ $item->title }}"></div>
+                              <div class="col-md-6 row"><a href="{{ url( $item->slug )}}"><img src="{{ env('APP_URL') }}/{{ env('IMAGEM_PETICAO_PATH') }}/{{ $item->imagem }}" alt="{{ $item->title }}"></a></div>
                               <div class="col-md-6">
-                                <h1>{{ $item->title }}</h1>
+                                <a href="{{ url( $item->slug )}}"><h1>{{ $item->title }}</h1></a>
                                 <div class="descricao">{!! $item->descricao !!}</div>
-                                <p><a href="{{ url( $item->slug )}}">Mais</a></p>
+                                <p><a href="{{ url( $item->slug )}}">Saiba Mais</a></p>
                               </div>
                             </div>
                             <?php $active++; ?>
@@ -142,9 +161,9 @@
                   @foreach($items2 as $key => $item2)
                   <div class="col-md-4">
                     <div class="panel panel-default peticao-recentes">
-                        <div class="panel-heading" style="background:url({{ asset('assets/img/peticao')}}/{{$item2->imagem}}); background-size:cover;"></div>
+                        <a href="{{ url($item2->slug) }}"><div class="panel-heading" style="background:url({{ asset('assets/img/peticao')}}/{{$item2->imagem}}); background-size:cover;"></div></a>
                         <div class="panel-body titulo">
-                          <h3>{{ $item2->title }}</h3>
+                          <a href="{{ url($item2->slug) }}" class="titulo-peticoes-recentes"><h3>{{ $item2->title }}</h3></a>
                         </div>
                         <div class="panel-footer">
                           <a href="{{ url($item2->slug) }}" class="btn btn-success" style="width: 100%;">Assine esta petição</a>

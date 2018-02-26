@@ -86,7 +86,13 @@
                 <strong>Titulo:</strong>
                 {!! Form::text('title', null, array('placeholder' => 'Titulo','class' => 'form-control')) !!}
             </div>
-        </div>         
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Descrição:</strong>
+                {!! Form::textarea('descricao', null, array('placeholder' => 'Descrição','class' => 'form-control')) !!}
+            </div>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Conteúdo:</strong>
