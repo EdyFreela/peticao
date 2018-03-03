@@ -117,8 +117,8 @@
                 <div class="panel-body">
                     <p>Compartilhe esta petição:</p>
                     <div class="btn-group btn-group-lg btn-group-share" role="group" aria-label="...">
-                      <button type="button" class="btn btn-default btn-share-facebook" data-href="{{ env('APP_URL')}}/{{ $item->slug }}" data-image="{{ env('APP_URL')}}/{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" data-title="{{ $item->title }}" data-desc="{{ $item->title }}"><i class="fa fa-facebook" aria-hidden="true"></i></button>
-                      <button type="button" class="btn btn-default btn-share-twitter" onclick="javascript:MyPopUpWin('http://twitter.com/share?text={{ $item->title }}&url={{ env('APP_URL')}}/{{ $item->slug }}&hashtags={{ $item->twitterhashtags }}, 300, 300');"><i class="fa fa-twitter" aria-hidden="true"></i></button>
+                      <button type="button" class="btn btn-default btn-share-facebook" data-url="{{ env('APP_URL')}}{{ $item->slug }}" data-href="{{ env('APP_URL')}}{{ $item->slug }}" data-image="{{ env('APP_URL')}}{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" data-title="{{ $item->title }}" data-desc="{{ $item->title }}"><i class="fa fa-facebook" aria-hidden="true"></i></button>
+                      <button type="button" class="btn btn-default btn-share-twitter" onclick="javascript:MyPopUpWin('http://twitter.com/share?text={{ $item->title }}&url={{ env('APP_URL')}}{{ $item->slug }}&hashtags={{ $item->twitterhashtags }}, 300, 300');"><i class="fa fa-twitter" aria-hidden="true"></i></button>
                       <button type="button" class="btn btn-default btn-share-email" data-toggle="modal" data-target="#modalShareByMail"><i class="fa fa-envelope" aria-hidden="true"></i></button>
                     </div>                    
                 </div>                
@@ -127,17 +127,17 @@
                 </div>
                 <div class="panel-body btn-group-share-bottom">
                     <div class="col-xs-4 col-sm-4 col-md-4">
-                      <button type="button" class="btn btn-default btn-lg btn-share-facebook" data-href="{{ env('APP_URL')}}/{{ $item->slug }}" data-image="{{ env('APP_URL')}}/{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" data-title="{{ $item->title }}" data-desc="{{ $item->title }}"><i class="fa fa-facebook" aria-hidden="true"></i><span> Compartilhe</span></button>
+                      <button type="button" class="btn btn-default btn-lg btn-share-facebook" data-url="{{ env('APP_URL')}}{{ $item->slug }}" data-href="{{ env('APP_URL')}}{{ $item->slug }}" data-image="{{ env('APP_URL')}}{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" data-title="{{ $item->title }}" data-desc="{{ $item->title }}"><i class="fa fa-facebook" aria-hidden="true"></i><span> Compartilhe</span></button>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
-                      <button type="button" class="btn btn-default btn-lg btn-share-twitter" onclick="javascript:MyPopUpWin('http://twitter.com/share?text={{ $item->title }}&url={{ env('APP_URL')}}/{{ $item->slug }}&hashtags={{ $item->twitterhashtags }}, 300, 300');"><i class="fa fa-twitter" aria-hidden="true"></i><span> Twitter</span></button>
+                      <button type="button" class="btn btn-default btn-lg btn-share-twitter" onclick="javascript:MyPopUpWin('http://twitter.com/share?text={{ $item->title }}&url={{ env('APP_URL')}}{{ $item->slug }}&hashtags={{ $item->twitterhashtags }}, 300, 300');"><i class="fa fa-twitter" aria-hidden="true"></i><span> Twitter</span></button>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
                       <button type="button" class="btn btn-default btn-lg btn-share-email" data-toggle="modal" data-target="#modalShareByMail"><i class="fa fa-envelope" aria-hidden="true"></i><span> E-Mail</span></button>
                     </div>
                 </div>                
             </div>
-
+<!--
             @if (Auth::guest())
                 <div class="panel panel-default">
                     <div class="panel-heading"><i class="fa fa-commenting" aria-hidden="true"></i> <strong>Participe, Comente!!!</strong></div>
@@ -170,6 +170,7 @@
                 {!! Form::close() !!}
             @endif                              
 
+            
             <div class="panel panel-default">
                 <div class="panel-body panel-comentarios">
                     @foreach($comentarios as $key => $comentario)
@@ -185,7 +186,27 @@
                     {!! $comentarios->render() !!}
                 </div>
             </div>
+        -->
 
+        <div id="disqus_thread"></div>
+        <script>
+
+        //  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        //  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+        var disqus_config = function () {
+            this.page.url = '{{ env('APP_URL')}}/{{ $item->slug }}'; // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = '{{ $item->slug }}';                // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://campanhas-ipco-org-br.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
         </div>
         <div class="col-md-4 peticao-assinar" id="peticao-assinar">
@@ -381,6 +402,23 @@
 @endsection
 
 @section('script')
+<script>
+window.fbAsyncInit = function(){
+    FB.init({
+        appId: '152883385353924', status: true, cookie: true, xfbml: true }); 
+    };
+    (function(d, debug){var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if(d.getElementById(id)) {return;}
+        js = d.createElement('script'); js.id = id; 
+        js.async = true;js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
+        ref.parentNode.insertBefore(js, ref);}(document, /*debug*/ false));
+    function postToFeed(title, desc, url, image){
+    var obj = {method: 'feed',link: url, picture: image, name: title, description: desc};
+    function callback(response){}
+    FB.ui(obj, callback);
+}    
+</script>
+
 <script>
     // When the user scrolls the page, execute myFunction 
     window.onscroll = function() {myFunction()};
