@@ -89,6 +89,9 @@ body > .container > .row{
     .navbar .titulo-ipco-mini{
         display: block;
     }
+    .navbar-nav-links .language-mobile{
+        display:block;
+    }
     .navbar-nav-links #quemsomos {
         padding-left: 15px !important;
     }

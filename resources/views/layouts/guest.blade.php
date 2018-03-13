@@ -22,12 +22,69 @@
         .navbar-collapse{
             background-image: url("{{ asset('assets/img/bg-header.png') }}");
             background-repeat: no-repeat;
-        }        
+        }
+        .navbar .titulo-ipco-full li{
+            display:inline-block;
+        }
+        .navbar .titulo-ipco-full .language{
+            float:right;
+        }
+        .navbar .titulo-ipco-full .language p {
+            font-size: 12px;
+            color: #9d9d9d;
+            float: right;
+            margin-bottom: 5px;
+            margin-top: 10px;
+        }
+        .navbar .titulo-ipco-full .language form {
+            clear:both;
+        }
+        .navbar .titulo-ipco-full .language .flag-en,
+        .navbar .titulo-ipco-full .language .flag-es,
+        .navbar .titulo-ipco-full .language .flag-it{
+            padding-right:10px;
+        }
+        .navbar-nav-links .language-mobile{
+            display:none;
+        }
+        .navbar-nav-links .language-mobile p{
+            font-size: 12px;
+            color: #9d9d9d;
+            margin-bottom: 5px;
+            margin-top: 10px;
+            padding-right: 10px;
+            text-align: center;
+        }
+        .navbar-nav-links .language-mobile ul{
+            list-style: none;
+            margin: 0;
+            padding: 0px 0px 10px 15px;
+            border-bottom: 1px solid #263347;    
+        }
+        .navbar-nav-links .language-mobile li{
+            display:inline-block;
+        }
+        .navbar-nav-links .language-mobile li .flag-pt-br{
+            
+        }
+        .navbar-nav-links .language-mobile li .flag-en,
+        .navbar-nav-links .language-mobile li .flag-es,
+        .navbar-nav-links .language-mobile li .flag-it{
+            width:35px;
+            padding-right: 10px;
+        }
+        @media only screen and (max-width : 770px) {
+            .navbar-nav-links .language-mobile{
+                display:block;
+            }       
+        }                        
     </style>
 
     @yield('style')
 
 </head>
+
+
 <body id="app-layout">
     <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container">
@@ -56,21 +113,66 @@
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <ul class="titulo-ipco-full">
-                    <li><span>I</span>NSTITUTO <span>P</span>LÍNIO <span>C</span>ORRÊA DE <span>O</span>LIVEIRA</li>
+                    <li><span>I</span>NSTITUTO <span>P</span>LINIO <span>C</span>ORRÊA DE <span>O</span>LIVEIRA</li>
+                    <?php
+                        if($_SERVER['REMOTE_ADDR']=='127.0.0.1' || $_SERVER['REMOTE_ADDR']=='187.10.173.61' || $_SERVER['REMOTE_ADDR']=='187.19.190.88'){
+                        ?>
+                        <li class="language">
+                            <p>@lang('words.header_link_4')</p>
+                            {!! Form::open(array('url' => url('/pg/language/'), 'name' => 'formLanguage', 'id' => 'formLanguage', 'method'=>'POST')) !!}
+                            {{ Form::hidden('language', 'pt-br', array('id'=> 'language')) }}
+
+                            <ul>
+                                <li><a href="javascript:return false;" onclick="changeLanguage('en');"><img src="{{ asset('/assets/img/flag-en.png') }}" class="flag-en"></a></li>
+                                <li><a href="javascript:return false;" onclick="changeLanguage('es');"><img src="{{ asset('/assets/img/flag-es.png') }}" class="flag-es"></a></li>
+                                <li><a href="javascript:return false;" onclick="changeLanguage('it');"><img src="{{ asset('/assets/img/flag-it.png') }}" class="flag-it"></a></li>
+                                <li><a href="javascript:return false;" onclick="changeLanguage('pt-br');"><img src="{{ asset('/assets/img/flag-pt-br.png') }}" class="flag-pt-br"></a></li>
+                            </ul>
+
+                            {!! Form::close() !!}                            
+                        </li>
+
+                        <?php
+                        }
+                    ?>                    
                 </ul>
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-nav-links">
-                    <li><a id="quemsomos" href="https://ipco.org.br/quem-somos" target="_blank">Quem Somos</a></li>
-                    <li><a id="faleconosco" href="https://ipco.org.br/fale-conosco" target="_blank">Fale Conosco</a></li>
-                    <li><a id="doacao" href="https://ipco.org.br/doacao" target="_blank">Doação</a></li>
+                    <?php
+                        if($_SERVER['REMOTE_ADDR']=='127.0.0.1' || $_SERVER['REMOTE_ADDR']=='108.162.210.195' || $_SERVER['REMOTE_ADDR']=='187.34.234.97'){
+                        ?>
+                    <li class="language-mobile">
+                        {!! Form::open(array('url' => url('/pg/language/'), 'name' => 'formLanguageMobile', 'id' => 'formLanguageMobile', 'method'=>'POST')) !!}
+                        {{ Form::hidden('languageMobile', 'pt-br', array('id'=> 'language')) }}                       
+                        <ul>
+                            <li><p>@lang('words.header_link_4')</p></li>
+                            <li><a href="javascript:return false;" onclick="changeLanguage('en');"><img src="{{ asset('/assets/img/flag-en.png') }}" class="flag-en"></a></li>
+                            <li><a href="javascript:return false;" onclick="changeLanguage('es');"><img src="{{ asset('/assets/img/flag-es.png') }}" class="flag-es"></a></li>
+                            <li><a href="javascript:return false;" onclick="changeLanguage('it');"><img src="{{ asset('/assets/img/flag-it.png') }}" class="flag-it"></a></li>
+                            <li><a href="javascript:return false;" onclick="changeLanguage('pt-br');"><img src="{{ asset('/assets/img/flag-pt-br.png') }}" class="flag-pt-br"></a></li>
+                        </ul>
+                        {!! Form::close() !!}
+                    </li>
+                        <?php
+                        }
+                    ?>                   
+                    <li><a id="quemsomos" href="https://ipco.org.br/quem-somos" target="_blank">@lang('words.header_link_1')</a></li>
+                    <li><a id="faleconosco" href="https://ipco.org.br/fale-conosco" target="_blank">@lang('words.header_link_2')</a></li>
+                    <li><a id="doacao" href="https://ipco.org.br/doacao" target="_blank">@lang('words.header_link_3')</a></li>
+                    <!--
+                        // DOAÇÃO
+                        <li><a id="doacao" href="{{ url('/doacao/doe') }}">Doação</a></li>
+                    -->
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
+                        <!--
                         <li><a href="{{ url('/login') }}">Acesso</a></li>
                         <li><a href="{{ url('/register') }}">Registrar</a></li>
+                        -->
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle dropdown-toggle-login" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -116,16 +218,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-md-7">
-                    <h4>Ação Jovem IPCO</h4>
+                    <h4>@lang('words.footer_title')</h4>
                         <div class="col-xs-3 col-md-2">
                             <img src="{{ url('assets/img/selo-ipco.png') }}">
                         </div>
                         <div class="col-xs-9 col-md-10">
-                            <p>A Ação Jovem do IPCO é o setor de promoção de campanhas e atividades públicas do Instituto Plinio Corrêa de Oliveira realizadas com o intuito de defender e preservar os pilares básicos da Civilização Cristã” Junte-se a nós! Saiba mais em <a href="mailto:campanhas@ipco.org.br">campanhas@ipco.org.br</a></p>
+                            <p>@lang('words.footer_text') <a href="mailto:campanhas@ipco.org.br">campanhas@ipco.org.br</a></p>
                         </div>
                 </div>
                 <div class="col-xs-12 col-md-5 text-right footer-siganos">
-                    <h4>SIGA-NOS</h4>
+                    <h4>@lang('words.footer_siga')</h4>
                     <div class="btn-group" role="group" aria-label="...">
                       <button type="button" class="btn btn-default btn-siga-facebook" onclick="window.open('https://www.facebook.com/Inst.PCO')"><i class="fa fa-facebook" aria-hidden="true"></i></button>
                       <button type="button" class="btn btn-default btn-siga-google" onclick="window.open('https://plus.google.com/u/0/+InstitutoPlinioCorr%C3%AAadeOliveiraIPCO')"><i class="fa fa-google-plus" aria-hidden="true"></i></button>
@@ -145,20 +247,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script>
-    window.fbAsyncInit = function(){
-        FB.init({
-            appId: 'xxxxx', status: true, cookie: true, xfbml: true }); 
-        };
-        (function(d, debug){var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-            if(d.getElementById(id)) {return;}
-            js = d.createElement('script'); js.id = id; 
-            js.async = true;js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
-            ref.parentNode.insertBefore(js, ref);}(document, /*debug*/ false));
-        function postToFeed(title, desc, url, image){
-        var obj = {method: 'feed',link: url, picture: 'http://www.url.com/images/'+image,name: title,description: desc};
-        function callback(response){}
-        FB.ui(obj, callback);
-    }    
+        function changeLanguage(id){
+            $("#language").val(id);
+            $("#formLanguage").submit();
+        }
     </script>
 
     @yield('script')

@@ -115,7 +115,7 @@
                     <img src="{{ env('APP_URL')}}/{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" class="img-responsive">
                 </div>
                 <div class="panel-body">
-                    <p>Compartilhe esta petição:</p>
+                    <p>@lang('words.peticao_compartilhe')</p>
                     <div class="btn-group btn-group-lg btn-group-share" role="group" aria-label="...">
                       <button type="button" class="btn btn-default btn-share-facebook" data-url="{{ env('APP_URL')}}{{ $item->slug }}" data-href="{{ env('APP_URL')}}{{ $item->slug }}" data-image="{{ env('APP_URL')}}{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" data-title="{{ $item->title }}" data-desc="{{ $item->title }}"><i class="fa fa-facebook" aria-hidden="true"></i></button>
                       <button type="button" class="btn btn-default btn-share-twitter" onclick="javascript:MyPopUpWin('http://twitter.com/share?text={{ $item->title }}&url={{ env('APP_URL')}}{{ $item->slug }}&hashtags={{ $item->twitterhashtags }}, 300, 300');"><i class="fa fa-twitter" aria-hidden="true"></i></button>
@@ -127,67 +127,17 @@
                 </div>
                 <div class="panel-body btn-group-share-bottom">
                     <div class="col-xs-4 col-sm-4 col-md-4">
-                      <button type="button" class="btn btn-default btn-lg btn-share-facebook" data-url="{{ env('APP_URL')}}{{ $item->slug }}" data-href="{{ env('APP_URL')}}{{ $item->slug }}" data-image="{{ env('APP_URL')}}{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" data-title="{{ $item->title }}" data-desc="{{ $item->title }}"><i class="fa fa-facebook" aria-hidden="true"></i><span> Compartilhe</span></button>
+                      <button type="button" class="btn btn-default btn-lg btn-share-facebook" data-url="{{ env('APP_URL')}}{{ $item->slug }}" data-href="{{ env('APP_URL')}}{{ $item->slug }}" data-image="{{ env('APP_URL')}}{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" data-title="{{ $item->title }}" data-desc="{{ $item->title }}"><i class="fa fa-facebook" aria-hidden="true"></i><span> @lang('words.peticao_compartilhe_bt_1')</span></button>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
-                      <button type="button" class="btn btn-default btn-lg btn-share-twitter" onclick="javascript:MyPopUpWin('http://twitter.com/share?text={{ $item->title }}&url={{ env('APP_URL')}}{{ $item->slug }}&hashtags={{ $item->twitterhashtags }}, 300, 300');"><i class="fa fa-twitter" aria-hidden="true"></i><span> Twitter</span></button>
+                      <button type="button" class="btn btn-default btn-lg btn-share-twitter" onclick="javascript:MyPopUpWin('http://twitter.com/share?text={{ $item->title }}&url={{ env('APP_URL')}}{{ $item->slug }}&hashtags={{ $item->twitterhashtags }}, 300, 300');"><i class="fa fa-twitter" aria-hidden="true"></i><span> @lang('words.peticao_compartilhe_bt_2')</span></button>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
-                      <button type="button" class="btn btn-default btn-lg btn-share-email" data-toggle="modal" data-target="#modalShareByMail"><i class="fa fa-envelope" aria-hidden="true"></i><span> E-Mail</span></button>
+                      <button type="button" class="btn btn-default btn-lg btn-share-email" data-toggle="modal" data-target="#modalShareByMail"><i class="fa fa-envelope" aria-hidden="true"></i><span> @lang('words.peticao_compartilhe_bt_3')</span></button>
                     </div>
                 </div>                
             </div>
-<!--
-            @if (Auth::guest())
-                <div class="panel panel-default">
-                    <div class="panel-heading"><i class="fa fa-commenting" aria-hidden="true"></i> <strong>Participe, Comente!!!</strong></div>
-                    <div class="panel-body text-center">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <a class="btn btn-success" href="{{ url('/login') }}">Acesso</a>
-                            <a class="btn btn-success" href="{{ url('/register') }}">Registre-se</a>
-                        </div>
-                    </div>
-                </div>
-            @else
-                @if (session('success'))
-                    <div class="alert alert-success" id="comente">
-                        {{ session('success') }}
-                    </div>
-                @endif            
-                {!! Form::open(array('url' => '/comentar/peticao','method'=>'POST')) !!}
-                {{ Form::hidden('peticao_id', $item->id) }}
-                    <div class="panel panel-default panel-comente">
-                        <div class="panel-heading"><i class="fa fa-commenting" aria-hidden="true"></i> <strong>Comente</strong></div>
-                        <div class="panel-body text-center">
-                            <div class="form-group">
-                                {!! Form::textarea('comentario', null, array('placeholder' => 'Participe comente!','class' => 'form-control')) !!}
-                            </div>
-                        </div>                          
-                        <div class="panel-body text-center">
-                            <button type="submit" class="btn btn-success"><i class="fa fa-commenting" aria-hidden="true"></i> Comentar</button>
-                        </div>
-                    </div>
-                {!! Form::close() !!}
-            @endif                              
-
             
-            <div class="panel panel-default">
-                <div class="panel-body panel-comentarios">
-                    @foreach($comentarios as $key => $comentario)
-                    <div>
-                        <div><img src="{{ asset('assets/img/comentario-avatar.jpg') }}"></div>
-                        <div>
-                            <h5><strong style="color:red;">{{ $comentario->name }}</strong> &bullet; {{ time_elapsed_string($comentario->created_at) }}</h5>
-                            <p>{{ $comentario->comentario }}</p>
-                        </div>
-                    </div>
-                    <hr>                             
-                    @endforeach
-                    {!! $comentarios->render() !!}
-                </div>
-            </div>
-        -->
-
         <div id="disqus_thread"></div>
         <script>
 
@@ -196,7 +146,23 @@
 
         var disqus_config = function () {
             this.page.url = '{{ env('APP_URL')}}/{{ $item->slug }}'; // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = '{{ $item->slug }}';                // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            this.page.identifier = '{{ $item->slug }}';              // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+
+            // DISQUS Multilanguage
+            <?php
+                if (App::isLocale('en')) {
+                    echo 'this.language = "en";';
+                }
+                if (App::isLocale('es')) {
+                    echo 'this.language = "es";';
+                }
+                if (App::isLocale('it')) {
+                    echo 'this.language = "it";';
+                }                
+                if (App::isLocale('pt-br')) {
+                    echo 'this.language = "pt_BR";';
+                }                                
+            ?>
         };
 
         (function() { // DON'T EDIT BELOW THIS LINE
@@ -211,7 +177,7 @@
         </div>
         <div class="col-md-4 peticao-assinar" id="peticao-assinar">
             <div class="panel panel-default panel-peticao-assinar">
-                <div class="panel-heading text-center"><h2><strong>Assine Já</strong></h2></div>
+                <div class="panel-heading text-center"><h2><strong>@lang('words.peticao_assine_title')</strong></h2></div>
                 @if($item->mostrar_progresso!='N')
                 <div class="panel-body">
                     <p>{{ $item->assinaturas_fisica + $item2['apoiantes'] }} Apoiantes</p>
@@ -221,7 +187,7 @@
                     <h2 class="text-center">Objetivo {{ $item->objetivo }}</h2>
                 </div>
                 @endif
-                <div class="panel-body text-center"><button class="btn btn-warning btn-lg" data-toggle="modal" data-target="#modalPeticao"><i class="fa fa-eye" aria-hidden="true"></i> Ler Petição</button></div>
+                <div class="panel-body text-center"><button class="btn btn-warning btn-lg" data-toggle="modal" data-target="#modalPeticao"><i class="fa fa-eye" aria-hidden="true"></i> @lang('words.peticao_assine_bt_ler')</button></div>
                 <div class="panel-body">
 
                     {!! Form::open(array('url' => url('/', $item->slug), 'method'=>'POST')) !!}
@@ -229,46 +195,46 @@
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group assinarnome">
-                                {!! Form::text('nome', null, array('placeholder' => 'Nome','class' => 'form-control input-lg', 'id'=>'nome')) !!}
+                                {!! Form::text('nome', null, array('placeholder' => trans('words.peticao_assine_input_1'),'class' => 'form-control input-lg', 'id'=>'nome')) !!}
                                 <span id="nomemsg"></span>
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group assinarsobrenome">
-                                {!! Form::text('sobrenome', null, array('placeholder' => 'Sobrenome','class' => 'form-control input-lg', 'id'=>'sobrenome')) !!}
+                                {!! Form::text('sobrenome', null, array('placeholder' => trans('words.peticao_assine_input_2'),'class' => 'form-control input-lg', 'id'=>'sobrenome')) !!}
                                 <span id="sobrenomemsg"></span>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group assinaremail">
-                                {!! Form::text('email', null, array('placeholder' => 'E-mail','class' => 'form-control input-lg', 'id'=>'email')) !!}
+                                {!! Form::text('email', null, array('placeholder' => trans('words.peticao_assine_input_3'),'class' => 'form-control input-lg', 'id'=>'email')) !!}
                                 <span id="emailmsg"></span>
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-8">
                             <div class="form-group">
-                                {!! Form::text('cidade', null, array('placeholder' => 'Cidade','class' => 'form-control input-lg')) !!}
+                                {!! Form::text('cidade', null, array('placeholder' => trans('words.peticao_assine_input_4'),'class' => 'form-control input-lg')) !!}
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-4">
                             <div class="form-group">
-                                {!! Form::text('estado', null, array('placeholder' => 'Estado','class' => 'form-control input-lg')) !!}
+                                {!! Form::text('estado', null, array('placeholder' => trans('words.peticao_assine_input_5'),'class' => 'form-control input-lg')) !!}
                             </div>
                         </div>                                                                                                
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                        <button type="submit" class="btn btn-success btn-lg btn-assinar"><i class="fa fa-check" aria-hidden="true"></i> Assinar</button>
+                        <button type="submit" class="btn btn-success btn-lg btn-assinar"><i class="fa fa-check" aria-hidden="true"></i> @lang('words.peticao_assine_submit')</button>
                     </div>                    
                     {!! Form::close() !!}
                 </div>
                 <div class="panel-body">
-                    <p>Nota: Ao assinar, você aceita receber atualizações do IPCO. Você pode cancelar sua inscrição a qualquer momento. <a href="{{ url('pg/politica-de-privacidade') }}">Política de Privacidade</a></p>
+                    <p>@lang('words.peticao_assine_nota') <a href="{{ url('pg/politica-de-privacidade') }}">@lang('words.peticao_assine_link_politica')</a></p>
                 </div>
             </div>
             <div class="panel panel-default peticao-banner-compartilhar">
                 <div class="panel-body text-center">
-                    <h1>A luta começa com você.</h1>
-                    <h2>Não esqueça de compartilhar esta petição.</h2>
+                    <h1>@lang('words.peticao_banner_title')</h1>
+                    <h2>@lang('words.peticao_banner_subtitle')</h2>
                     <div class="btn-group btn-group-lg" role="group" aria-label="...">
                       <button type="button" class="btn btn-default btn-share-facebook" data-href="{{ env('APP_URL')}}/{{ $item->slug }}" data-image="{{ env('APP_URL')}}/{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" data-title="{{ $item->title }}" data-desc="Some description for this article"><i class="fa fa-facebook" aria-hidden="true"></i></button>
                       <button type="button" class="btn btn-default btn-share-twitter" onclick="javascript:MyPopUpWin('http://twitter.com/share?text={{ $item->title }}&url={{ env('APP_URL')}}/{{ $item->slug }}&hashtags={{ $item->twitterhashtags }}, 300, 300');"><i class="fa fa-twitter" aria-hidden="true"></i></button>
@@ -319,7 +285,7 @@
       {!! Form::close() !!}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">@lang('words.peticao_assine_bt_fechar')</button>
         <button type="button" class="btn btn-primary" onclick="shareByMail('{{ $item->title }}','{{ env('APP_URL')}}/{{ $item->slug }}');">Enviar</button>
       </div>
     </div>
@@ -336,13 +302,13 @@
         {!! $item->peticao !!}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Fechar</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> @lang('words.peticao_assine_bt_fechar')</button>
       </div>
     </div>
   </div>
 </div>
 <!-- ASSINE MOBILE -->
-<div class="assine-mobile"><button type="button" data-toggle="modal" data-target="#assineModal" class="btn btn-lg btn-danger" data-dismiss="modal">Assinar já esta petição</button></div>
+<div class="assine-mobile"><button type="button" data-toggle="modal" data-target="#assineModal" class="btn btn-lg btn-danger" data-dismiss="modal">@lang('words.peticao_mobile_button')</button></div>
 
 <div class="modal fade" id="assineModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -513,7 +479,7 @@ function MyPopUpWin(url, width, height) {
       var erroqtd   = 0;
 
       if(nome.length<=2){
-        $('#nomemsg').text('Nome Inválido');
+        $('#nomemsg').text('@lang('words.erro_nome')');
         $(".assinarnome").addClass( "has-error has-feedback" );
         erroqtd = 1;
       }else{
@@ -523,7 +489,7 @@ function MyPopUpWin(url, width, height) {
       }
 
       if(sobrenome.length<=2){
-        $('#sobrenomemsg').text('Sobrenome Inválido');
+        $('#sobrenomemsg').text('@lang('words.erro_sobrenome')');
         $(".assinarsobrenome").addClass( "has-error has-feedback" );
         erroqtd = 1;
       }else{
@@ -536,7 +502,7 @@ function MyPopUpWin(url, width, height) {
       var tstmail = re.test(email);
 
       if(tstmail==false){
-        $('#emailmsg').text('E-Mail inválido');
+        $('#emailmsg').text('@lang('words.erro_email')');
         $(".assinaremail").addClass( "has-error has-feedback" );
         erroqtd = 1;
       }else{
@@ -560,7 +526,7 @@ function MyPopUpWin(url, width, height) {
       var erroqtd   = 0;
 
       if(nome.length<=2){
-        $('#nomemsg2').text('Nome Inválido');
+        $('#nomemsg2').text('@lang('words.erro_nome')');
         $(".assinarnome2").addClass( "has-error has-feedback" );
         erroqtd = 1;
       }else{
@@ -570,7 +536,7 @@ function MyPopUpWin(url, width, height) {
       }
 
       if(sobrenome.length<=2){
-        $('#sobrenomemsg2').text('Sobrenome Inválido');
+        $('#sobrenomemsg2').text('@lang('words.erro_sobrenome')');
         $(".assinarsobrenome2").addClass( "has-error has-feedback" );
         erroqtd = 1;
       }else{
@@ -583,7 +549,7 @@ function MyPopUpWin(url, width, height) {
       var tstmail = re.test(email);
 
       if(tstmail==false){
-        $('#emailmsg2').text('E-Mail inválido');
+        $('#emailmsg2').text('@lang('words.erro_email')');
         $(".assinaremail2").addClass( "has-error has-feedback" );
         erroqtd = 1;
       }else{

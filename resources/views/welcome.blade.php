@@ -92,6 +92,7 @@
 @endsection
 
 @section('content')
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -117,7 +118,7 @@
                               <div class="col-md-6">
                                 <a href="{{ url( $item->slug )}}"><h1>{{ $item->title }}</h1></a>
                                 <div class="descricao">{!! $item->descricao !!}</div>
-                                <p><a href="{{ url( $item->slug )}}">Saiba Mais</a></p>
+                                <p><a href="{{ url( $item->slug )}}">@lang('words.welcome_carrousel_link_1')</a></p>
                               </div>
                             </div>
                             <?php $active++; ?>
@@ -153,7 +154,7 @@
 
 
             <div class="col-md-12 title-recents">
-              <h2>Petições Recentes</h2>
+              <h2>@lang('words.welcome_title_1')</h2>
             </div>
 
             @if($items2->count())
@@ -166,7 +167,7 @@
                           <a href="{{ url($item2->slug) }}" class="titulo-peticoes-recentes"><h3>{{ $item2->title }}</h3></a>
                         </div>
                         <div class="panel-footer">
-                          <a href="{{ url($item2->slug) }}" class="btn btn-success" style="width: 100%;">Assine esta petição</a>
+                          <a href="{{ url($item2->slug) }}" class="btn btn-success" style="width: 100%;">@lang('words.welcome_bt_assine')</a>
                         </div>                                                
                     </div>
                   </div>
@@ -180,8 +181,8 @@
                 <div class="panel panel-default peticao-newsletter">
                   <div class="panel-body newsletter">
                     <div class="col-md-7">
-                      <h1>A luta começa com você.</h1>
-                      <h2>Tenha certeza de nunca perder uma campanha importante!</h2>
+                      <h1>@lang('words.welcome_news_title')</h1>
+                      <h2>@lang('words.welcome_news_subtitle')</h2>
                     </div>
                     <div class="col-md-5 vcenter">                     
                       <div class="col-xs-12 col-sm-12 col-md-12">
@@ -196,7 +197,7 @@
                           </div>
                       </div>                      
                       <div class="col-xs-12 col-sm-12 col-md-12">
-                        <button class="btn btn-warning col-xs-12 col-sm-12 col-md-12">Cadastre-se para receber nossas atualizações!</button>
+                        <button class="btn btn-warning col-xs-12 col-sm-12 col-md-12">@lang('words.welcome_news_submit')</button>
                       </div>
                     </div>
                   </div>

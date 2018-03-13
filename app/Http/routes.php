@@ -53,13 +53,14 @@ Route::delete('admin/usuarios/{id}',     ['as'=>'usuarios.destroy',   'uses' => 
 Route::get('admin/newsletters',             ['as'=>'newsletters.index',     'uses' => 'NewsletterController@index',   'middleware' => ['auth', 'admin']]);
 Route::delete('admin/newsletters/{id}',     ['as'=>'newsletters.destroy',   'uses' => 'NewsletterController@destroy', 'middleware' => ['auth', 'admin']]);
 
-
 Route::get('user/activation/{token}', 'Auth\AuthController@activateUser')->name('user.activate');
 
-Route::post('/mail/send',        'EmailController@send');
-Route::post('/{id}',             'AssinanteController@assinar');
-Route::post('/comentar/peticao', 'ComentarioController@store');
+Route::post('/mail/send',            'EmailController@send');
+Route::post('/{id}',                 'AssinanteController@assinar');
+Route::post('/comentar/peticao',     'ComentarioController@store');
 Route::post('/assinar/newsletter',   ['as'=>'newsletter.store',  'uses' => 'NewsletterController@store']);
+Route::get('/doacao/doe',            'DoacaoController@index');
 
 Route::get('/pg/politica-de-privacidade', 'PgController@privacy');
 Route::get('/pg/termos-de-uso',           'PgController@terms');
+Route::post('/pg/language',               'LanguageController@index');
