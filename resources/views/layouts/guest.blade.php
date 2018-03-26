@@ -115,7 +115,7 @@
                 <ul class="titulo-ipco-full">
                     <li><span>I</span>NSTITUTO <span>P</span>LINIO <span>C</span>ORRÊA DE <span>O</span>LIVEIRA</li>
                     <?php
-                        if($_SERVER['REMOTE_ADDR']=='127.0.0.1' || $_SERVER['REMOTE_ADDR']=='187.10.173.61' || $_SERVER['REMOTE_ADDR']=='187.19.190.88'){
+                        //if($_SERVER['REMOTE_ADDR']=='127.0.0.1' || $_SERVER['REMOTE_ADDR']=='187.10.173.61' || $_SERVER['REMOTE_ADDR']=='187.19.190.88'){
                         ?>
                         <li class="language">
                             <p>@lang('words.header_link_4')</p>
@@ -133,13 +133,13 @@
                         </li>
 
                         <?php
-                        }
+                        //}
                     ?>                    
                 </ul>
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-nav-links">
                     <?php
-                        if($_SERVER['REMOTE_ADDR']=='127.0.0.1' || $_SERVER['REMOTE_ADDR']=='108.162.210.195' || $_SERVER['REMOTE_ADDR']=='187.34.234.97'){
+                        //if($_SERVER['REMOTE_ADDR']=='127.0.0.1' || $_SERVER['REMOTE_ADDR']=='108.162.210.195' || $_SERVER['REMOTE_ADDR']=='187.34.234.97'){
                         ?>
                     <li class="language-mobile">
                         {!! Form::open(array('url' => url('/pg/language/'), 'name' => 'formLanguageMobile', 'id' => 'formLanguageMobile', 'method'=>'POST')) !!}
@@ -154,7 +154,7 @@
                         {!! Form::close() !!}
                     </li>
                         <?php
-                        }
+                        //}
                     ?>                   
                     <li><a id="quemsomos" href="https://ipco.org.br/quem-somos" target="_blank">@lang('words.header_link_1')</a></li>
                     <li><a id="faleconosco" href="https://ipco.org.br/fale-conosco" target="_blank">@lang('words.header_link_2')</a></li>

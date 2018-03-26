@@ -21,9 +21,11 @@ return [
     'peticao_compartilhe_bt_3' => 'E-Mail',
     
     'peticao_assine_title'   => 'Subscribe Now',
+    'peticao_assine_apoiantes' => 'Supporters',
+    'peticao_assine_objetivo' => 'Goal',    
     'peticao_assine_bt_ler'  => 'Read Petition',
     'peticao_assine_bt_fechar' => 'Close',
-    'peticao_assine_input_1' => 'Frist Name',
+    'peticao_assine_input_1' => 'First Name',
     'peticao_assine_input_2' => 'Last Name',
     'peticao_assine_input_3' => 'E-mail',
     'peticao_assine_input_4' => 'City',

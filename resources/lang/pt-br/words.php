@@ -21,6 +21,8 @@ return [
     'peticao_compartilhe_bt_3' => 'E-Mail',
     
     'peticao_assine_title' => 'Assine Já',
+    'peticao_assine_apoiantes' => 'Apoiantes',
+    'peticao_assine_objetivo' => 'Objetivo',
     'peticao_assine_bt_ler' => 'Ler Petição',
     'peticao_assine_bt_fechar' => 'Fechar',
     'peticao_assine_input_1' => 'Nome',

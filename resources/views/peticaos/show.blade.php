@@ -180,11 +180,11 @@
                 <div class="panel-heading text-center"><h2><strong>@lang('words.peticao_assine_title')</strong></h2></div>
                 @if($item->mostrar_progresso!='N')
                 <div class="panel-body">
-                    <p>{{ $item->assinaturas_fisica + $item2['apoiantes'] }} Apoiantes</p>
+                    <p>{{ $item->assinaturas_fisica + $item2['apoiantes'] }} @lang('words.peticao_assine_apoiantes')</p>
                     <div class="progress skill-bar ">
                         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ $item2['valuenow'] }}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>                    
-                    <h2 class="text-center">Objetivo {{ $item->objetivo }}</h2>
+                    <h2 class="text-center">@lang('words.peticao_assine_objetivo') <?php echo number_format($item->objetivo, 0, ',', '.'); ?></h2>
                 </div>
                 @endif
                 <div class="panel-body text-center"><button class="btn btn-warning btn-lg" data-toggle="modal" data-target="#modalPeticao"><i class="fa fa-eye" aria-hidden="true"></i> @lang('words.peticao_assine_bt_ler')</button></div>
@@ -322,30 +322,30 @@
         <div class="row">
             <div class="col-xs-6 col-sm-6 col-md-6">
                 <div class="form-group assinarnome2">
-                    {!! Form::text('nome', null, array('placeholder' => 'Nome','class' => 'form-control input-lg', 'id'=>'nome2')) !!}
+                    {!! Form::text('nome', null, array('placeholder' => trans('words.peticao_assine_input_1'),'class' => 'form-control input-lg', 'id'=>'nome2')) !!}
                     <span id="nomemsg2"></span>
                 </div>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6">
                 <div class="form-group assinarsobrenome2">
-                    {!! Form::text('sobrenome', null, array('placeholder' => 'Sobrenome','class' => 'form-control input-lg', 'id'=>'sobrenome2')) !!}
+                    {!! Form::text('sobrenome', null, array('placeholder' => trans('words.peticao_assine_input_2'),'class' => 'form-control input-lg', 'id'=>'sobrenome2')) !!}
                     <span id="sobrenomemsg2"></span>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group assinaremail2">
-                    {!! Form::text('email', null, array('placeholder' => 'E-mail','class' => 'form-control input-lg', 'id'=>'email2')) !!}
+                    {!! Form::text('email', null, array('placeholder' => trans('words.peticao_assine_input_3'),'class' => 'form-control input-lg', 'id'=>'email2')) !!}
                     <span id="emailmsg2"></span>
                 </div>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-8">
                 <div class="form-group">
-                    {!! Form::text('cidade', null, array('placeholder' => 'Cidade','class' => 'form-control input-lg')) !!}
+                    {!! Form::text('cidade', null, array('placeholder' => trans('words.peticao_assine_input_4'),'class' => 'form-control input-lg')) !!}
                 </div>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-4">
                 <div class="form-group">
-                    {!! Form::text('estado', null, array('placeholder' => 'Estado','class' => 'form-control input-lg')) !!}
+                    {!! Form::text('estado', null, array('placeholder' => trans('words.peticao_assine_input_5'),'class' => 'form-control input-lg')) !!}
                 </div>
             </div>                                                                                                
         </div>
