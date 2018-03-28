@@ -28,6 +28,7 @@ class LanguageController extends Controller
 	                    ->orwhere('slug_es', '=', $slug_origem)
 	                    ->orwhere('slug_it', '=', $slug_origem)
 	                    ->orwhere('slug_en', '=', $slug_origem)
+	                    ->orwhere('slug_fr', '=', $slug_origem)
 	                    ->first();
 
 	        if($slug!=null){
@@ -44,6 +45,7 @@ class LanguageController extends Controller
 	                    ->orwhere('slug_es', '=', $slug_origem)
 	                    ->orwhere('slug_it', '=', $slug_origem)
 	                    ->orwhere('slug_en', '=', $slug_origem)
+	                    ->orwhere('slug_fr', '=', $slug_origem)
 	                    ->first();
             
 	        if($slug!=null){
@@ -64,6 +66,7 @@ class LanguageController extends Controller
 	                    ->orwhere('slug_es', '=', $slug_origem)
 	                    ->orwhere('slug_it', '=', $slug_origem)
 	                    ->orwhere('slug_en', '=', $slug_origem)
+	                    ->orwhere('slug_fr', '=', $slug_origem)
 	                    ->first();
 
 	        
@@ -85,6 +88,7 @@ class LanguageController extends Controller
 	                    ->orwhere('slug_es', '=', $slug_origem)
 	                    ->orwhere('slug_it', '=', $slug_origem)
 	                    ->orwhere('slug_en', '=', $slug_origem)
+	                    ->orwhere('slug_fr', '=', $slug_origem)
 	                    ->first();
 
 
@@ -93,6 +97,28 @@ class LanguageController extends Controller
 	                return redirect($slug->redirecionar_url_en);
 	            }else{
 	        		return redirect( url('/').'/'.$slug->slug_en );
+	            }
+	        }else{
+	        	return redirect( url('/') );
+	        }
+
+		}else if($language=='fr'){
+	        
+	        $slug = DB::table('peticaos')
+	                	->select('slug_fr', 'redirecionar_fr', 'redirecionar_url_fr')
+	                    ->where('slug', '=', $slug_origem)
+	                    ->orwhere('slug_es', '=', $slug_origem)
+	                    ->orwhere('slug_it', '=', $slug_origem)
+	                    ->orwhere('slug_en', '=', $slug_origem)
+	                    ->orwhere('slug_fr', '=', $slug_origem)
+	                    ->first();
+
+
+	        if($slug!=null){
+	            if($slug->redirecionar_fr=='y'){
+	                return redirect($slug->redirecionar_url_fr);
+	            }else{
+	        		return redirect( url('/').'/'.$slug->slug_fr );
 	            }
 	        }else{
 	        	return redirect( url('/') );

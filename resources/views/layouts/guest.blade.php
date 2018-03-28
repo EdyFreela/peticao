@@ -5,7 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Entre em Ação!</title>
+    <title>
+    <?php
+
+    if($_SERVER['REQUEST_URI']=='/'){
+        echo trans('words.title');
+    }else{
+        echo $item->title;
+    }
+
+    ?>
+    </title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
@@ -41,7 +51,8 @@
         }
         .navbar .titulo-ipco-full .language .flag-en,
         .navbar .titulo-ipco-full .language .flag-es,
-        .navbar .titulo-ipco-full .language .flag-it{
+        .navbar .titulo-ipco-full .language .flag-it,
+        .navbar .titulo-ipco-full .language .flag-fr{
             padding-right:10px;
         }
         .navbar-nav-links .language-mobile{
@@ -64,12 +75,10 @@
         .navbar-nav-links .language-mobile li{
             display:inline-block;
         }
-        .navbar-nav-links .language-mobile li .flag-pt-br{
-            
-        }
         .navbar-nav-links .language-mobile li .flag-en,
         .navbar-nav-links .language-mobile li .flag-es,
-        .navbar-nav-links .language-mobile li .flag-it{
+        .navbar-nav-links .language-mobile li .flag-it,
+        .navbar-nav-links .language-mobile li .flag-fr{
             width:35px;
             padding-right: 10px;
         }
@@ -114,9 +123,6 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <ul class="titulo-ipco-full">
                     <li><span>I</span>NSTITUTO <span>P</span>LINIO <span>C</span>ORRÊA DE <span>O</span>LIVEIRA</li>
-                    <?php
-                        //if($_SERVER['REMOTE_ADDR']=='127.0.0.1' || $_SERVER['REMOTE_ADDR']=='187.10.173.61' || $_SERVER['REMOTE_ADDR']=='187.19.190.88'){
-                        ?>
                         <li class="language">
                             <p>@lang('words.header_link_4')</p>
                             {!! Form::open(array('url' => url('/pg/language/'), 'name' => 'formLanguage', 'id' => 'formLanguage', 'method'=>'POST')) !!}
@@ -126,21 +132,18 @@
                                 <li><a href="javascript:return false;" onclick="changeLanguage('en');"><img src="{{ asset('/assets/img/flag-en.png') }}" class="flag-en"></a></li>
                                 <li><a href="javascript:return false;" onclick="changeLanguage('es');"><img src="{{ asset('/assets/img/flag-es.png') }}" class="flag-es"></a></li>
                                 <li><a href="javascript:return false;" onclick="changeLanguage('it');"><img src="{{ asset('/assets/img/flag-it.png') }}" class="flag-it"></a></li>
+                                <?php if($_SERVER['REMOTE_ADDR']=='127.0.0.1' || $_SERVER['REMOTE_ADDR']=='187.19.183.61' || $_SERVER['REMOTE_ADDR']=='187.19.190.88'){ ?>
+                                <li><a href="javascript:return false;" onclick="changeLanguage('fr');"><img src="{{ asset('/assets/img/flag-fr.png') }}" class="flag-fr"></a></li>
+                                <?php } ?>                    
                                 <li><a href="javascript:return false;" onclick="changeLanguage('pt-br');"><img src="{{ asset('/assets/img/flag-pt-br.png') }}" class="flag-pt-br"></a></li>
                             </ul>
 
                             {!! Form::close() !!}                            
                         </li>
 
-                        <?php
-                        //}
-                    ?>                    
                 </ul>
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-nav-links">
-                    <?php
-                        //if($_SERVER['REMOTE_ADDR']=='127.0.0.1' || $_SERVER['REMOTE_ADDR']=='108.162.210.195' || $_SERVER['REMOTE_ADDR']=='187.34.234.97'){
-                        ?>
                     <li class="language-mobile">
                         {!! Form::open(array('url' => url('/pg/language/'), 'name' => 'formLanguageMobile', 'id' => 'formLanguageMobile', 'method'=>'POST')) !!}
                         {{ Form::hidden('languageMobile', 'pt-br', array('id'=> 'language')) }}                       
@@ -149,13 +152,13 @@
                             <li><a href="javascript:return false;" onclick="changeLanguage('en');"><img src="{{ asset('/assets/img/flag-en.png') }}" class="flag-en"></a></li>
                             <li><a href="javascript:return false;" onclick="changeLanguage('es');"><img src="{{ asset('/assets/img/flag-es.png') }}" class="flag-es"></a></li>
                             <li><a href="javascript:return false;" onclick="changeLanguage('it');"><img src="{{ asset('/assets/img/flag-it.png') }}" class="flag-it"></a></li>
+                            <?php if($_SERVER['REMOTE_ADDR']=='127.0.0.1' || $_SERVER['REMOTE_ADDR']=='187.19.183.61' || $_SERVER['REMOTE_ADDR']=='187.19.190.88'){ ?>
+                            <li><a href="javascript:return false;" onclick="changeLanguage('fr');"><img src="{{ asset('/assets/img/flag-fr.png') }}" class="flag-fr"></a></li>
+                            <?php } ?>                    
                             <li><a href="javascript:return false;" onclick="changeLanguage('pt-br');"><img src="{{ asset('/assets/img/flag-pt-br.png') }}" class="flag-pt-br"></a></li>
                         </ul>
                         {!! Form::close() !!}
-                    </li>
-                        <?php
-                        //}
-                    ?>                   
+                    </li>                  
                     <li><a id="quemsomos" href="https://ipco.org.br/quem-somos" target="_blank">@lang('words.header_link_1')</a></li>
                     <li><a id="faleconosco" href="https://ipco.org.br/fale-conosco" target="_blank">@lang('words.header_link_2')</a></li>
                     <li><a id="doacao" href="https://ipco.org.br/doacao" target="_blank">@lang('words.header_link_3')</a></li>

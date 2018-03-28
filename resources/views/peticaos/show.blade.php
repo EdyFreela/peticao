@@ -159,6 +159,9 @@
                 if (App::isLocale('it')) {
                     echo 'this.language = "it";';
                 }                
+                if (App::isLocale('fr')) {
+                    echo 'this.language = "fr";';
+                }                 
                 if (App::isLocale('pt-br')) {
                     echo 'this.language = "pt_BR";';
                 }                                
@@ -180,7 +183,7 @@
                 <div class="panel-heading text-center"><h2><strong>@lang('words.peticao_assine_title')</strong></h2></div>
                 @if($item->mostrar_progresso!='N')
                 <div class="panel-body">
-                    <p>{{ $item->assinaturas_fisica + $item2['apoiantes'] }} @lang('words.peticao_assine_apoiantes')</p>
+                    <p><?php echo number_format(($item->assinaturas_fisica + $item2['apoiantes']), 0, ',', '.'); ?> @lang('words.peticao_assine_apoiantes')</p>
                     <div class="progress skill-bar ">
                         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ $item2['valuenow'] }}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>                    

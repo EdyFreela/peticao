@@ -104,6 +104,7 @@
             <li role="presentation"><a href="#espanhol" aria-controls="espanhol" role="tab" data-toggle="tab"><img src="{{ asset('assets/img/flag-es-admin.png') }}"> Espanhol</a></li>
             <li role="presentation"><a href="#italiano" aria-controls="italiano" role="tab" data-toggle="tab"><img src="{{ asset('assets/img/flag-it-admin.png') }}"> Italiano</a></li>
             <li role="presentation"><a href="#ingles" aria-controls="ingles" role="tab" data-toggle="tab"><img src="{{ asset('assets/img/flag-en-admin.png') }}"> Inglês</a></li>
+            <li role="presentation"><a href="#frances" aria-controls="frances" role="tab" data-toggle="tab"><img src="{{ asset('assets/img/flag-fr-admin.png') }}"> Francês</a></li>
           </ul>
 
           <!-- Tab panes -->
@@ -137,13 +138,13 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Conteúdo:</strong>
-                        {!! Form::textarea('conteudo', null, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
+                        {!! Form::textarea('conteudo', $item_br[0]->conteudo, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Petição:</strong>
-                        {!! Form::textarea('peticao', null, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
+                        {!! Form::textarea('peticao', $item_br[0]->peticao, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
                     </div>
                 </div>                               
                 <div class="col-xs-6 col-sm-6 col-md-6">
@@ -207,13 +208,13 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Conteúdo:</strong>
-                        {!! Form::textarea('conteudo_es', null, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
+                        {!! Form::textarea('conteudo_es', $item_es[0]->conteudo, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Petição:</strong>
-                        {!! Form::textarea('peticao_es', null, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
+                        {!! Form::textarea('peticao_es', $item_es[0]->peticao, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
                     </div>
                 </div>                               
                 <div class="col-xs-6 col-sm-6 col-md-6">
@@ -277,13 +278,13 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Conteúdo:</strong>
-                        {!! Form::textarea('conteudo_it', null, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
+                        {!! Form::textarea('conteudo_it', $item_it[0]->conteudo, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Petição:</strong>
-                        {!! Form::textarea('peticao_it', null, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
+                        {!! Form::textarea('peticao_it', $item_it[0]->peticao, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
                     </div>
                 </div>                               
                 <div class="col-xs-6 col-sm-6 col-md-6">
@@ -347,13 +348,13 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Conteúdo:</strong>
-                        {!! Form::textarea('conteudo_en', null, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
+                        {!! Form::textarea('conteudo_en', $item_en[0]->conteudo, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Petição:</strong>
-                        {!! Form::textarea('peticao_en', null, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
+                        {!! Form::textarea('peticao_en', $item_en[0]->peticao, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
                     </div>
                 </div>                               
                 <div class="col-xs-6 col-sm-6 col-md-6">
@@ -363,6 +364,77 @@
                     </div>
                 </div>
             </div>
+            <div role="tabpanel" class="tab-pane fade" id="frances">
+                <!--
+                <div class="col-xs-12 col-sm-12 col-md-3 idioma-ativo">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="radioBtn btn-group btn-group-justified">
+                                <a id="ativo_en_y" class="btn btn-success notActive" data-toggle="ativo_en" data-title="Y">Ativado</a>
+                                <a id="ativo_en_n" class="btn btn-danger active" data-toggle="ativo_en" data-title="N">Desativado</a>
+                            </div>
+                            -->
+                            {{ Form::hidden('ativo_fr', $item->ativo_fr, array('class'=>'ativo_fr', 'id'=>'ativo_fr')) }}
+                            <!--
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-9">
+                -->
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                {{ Form::checkbox('redirecionar_fr', 'y') }} Redirecionar
+                            </span>
+                            {!! Form::text('redirecionar_url_fr', null, array('placeholder' => 'URL de Redirecionamento','class' => 'form-control')) !!}
+                        </div>
+                    </div>
+                </div>                 
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Titulo:</strong>
+                        {!! Form::text('title_fr', null, array('placeholder' => 'Titulo','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Link:</strong>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon3">{{ env('APP_URL') }}/</span>
+                            {!! Form::text('slug_fr', null, array('placeholder' => 'Titulo','class' => 'form-control')) !!}
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" type="button" title="Visualizar" onclick="javascript:window.open('{{ env('APP_URL') }}/{{ $item->slug_fr }}');"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>                
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Descrição:</strong>
+                        {!! Form::textarea('descricao_fr', null, array('placeholder' => 'Descrição','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Conteúdo:</strong>
+                        {!! Form::textarea('conteudo_fr', $item_fr[0]->conteudo, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Petição:</strong>
+                        {!! Form::textarea('peticao_fr', $item_fr[0]->peticao, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
+                    </div>
+                </div>                               
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <strong>Twitter Hashtags:</strong>
+                        {!! Form::text('twitterhashtags_fr', null, array('placeholder' => 'Twitter Hashtags','class' => 'form-control')) !!}
+                    </div>
+                </div>
+            </div>
+
           </div>
 
         </div>

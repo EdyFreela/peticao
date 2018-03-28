@@ -34,7 +34,8 @@ class WelcomeController extends Controller
             $items2 = Peticao::orderBy('created_at','DESC')
                         ->select('title', 'slug', 'imagem')
                         ->limit(3)
-                        ->get();                        
+                        ->get();
+
         }else if(App::getLocale()=='es'){
             $items = Peticao::orderBy('created_at','DESC')
                         ->select('title_es as title', 'slug_es as slug', 'descricao_es as descricao', 'imagem')
@@ -43,7 +44,8 @@ class WelcomeController extends Controller
             $items2 = Peticao::orderBy('created_at','DESC')
                         ->select('title_es as title', 'slug_es as slug', 'imagem')
                         ->limit(3)
-                        ->get();                        
+                        ->get();
+                                                
         }else if(App::getLocale()=='it'){
             $items = Peticao::orderBy('created_at','DESC')
                         ->select('title_it as title', 'slug_it as slug', 'descricao_it as descricao', 'imagem')
@@ -60,6 +62,15 @@ class WelcomeController extends Controller
                         ->get();
             $items2 = Peticao::orderBy('created_at','DESC')
                         ->select('title_en as title', 'slug_en as slug', 'imagem')
+                        ->limit(3)
+                        ->get();                        
+        }else if(App::getLocale()=='fr'){
+            $items = Peticao::orderBy('created_at','DESC')
+                        ->select('title_fr as title', 'slug_fr as slug', 'descricao_fr as descricao', 'imagem')
+                        ->limit(5)
+                        ->get();
+            $items2 = Peticao::orderBy('created_at','DESC')
+                        ->select('title_fr as title', 'slug_fr as slug', 'imagem')
                         ->limit(3)
                         ->get();                        
         }

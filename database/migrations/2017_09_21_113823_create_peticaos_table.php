@@ -18,9 +18,6 @@ class CreatePeticaosTable extends Migration
 
            $table->string('title');
            $table->string('slug');
-           $table->longText('descricao');
-           $table->longText('conteudo');
-           $table->longText('peticao');
            $table->string('twitterhashtags');
 
            $table->string('ativo_es');
@@ -28,9 +25,6 @@ class CreatePeticaosTable extends Migration
            $table->string('redirecionar_url_es');
            $table->string('title_es');
            $table->string('slug_es');
-           $table->longText('descricao_es');
-           $table->longText('conteudo_es');
-           $table->longText('peticao_es');
            $table->string('twitterhashtags_es');
 
            $table->string('ativo_it');
@@ -38,9 +32,6 @@ class CreatePeticaosTable extends Migration
            $table->string('redirecionar_url_it');
            $table->string('title_it');
            $table->string('slug_it');
-           $table->longText('descricao_it');
-           $table->longText('conteudo_it');
-           $table->longText('peticao_it');
            $table->string('twitterhashtags_it');           
 
            $table->string('ativo_en');
@@ -48,10 +39,14 @@ class CreatePeticaosTable extends Migration
            $table->string('redirecionar_url_en');
            $table->string('title_en');
            $table->string('slug_en');
-           $table->longText('descricao_en');
-           $table->longText('conteudo_en');
-           $table->longText('peticao_en');
            $table->string('twitterhashtags_en');
+
+           $table->string('ativo_fr');
+           $table->string('redirecionar_fr');
+           $table->string('redirecionar_url_fr');
+           $table->string('title_fr');
+           $table->string('slug_fr');
+           $table->string('twitterhashtags_fr');
 
            $table->string('imagem');
            $table->string('objetivo');

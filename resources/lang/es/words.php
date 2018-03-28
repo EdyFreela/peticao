@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'title' => '¡Entre en Acción!',
     'header_link_1' => 'Quienes somos',
     'header_link_2' => 'Hable con nosotros',
     'header_link_3' => 'Donación',
