@@ -140,7 +140,19 @@
                         <strong>Twitter Hashtags:</strong>
                         {!! Form::text('twitterhashtags', null, array('placeholder' => 'Twitter Hashtags','class' => 'form-control')) !!}
                     </div>
-                </div>                
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Facebook Titulo:</strong>
+                        {!! Form::text('facebooktitulo', null, array('placeholder' => 'Titulo de Compartilhamento Facebook','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Facebook Descricao:</strong>
+                        {!! Form::text('facebookdescricao', null, array('placeholder' => 'Descrição de Compartilhamento Facebook','class' => 'form-control')) !!}
+                    </div>
+                </div>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="espanhol">
                 
@@ -200,6 +212,18 @@
                         {!! Form::text('twitterhashtags_es', null, array('placeholder' => 'Twitter Hashtags','class' => 'form-control')) !!}
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Facebook Titulo:</strong>
+                        {!! Form::text('facebooktitulo_es', null, array('placeholder' => 'Titulo de Compartilhamento Facebook','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Facebook Descricao:</strong>
+                        {!! Form::text('facebookdescricao_es', null, array('placeholder' => 'Descrição de Compartilhamento Facebook','class' => 'form-control')) !!}
+                    </div>
+                </div>                
             </div>
             <div role="tabpanel" class="tab-pane fade" id="italiano">
                 <!--
@@ -258,6 +282,18 @@
                         {!! Form::text('twitterhashtags_it', null, array('placeholder' => 'Twitter Hashtags','class' => 'form-control')) !!}
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Facebook Titulo:</strong>
+                        {!! Form::text('facebooktitulo_it', null, array('placeholder' => 'Titulo de Compartilhamento Facebook','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Facebook Descricao:</strong>
+                        {!! Form::text('facebookdescricao_it', null, array('placeholder' => 'Descrição de Compartilhamento Facebook','class' => 'form-control')) !!}
+                    </div>
+                </div>                
             </div>
             <div role="tabpanel" class="tab-pane fade" id="ingles">
                 <!--
@@ -316,6 +352,18 @@
                         {!! Form::text('twitterhashtags_en', null, array('placeholder' => 'Twitter Hashtags','class' => 'form-control')) !!}
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Facebook Titulo:</strong>
+                        {!! Form::text('facebooktitulo_en', null, array('placeholder' => 'Titulo de Compartilhamento Facebook','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Facebook Descricao:</strong>
+                        {!! Form::text('facebookdescricao_en', null, array('placeholder' => 'Descrição de Compartilhamento Facebook','class' => 'form-control')) !!}
+                    </div>
+                </div>                
             </div>
             <div role="tabpanel" class="tab-pane fade" id="frances">
                 <!--
@@ -374,6 +422,18 @@
                         {!! Form::text('twitterhashtags_fr', null, array('placeholder' => 'Twitter Hashtags','class' => 'form-control')) !!}
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Facebook Titulo:</strong>
+                        {!! Form::text('facebooktitulo_fr', null, array('placeholder' => 'Titulo de Compartilhamento Facebook','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Facebook Descricao:</strong>
+                        {!! Form::text('facebookdescricao_fr', null, array('placeholder' => 'Descrição de Compartilhamento Facebook','class' => 'form-control')) !!}
+                    </div>
+                </div>                
             </div>            
           </div>
 

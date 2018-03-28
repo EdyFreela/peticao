@@ -61,7 +61,9 @@ class PeticaoController extends Controller
             'descricao' => 'required',
             'conteudo' => 'required',
             'peticao' => 'required',
-            'twitterhashtags' => 'required'
+            'twitterhashtags' => 'required',
+            'facebooktitulo' => 'required',
+            'facebookdescricao' => 'required'
         ];
 
         // VALIDAR ESPANHOL
@@ -78,7 +80,9 @@ class PeticaoController extends Controller
                     'descricao_es' => 'required',
                     'conteudo_es' => 'required',
                     'peticao_es' => 'required',
-                    'twitterhashtags_es' => 'required'
+                    'twitterhashtags_es' => 'required',
+                    'facebooktitulo_es' => 'required',
+                    'facebookdescricao_es' => 'required'                    
                 ];
             }
         }
@@ -97,7 +101,9 @@ class PeticaoController extends Controller
                     'descricao_it' => 'required',
                     'conteudo_it' => 'required',
                     'peticao_it' => 'required',
-                    'twitterhashtags_it' => 'required'
+                    'twitterhashtags_it' => 'required',
+                    'facebooktitulo_it' => 'required',
+                    'facebookdescricao_it' => 'required'
                 ];
             }            
         }        
@@ -115,7 +121,9 @@ class PeticaoController extends Controller
                     'descricao_en' => 'required',
                     'conteudo_en' => 'required',
                     'peticao_en' => 'required',
-                    'twitterhashtags_en' => 'required'
+                    'twitterhashtags_en' => 'required',
+                    'facebooktitulo_en' => 'required',
+                    'facebookdescricao_en' => 'required'
                 ];
             }
         } 
@@ -134,7 +142,9 @@ class PeticaoController extends Controller
                     'descricao_fr' => 'required',
                     'conteudo_fr' => 'required',
                     'peticao_fr' => 'required',
-                    'twitterhashtags_fr' => 'required'
+                    'twitterhashtags_fr' => 'required',
+                    'facebooktitulo_fr' => 'required',
+                    'facebookdescricao_fr' => 'required'
                 ];
             }
         }
@@ -156,20 +166,26 @@ class PeticaoController extends Controller
             'title'                => $request->get('title'), 
             'descricao'            => $request->get('descricao'),  
             'twitterhashtags'      => $request->get('twitterhashtags'),
+            'facebooktitulo'       => $request->get('facebooktitulo'),
+            'facebookdescricao'    => $request->get('facebookdescricao'),
 
             'ativo_es'             => $request->get('ativo_es'), 
             'redirecionar_es'      => $request->get('redirecionar_es'), 
             'redirecionar_url_es'  => $request->get('redirecionar_url_es'), 
             'title_es'             => $request->get('title_es'), 
             'descricao_es'         => $request->get('descricao_es'),  
-            'twitterhashtags_es'   => $request->get('twitterhashtags_es'),         
+            'twitterhashtags_es'   => $request->get('twitterhashtags_es'),
+            'facebooktitulo_es'    => $request->get('facebooktitulo_es'),
+            'facebookdescricao_es' => $request->get('facebookdescricao_es'),
 
             'ativo_it'             => $request->get('ativo_it'), 
             'redirecionar_it'      => $request->get('redirecionar_it'), 
             'redirecionar_url_it'  => $request->get('redirecionar_url_it'), 
             'title_it'             => $request->get('title_it'), 
             'descricao_it'         => $request->get('descricao_it'),  
-            'twitterhashtags_it'   => $request->get('twitterhashtags_it'), 
+            'twitterhashtags_it'   => $request->get('twitterhashtags_it'),
+            'facebooktitulo_it'    => $request->get('facebooktitulo_it'),
+            'facebookdescricao_it' => $request->get('facebookdescricao_it'),            
 
             'ativo_en'             => $request->get('ativo_en'), 
             'redirecionar_en'      => $request->get('redirecionar_en'), 
@@ -177,13 +193,17 @@ class PeticaoController extends Controller
             'title_en'             => $request->get('title_en'), 
             'descricao_en'         => $request->get('descricao_en'), 
             'twitterhashtags_en'   => $request->get('twitterhashtags_en'),
+            'facebooktitulo_en'    => $request->get('facebooktitulo_en'),
+            'facebookdescricao_en' => $request->get('facebookdescricao_en'),            
 
             'ativo_fr'             => $request->get('ativo_fr'), 
             'redirecionar_fr'      => $request->get('redirecionar_fr'), 
             'redirecionar_url_fr'  => $request->get('redirecionar_url_fr'), 
             'title_fr'             => $request->get('title_fr'), 
             'descricao_fr'         => $request->get('descricao_fr'),  
-            'twitterhashtags_fr'   => $request->get('twitterhashtags_fr'),            
+            'twitterhashtags_fr'   => $request->get('twitterhashtags_fr'),
+            'facebooktitulo_fr'    => $request->get('facebooktitulo_fr'),
+            'facebookdescricao_fr' => $request->get('facebookdescricao_fr'),                       
         ));
 
         $input->save();
@@ -221,7 +241,7 @@ class PeticaoController extends Controller
         if($slug_idioma != null){
             $idioma = 'pt';
             $sqlpeticao = DB::table('peticaos')
-                        ->select('id', 'mostrar_progresso', 'objetivo', 'assinaturas_fisica', 'imagem', 'created_at', 'title', 'slug', 'descricao', 'twitterhashtags')
+                        ->select('id', 'mostrar_progresso', 'objetivo', 'assinaturas_fisica', 'imagem', 'created_at', 'title', 'slug', 'descricao', 'twitterhashtags', 'facebooktitulo', 'facebookdescricao')
                         ->where('slug', $slug)
                         ->first();
 
@@ -237,7 +257,7 @@ class PeticaoController extends Controller
         }else if($slug_idioma_es != null){
             $idioma = 'es';
             $sqlpeticao   = DB::table('peticaos')
-                        ->select('id', 'mostrar_progresso', 'objetivo', 'assinaturas_fisica', 'imagem', 'created_at', 'ativo_es', 'redirecionar_es', 'redirecionar_url_es', 'title_es as title', 'slug_es as slug', 'descricao_es as descricao', 'twitterhashtags_es as twitterhashtags')
+                        ->select('id', 'mostrar_progresso', 'objetivo', 'assinaturas_fisica', 'imagem', 'created_at', 'ativo_es', 'redirecionar_es', 'redirecionar_url_es', 'title_es as title', 'slug_es as slug', 'descricao_es as descricao', 'twitterhashtags_es as twitterhashtags', 'facebooktitulo_es as facebooktitulo', 'facebookdescricao_es as facebookdescricao')
                         ->where('slug_es', $slug)
                         ->first();
 
@@ -255,7 +275,7 @@ class PeticaoController extends Controller
         }else if($slug_idioma_it != null){
             $idioma = 'it';
             $sqlpeticao   = DB::table('peticaos')
-                        ->select('id', 'mostrar_progresso', 'objetivo', 'assinaturas_fisica', 'imagem', 'created_at', 'ativo_it', 'redirecionar_it', 'redirecionar_url_it', 'title_it as title', 'slug_it as slug', 'descricao_it as descricao', 'twitterhashtags_it as twitterhashtags')
+                        ->select('id', 'mostrar_progresso', 'objetivo', 'assinaturas_fisica', 'imagem', 'created_at', 'ativo_it', 'redirecionar_it', 'redirecionar_url_it', 'title_it as title', 'slug_it as slug', 'descricao_it as descricao', 'twitterhashtags_it as twitterhashtags', 'facebooktitulo_it as facebooktitulo', 'facebookdescricao_it as facebookdescricao')
                         ->where('slug_it', $slug)
                         ->first();
 
@@ -275,7 +295,7 @@ class PeticaoController extends Controller
         }else if($slug_idioma_en != null){
             $idioma = 'en';
             $sqlpeticao   = DB::table('peticaos')
-                        ->select('id', 'mostrar_progresso', 'objetivo', 'assinaturas_fisica', 'imagem', 'created_at', 'ativo_en', 'redirecionar_en', 'redirecionar_url_en', 'title_en as title', 'slug_en as slug', 'descricao_en as descricao', 'twitterhashtags_en as twitterhashtags')
+                        ->select('id', 'mostrar_progresso', 'objetivo', 'assinaturas_fisica', 'imagem', 'created_at', 'ativo_en', 'redirecionar_en', 'redirecionar_url_en', 'title_en as title', 'slug_en as slug', 'descricao_en as descricao', 'twitterhashtags_en as twitterhashtags', 'facebooktitulo_en as facebooktitulo', 'facebookdescricao_en as facebookdescricao')
                         ->where('slug_en', $slug)
                         ->first();
 
@@ -294,7 +314,7 @@ class PeticaoController extends Controller
         }else if($slug_idioma_fr != null){
             $idioma = 'fr';
             $sqlpeticao   = DB::table('peticaos')
-                        ->select('id', 'mostrar_progresso', 'objetivo', 'assinaturas_fisica', 'imagem', 'created_at', 'ativo_fr', 'redirecionar_fr', 'redirecionar_url_fr', 'title_fr as title', 'slug_fr as slug', 'descricao_fr as descricao', 'twitterhashtags_fr as twitterhashtags')
+                        ->select('id', 'mostrar_progresso', 'objetivo', 'assinaturas_fisica', 'imagem', 'created_at', 'ativo_fr', 'redirecionar_fr', 'redirecionar_url_fr', 'title_fr as title', 'slug_fr as slug', 'descricao_fr as descricao', 'twitterhashtags_fr as twitterhashtags', 'facebooktitulo_fr as facebooktitulo', 'facebookdescricao_fr as facebookdescricao')
                         ->where('slug_fr', $slug)
                         ->first();
 
@@ -395,7 +415,9 @@ class PeticaoController extends Controller
         $validate_pt = [
             'title' => 'required',
             'descricao' => 'required',
-            'twitterhashtags' => 'required'
+            'twitterhashtags' => 'required',
+            'facebooktitulo' => 'required',
+            'facebookdescricao' => 'required'
         ];
 
         // VALIDAR ESPANHOL
@@ -410,7 +432,9 @@ class PeticaoController extends Controller
                 $validate_es = [
                     'title_es' => 'required',
                     'descricao_es' => 'required',
-                    'twitterhashtags_es' => 'required'
+                    'twitterhashtags_es' => 'required',
+                    'facebooktitulo_es' => 'required',
+                    'facebookdescricao_es' => 'required'
                 ];
             }
         }
@@ -427,7 +451,9 @@ class PeticaoController extends Controller
                 $validate_it = [
                     'title_it' => 'required',
                     'descricao_it' => 'required',
-                    'twitterhashtags_it' => 'required'
+                    'twitterhashtags_it' => 'required',
+                    'facebooktitulo_it' => 'required',
+                    'facebookdescricao_it' => 'required'
                 ];
             }            
         }        
@@ -443,7 +469,9 @@ class PeticaoController extends Controller
                 $validate_en = [
                     'title_en' => 'required',
                     'descricao_en' => 'required',
-                    'twitterhashtags_en' => 'required'
+                    'twitterhashtags_en' => 'required',
+                    'facebooktitulo_en' => 'required',
+                    'facebookdescricao_en' => 'required'
                 ];
             }
         } 
@@ -460,7 +488,9 @@ class PeticaoController extends Controller
                 $validate_fr = [
                     'title_fr' => 'required',
                     'descricao_fr' => 'required',
-                    'twitterhashtags_fr' => 'required'
+                    'twitterhashtags_fr' => 'required',
+                    'facebooktitulo_fr' => 'required',
+                    'facebookdescricao_fr' => 'required'
                 ];
             }
         }
@@ -491,6 +521,8 @@ class PeticaoController extends Controller
                 'slug'                 => $request->get('slug'), 
                 'descricao'            => $request->get('descricao'),  
                 'twitterhashtags'      => $request->get('twitterhashtags'),
+                'facebooktitulo'       => $request->get('facebooktitulo'),
+                'facebookdescricao'    => $request->get('facebookdescricao'),
             );
 
             $input_es = array(
@@ -501,6 +533,8 @@ class PeticaoController extends Controller
                 'slug_es'              => $request->get('slug_es'),
                 'descricao_es'         => $request->get('descricao_es'),  
                 'twitterhashtags_es'   => $request->get('twitterhashtags_es'),
+                'facebooktitulo_es'    => $request->get('facebooktitulo_es'),
+                'facebookdescricao_es' => $request->get('facebookdescricao_es'),                
             );
 
             $input_it = array(         
@@ -510,7 +544,9 @@ class PeticaoController extends Controller
                 'title_it'             => $request->get('title_it'),
                 'slug_it'              => $request->get('slug_it'), 
                 'descricao_it'         => $request->get('descricao_it'),  
-                'twitterhashtags_it'   => $request->get('twitterhashtags_it'), 
+                'twitterhashtags_it'   => $request->get('twitterhashtags_it'),
+                'facebooktitulo_it'    => $request->get('facebooktitulo_it'),
+                'facebookdescricao_it' => $request->get('facebookdescricao_it'),                 
             );
 
             $input_en = array( 
@@ -521,6 +557,8 @@ class PeticaoController extends Controller
                 'slug_en'              => $request->get('slug_en'), 
                 'descricao_en'         => $request->get('descricao_en'),  
                 'twitterhashtags_en'   => $request->get('twitterhashtags_en'),
+                'facebooktitulo_en'    => $request->get('facebooktitulo_en'),
+                'facebookdescricao_en' => $request->get('facebookdescricao_en'),                
             );
 
             $input_fr = array( 
@@ -531,6 +569,8 @@ class PeticaoController extends Controller
                 'slug_fr'              => $request->get('slug_fr'), 
                 'descricao_fr'         => $request->get('descricao_fr'),
                 'twitterhashtags_fr'   => $request->get('twitterhashtags_fr'),
+                'facebooktitulo_fr'    => $request->get('facebooktitulo_fr'),
+                'facebookdescricao_fr' => $request->get('facebookdescricao_fr'),                
             );            
         }else{
 
@@ -555,6 +595,8 @@ class PeticaoController extends Controller
                 'slug'                 => $request->get('slug'), 
                 'descricao'            => $request->get('descricao'),  
                 'twitterhashtags'      => $request->get('twitterhashtags'),
+                'facebooktitulo'       => $request->get('facebooktitulo'),
+                'facebookdescricao'    => $request->get('facebookdescricao'),                
             );
 
             $input_es = array(
@@ -565,6 +607,8 @@ class PeticaoController extends Controller
                 'slug_es'              => $request->get('slug_es'), 
                 'descricao_es'         => $request->get('descricao_es'),  
                 'twitterhashtags_es'   => $request->get('twitterhashtags_es'),
+                'facebooktitulo_es'    => $request->get('facebooktitulo_es'),
+                'facebookdescricao_es' => $request->get('facebookdescricao_es'),                
             );         
 
             $input_it = array(
@@ -575,6 +619,8 @@ class PeticaoController extends Controller
                 'slug_es'              => $request->get('slug_es'),
                 'descricao_it'         => $request->get('descricao_it'), 
                 'twitterhashtags_it'   => $request->get('twitterhashtags_it'),
+                'facebooktitulo_it'    => $request->get('facebooktitulo_it'),
+                'facebookdescricao_it' => $request->get('facebookdescricao_it'),                
             );
 
             $input_en = array(
@@ -585,6 +631,8 @@ class PeticaoController extends Controller
                 'slug_en'              => $request->get('slug_en'), 
                 'descricao_en'         => $request->get('descricao_en'), 
                 'twitterhashtags_en'   => $request->get('twitterhashtags_en'),
+                'facebooktitulo_en'    => $request->get('facebooktitulo_en'),
+                'facebookdescricao_en' => $request->get('facebookdescricao_en'),                
             );
 
             $input_fr = array(
@@ -595,6 +643,8 @@ class PeticaoController extends Controller
                 'slug_fr'              => $request->get('slug_fr'), 
                 'descricao_fr'         => $request->get('descricao_fr'),  
                 'twitterhashtags_fr'   => $request->get('twitterhashtags_fr'),
+                'facebooktitulo_fr'    => $request->get('facebooktitulo_fr'),
+                'facebookdescricao_fr' => $request->get('facebookdescricao_fr'),                
             );            
         }
 

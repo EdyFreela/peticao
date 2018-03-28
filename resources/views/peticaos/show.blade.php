@@ -116,8 +116,9 @@
                 </div>
                 <div class="panel-body">
                     <p>@lang('words.peticao_compartilhe')</p>
+
                     <div class="btn-group btn-group-lg btn-group-share" role="group" aria-label="...">
-                      <button type="button" class="btn btn-default btn-share-facebook" data-url="{{ env('APP_URL')}}{{ $item->slug }}" data-href="{{ env('APP_URL')}}{{ $item->slug }}" data-image="{{ env('APP_URL')}}{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" data-title="{{ $item->title }}" data-desc="{{ $item->title }}"><i class="fa fa-facebook" aria-hidden="true"></i></button>
+                      <button type="button" class="btn btn-default btn-share-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></button>
                       <button type="button" class="btn btn-default btn-share-twitter" onclick="javascript:MyPopUpWin('http://twitter.com/share?text={{ $item->title }}&url={{ env('APP_URL')}}{{ $item->slug }}&hashtags={{ $item->twitterhashtags }}, 300, 300');"><i class="fa fa-twitter" aria-hidden="true"></i></button>
                       <button type="button" class="btn btn-default btn-share-email" data-toggle="modal" data-target="#modalShareByMail"><i class="fa fa-envelope" aria-hidden="true"></i></button>
                     </div>                    
@@ -127,7 +128,7 @@
                 </div>
                 <div class="panel-body btn-group-share-bottom">
                     <div class="col-xs-4 col-sm-4 col-md-4">
-                      <button type="button" class="btn btn-default btn-lg btn-share-facebook" data-url="{{ env('APP_URL')}}{{ $item->slug }}" data-href="{{ env('APP_URL')}}{{ $item->slug }}" data-image="{{ env('APP_URL')}}{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" data-title="{{ $item->title }}" data-desc="{{ $item->title }}"><i class="fa fa-facebook" aria-hidden="true"></i><span> @lang('words.peticao_compartilhe_bt_1')</span></button>
+                      <button type="button" class="btn btn-default btn-lg btn-share-facebook" data-url="{{ env('APP_URL')}}{{ $item->slug }}" data-href="{{ env('APP_URL')}}{{ $item->slug }}" data-image="{{ env('APP_URL')}}{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" data-title="{{ $item->title }}" data-desc="{{ $item->descricao }}"><i class="fa fa-facebook" aria-hidden="true"></i><span> @lang('words.peticao_compartilhe_bt_1')</span></button>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
                       <button type="button" class="btn btn-default btn-lg btn-share-twitter" onclick="javascript:MyPopUpWin('http://twitter.com/share?text={{ $item->title }}&url={{ env('APP_URL')}}{{ $item->slug }}&hashtags={{ $item->twitterhashtags }}, 300, 300');"><i class="fa fa-twitter" aria-hidden="true"></i><span> @lang('words.peticao_compartilhe_bt_2')</span></button>
@@ -372,20 +373,24 @@
 
 @section('script')
 <script>
-window.fbAsyncInit = function(){
-    FB.init({
-        appId: '152883385353924', status: true, cookie: true, xfbml: true }); 
-    };
-    (function(d, debug){var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-        if(d.getElementById(id)) {return;}
-        js = d.createElement('script'); js.id = id; 
-        js.async = true;js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
-        ref.parentNode.insertBefore(js, ref);}(document, /*debug*/ false));
-    function postToFeed(title, desc, url, image){
-    var obj = {method: 'feed',link: url, picture: image, name: title, description: desc};
-    function callback(response){}
-    FB.ui(obj, callback);
-}    
+
+//window.fbAsyncInit = function(){
+//    FB.init({
+//        appId: '152883385353924', status: true, cookie: true, xfbml: true }); 
+//    };
+//    (function(d, debug){var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+//        if(d.getElementById(id)) {return;}
+//        js = d.createElement('script'); js.id = id; 
+//        js.async = true;js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
+//        ref.parentNode.insertBefore(js, ref);}(document, /*debug*/ false));
+//    function postToFeed(title, desc, url, image){
+//    var obj = {method: 'feed', link: url, picture: image, name: title, description: desc};
+    
+//    console.log(obj);
+
+//    function callback(response){}
+//    FB.ui(obj, callback);
+//}    
 </script>
 
 <script>
@@ -417,11 +422,24 @@ $(document).ready(function() {
 });    
 </script>
 <script>
-$('.btn-share-facebook').click(function(){
-    elem = $(this);
-    postToFeed(elem.data('title'), elem.data('desc'), elem.prop('href'), elem.data('image'));
-    return false;
-});
+
+    function popupwindow(url, title, w, h) {
+      var left = (screen.width/2)-(w/2);
+      var top = (screen.height/2)-(h/2);
+      return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+    }
+
+    $('.btn-share-facebook').click(function(){
+
+        var link    = "{{ env('APP_URL') }}{{ $item->slug }}";
+        var imagem  = "{{ env('APP_URL')}}{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}";
+        var title   = "{{ urlencode( $item->facebooktitulo ) }}";
+        var summary = "{{ urlencode( $item->facebookdescricao ) }}";
+
+        var url     = 'http://www.facebook.com/sharer/sharer.php?s=100&p[url]=' + link + '&p[images][0]=' + imagem + '&p[title]=' + title + '&p[summary]=' + summary;
+        popupwindow(url, 'teste', 500, 300);
+    });
+
 </script>
 <script>
     function shareByMail($titulo, $url){

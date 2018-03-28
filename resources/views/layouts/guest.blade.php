@@ -1,3 +1,12 @@
+<?php
+
+if($_SERVER['REQUEST_URI']=='/'){
+    $title = trans('words.title');
+}else{
+    $title = $item->title;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,17 +14,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>
-    <?php
-
-    if($_SERVER['REQUEST_URI']=='/'){
-        echo trans('words.title');
-    }else{
-        echo $item->title;
-    }
-
+<?php
+if($_SERVER['REQUEST_URI']=='/'){
+    
+}else{
     ?>
-    </title>
+    <meta name="title" content="{{ $item->facebooktitulo }}">
+    <meta name="description" content="{{ $item->facebookdescricao }}">
+    <meta property="og:url" content="{{ env('APP_URL')}}{{ $item->slug }}" />
+    <meta property="og:title" content="{{ $item->facebooktitulo }}" />
+    <meta property="og:description" content="{{ $item->facebookdescricao }}" />
+    <meta property="og:image" content="{{ env('APP_URL')}}{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" />
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content="<?php echo date('Y-m-d H:i:s'); ?>">
+    <meta property="fb:app_id" content="152883385353924">
+    <?php
+}
+?>
+
+    <title><?php echo $title?></title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
@@ -132,9 +149,9 @@
                                 <li><a href="javascript:return false;" onclick="changeLanguage('en');"><img src="{{ asset('/assets/img/flag-en.png') }}" class="flag-en"></a></li>
                                 <li><a href="javascript:return false;" onclick="changeLanguage('es');"><img src="{{ asset('/assets/img/flag-es.png') }}" class="flag-es"></a></li>
                                 <li><a href="javascript:return false;" onclick="changeLanguage('it');"><img src="{{ asset('/assets/img/flag-it.png') }}" class="flag-it"></a></li>
-                                <?php if($_SERVER['REMOTE_ADDR']=='127.0.0.1' || $_SERVER['REMOTE_ADDR']=='187.19.183.61' || $_SERVER['REMOTE_ADDR']=='187.19.190.88'){ ?>
+                                <?php //if($_SERVER['REMOTE_ADDR']=='127.0.0.1' || $_SERVER['REMOTE_ADDR']=='187.19.183.61' || $_SERVER['REMOTE_ADDR']=='187.19.190.88'){ ?>
                                 <li><a href="javascript:return false;" onclick="changeLanguage('fr');"><img src="{{ asset('/assets/img/flag-fr.png') }}" class="flag-fr"></a></li>
-                                <?php } ?>                    
+                                <?php //} ?>                    
                                 <li><a href="javascript:return false;" onclick="changeLanguage('pt-br');"><img src="{{ asset('/assets/img/flag-pt-br.png') }}" class="flag-pt-br"></a></li>
                             </ul>
 
@@ -152,9 +169,9 @@
                             <li><a href="javascript:return false;" onclick="changeLanguage('en');"><img src="{{ asset('/assets/img/flag-en.png') }}" class="flag-en"></a></li>
                             <li><a href="javascript:return false;" onclick="changeLanguage('es');"><img src="{{ asset('/assets/img/flag-es.png') }}" class="flag-es"></a></li>
                             <li><a href="javascript:return false;" onclick="changeLanguage('it');"><img src="{{ asset('/assets/img/flag-it.png') }}" class="flag-it"></a></li>
-                            <?php if($_SERVER['REMOTE_ADDR']=='127.0.0.1' || $_SERVER['REMOTE_ADDR']=='187.19.183.61' || $_SERVER['REMOTE_ADDR']=='187.19.190.88'){ ?>
+                            <?php //if($_SERVER['REMOTE_ADDR']=='127.0.0.1' || $_SERVER['REMOTE_ADDR']=='187.19.183.61' || $_SERVER['REMOTE_ADDR']=='187.19.190.88'){ ?>
                             <li><a href="javascript:return false;" onclick="changeLanguage('fr');"><img src="{{ asset('/assets/img/flag-fr.png') }}" class="flag-fr"></a></li>
-                            <?php } ?>                    
+                            <?php //} ?>                    
                             <li><a href="javascript:return false;" onclick="changeLanguage('pt-br');"><img src="{{ asset('/assets/img/flag-pt-br.png') }}" class="flag-pt-br"></a></li>
                         </ul>
                         {!! Form::close() !!}
