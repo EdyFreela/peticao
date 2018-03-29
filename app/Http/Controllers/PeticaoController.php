@@ -847,4 +847,99 @@ class PeticaoController extends Controller
         })->export('csv');
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function embed(Request $request, $slug)
+    {
+        $slug_idioma    = DB::table('peticaos')->where('slug', $slug)->first();
+        $slug_idioma_es = DB::table('peticaos')->where('slug_es', $slug)->first();
+        $slug_idioma_it = DB::table('peticaos')->where('slug_it', $slug)->first();
+        $slug_idioma_en = DB::table('peticaos')->where('slug_en', $slug)->first();
+        $slug_idioma_fr = DB::table('peticaos')->where('slug_fr', $slug)->first();
+
+        if($slug_idioma != null){
+            $idioma = 'pt';
+            $sqlpeticao = DB::table('peticaos')
+                        ->select('id', 'slug', 'mostrar_progresso', 'objetivo', 'assinaturas_fisica', 'imagem', 'facebooktitulo', 'facebookdescricao')
+                        ->where('slug', $slug)
+                        ->first();
+
+            $sqlconteudo = DB::table('peticaos_conteudos')
+                        ->select('conteudo', 'peticao')
+                        ->where([['peticao_id', '=', $sqlpeticao->id], ['idioma', '=', 'br'],])
+                        ->first();
+
+            $item = (object) array_merge((array)$sqlpeticao, (array)$sqlconteudo);
+
+        }else if($slug_idioma_es != null){
+            $idioma = 'es';
+            $sqlpeticao   = DB::table('peticaos')
+                        ->select('id', 'slug_es as slug','mostrar_progresso', 'objetivo', 'assinaturas_fisica', 'imagem', 'facebooktitulo_es as facebooktitulo', 'facebookdescricao_es as facebookdescricao')
+                        ->where('slug_es', $slug)
+                        ->first();
+
+            $sqlconteudo = DB::table('peticaos_conteudos')
+                        ->select('conteudo', 'peticao')
+                        ->where([['peticao_id', '=', $sqlpeticao->id], ['idioma', '=', 'es'],])
+                        ->first();
+
+            $item = (object) array_merge((array)$sqlpeticao, (array)$sqlconteudo);
+            
+        }else if($slug_idioma_it != null){
+            $idioma = 'it';
+            $sqlpeticao   = DB::table('peticaos')
+                        ->select('id', 'slug_it as slug','mostrar_progresso', 'objetivo', 'assinaturas_fisica', 'imagem', 'facebooktitulo_it as facebooktitulo', 'facebookdescricao_it as facebookdescricao')
+                        ->where('slug_it', $slug)
+                        ->first();
+
+            $sqlconteudo = DB::table('peticaos_conteudos')
+                        ->select('conteudo', 'peticao')
+                        ->where([['peticao_id', '=', $sqlpeticao->id], ['idioma', '=', 'it'],])
+                        ->first();
+
+            $item = (object) array_merge((array)$sqlpeticao, (array)$sqlconteudo);
+
+        }else if($slug_idioma_en != null){
+            $idioma = 'en';
+            $sqlpeticao   = DB::table('peticaos')
+                        ->select('id', 'slug_en as slug', 'mostrar_progresso', 'objetivo', 'assinaturas_fisica', 'imagem', 'facebooktitulo_en as facebooktitulo', 'facebookdescricao_en as facebookdescricao')
+                        ->where('slug_en', $slug)
+                        ->first();
+
+            $sqlconteudo = DB::table('peticaos_conteudos')
+                        ->select('conteudo', 'peticao')
+                        ->where([['peticao_id', '=', $sqlpeticao->id], ['idioma', '=', 'en'],])
+                        ->first();
+
+            $item = (object) array_merge((array)$sqlpeticao, (array)$sqlconteudo);
+
+        }else if($slug_idioma_fr != null){
+            $idioma = 'fr';
+            $sqlpeticao   = DB::table('peticaos')
+                        ->select('id', 'slug_fr as slug', 'mostrar_progresso', 'objetivo', 'assinaturas_fisica', 'imagem', 'facebooktitulo_fr as facebooktitulo', 'facebookdescricao_fr as facebookdescricao')
+                        ->where('slug_fr', $slug)
+                        ->first();
+
+            $sqlconteudo = DB::table('peticaos_conteudos')
+                        ->select('conteudo', 'peticao')
+                        ->where([['peticao_id', '=', $sqlpeticao->id], ['idioma', '=', 'fr'],])
+                        ->first();
+
+            $item = (object) array_merge((array)$sqlpeticao, (array)$sqlconteudo);
+
+        }
+
+        $apoiantes  = DB::table('assinantes')->where('peticao_id', $item->id)->count();
+
+        $apoiantes_porcetagem = ( ($item->assinaturas_fisica + $apoiantes) / $item->objetivo ) * 100;
+        $item2 = array('apoiantes' => $apoiantes, 'valuenow' => $apoiantes_porcetagem);
+
+        return view('peticaos.embed', compact('item', 'item2'));
+
+    }    
+
 }

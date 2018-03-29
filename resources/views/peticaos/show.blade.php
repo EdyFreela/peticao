@@ -118,8 +118,8 @@
                     <p>@lang('words.peticao_compartilhe')</p>
 
                     <div class="btn-group btn-group-lg btn-group-share" role="group" aria-label="...">
-                      <button type="button" class="btn btn-default btn-share-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></button>
-                      <button type="button" class="btn btn-default btn-share-twitter" onclick="javascript:MyPopUpWin('http://twitter.com/share?text={{ $item->title }}&url={{ env('APP_URL')}}{{ $item->slug }}&hashtags={{ $item->twitterhashtags }}, 300, 300');"><i class="fa fa-twitter" aria-hidden="true"></i></button>
+                      <button type="button" class="btn btn-default btn-share-facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></button>
+                      <button type="button" class="btn btn-default btn-share-twitter" onclick="javascript:MyPopUpWin('http://twitter.com/share?text={{ $item->title }}&url={{ env('APP_URL')}}{{ $item->slug }}&hashtags={{ $item->twitterhashtags }}, 300, 300');"><i class="fab fa-twitter"></i></button>
                       <button type="button" class="btn btn-default btn-share-email" data-toggle="modal" data-target="#modalShareByMail"><i class="fa fa-envelope" aria-hidden="true"></i></button>
                     </div>                    
                 </div>                
@@ -128,10 +128,10 @@
                 </div>
                 <div class="panel-body btn-group-share-bottom">
                     <div class="col-xs-4 col-sm-4 col-md-4">
-                      <button type="button" class="btn btn-default btn-lg btn-share-facebook" data-url="{{ env('APP_URL')}}{{ $item->slug }}" data-href="{{ env('APP_URL')}}{{ $item->slug }}" data-image="{{ env('APP_URL')}}{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" data-title="{{ $item->title }}" data-desc="{{ $item->descricao }}"><i class="fa fa-facebook" aria-hidden="true"></i><span> @lang('words.peticao_compartilhe_bt_1')</span></button>
+                      <button type="button" class="btn btn-default btn-lg btn-share-facebook" data-url="{{ env('APP_URL')}}{{ $item->slug }}" data-href="{{ env('APP_URL')}}{{ $item->slug }}" data-image="{{ env('APP_URL')}}{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" data-title="{{ $item->title }}" data-desc="{{ $item->descricao }}"><i class="fab fa-facebook-f"></i><span> @lang('words.peticao_compartilhe_bt_1')</span></button>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
-                      <button type="button" class="btn btn-default btn-lg btn-share-twitter" onclick="javascript:MyPopUpWin('http://twitter.com/share?text={{ $item->title }}&url={{ env('APP_URL')}}{{ $item->slug }}&hashtags={{ $item->twitterhashtags }}, 300, 300');"><i class="fa fa-twitter" aria-hidden="true"></i><span> @lang('words.peticao_compartilhe_bt_2')</span></button>
+                      <button type="button" class="btn btn-default btn-lg btn-share-twitter" onclick="javascript:MyPopUpWin('http://twitter.com/share?text={{ $item->title }}&url={{ env('APP_URL')}}{{ $item->slug }}&hashtags={{ $item->twitterhashtags }}, 300, 300');"><i class="fab fa-twitter"></i><span> @lang('words.peticao_compartilhe_bt_2')</span></button>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
                       <button type="button" class="btn btn-default btn-lg btn-share-email" data-toggle="modal" data-target="#modalShareByMail"><i class="fa fa-envelope" aria-hidden="true"></i><span> @lang('words.peticao_compartilhe_bt_3')</span></button>
@@ -235,20 +235,51 @@
                     <p>@lang('words.peticao_assine_nota') <a href="{{ url('pg/politica-de-privacidade') }}">@lang('words.peticao_assine_link_politica')</a></p>
                 </div>
             </div>
+            <?php if($_SERVER['REMOTE_ADDR']=='127.0.0.1' || $_SERVER['REMOTE_ADDR']=='187.19.183.61' || $_SERVER['REMOTE_ADDR']=='187.19.190.88'){ ?>
+            <div class="panel panel-default peticao-banner-embedar">
+                <div class="panel-body text-center">
+                    <button type="button" class="btn btn-default btn-embedar" data-toggle="modal" data-target="#modalEmbedar"><i class="fas fa-code"></i> Embedar</button>                   
+                </div>
+            </div>
+            <?php } ?>            
             <div class="panel panel-default peticao-banner-compartilhar">
                 <div class="panel-body text-center">
                     <h1>@lang('words.peticao_banner_title')</h1>
                     <h2>@lang('words.peticao_banner_subtitle')</h2>
                     <div class="btn-group btn-group-lg" role="group" aria-label="...">
-                      <button type="button" class="btn btn-default btn-share-facebook" data-href="{{ env('APP_URL')}}/{{ $item->slug }}" data-image="{{ env('APP_URL')}}/{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" data-title="{{ $item->title }}" data-desc="Some description for this article"><i class="fa fa-facebook" aria-hidden="true"></i></button>
-                      <button type="button" class="btn btn-default btn-share-twitter" onclick="javascript:MyPopUpWin('http://twitter.com/share?text={{ $item->title }}&url={{ env('APP_URL')}}/{{ $item->slug }}&hashtags={{ $item->twitterhashtags }}, 300, 300');"><i class="fa fa-twitter" aria-hidden="true"></i></button>
+                      <button type="button" class="btn btn-default btn-share-facebook" data-href="{{ env('APP_URL')}}/{{ $item->slug }}" data-image="{{ env('APP_URL')}}/{{ env('IMAGEM_PETICAO_PATH')}}/{{ $item->imagem }}" data-title="{{ $item->title }}" data-desc="Some description for this article"><i class="fab fa-facebook-f"></i></button>
+                      <button type="button" class="btn btn-default btn-share-twitter" onclick="javascript:MyPopUpWin('http://twitter.com/share?text={{ $item->title }}&url={{ env('APP_URL')}}/{{ $item->slug }}&hashtags={{ $item->twitterhashtags }}, 300, 300');"><i class="fab fa-twitter"></i></button>
                       <button type="button" class="btn btn-default btn-share-email" data-toggle="modal" data-target="#modalShareByMail"><i class="fa fa-envelope" aria-hidden="true"></i></button>
-                    </div>                    
+                    </div>
                 </div>
             </div>
 
         </div>        
     </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modalEmbedar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="myModalLabel">Embedar abaixo-assinado</h3>
+      </div>
+      <div class="modal-body">
+        <p>Copie o código abaixo para embedar o abaixo-assinado no seu site.</p>
+        <div class="alert alert-success text-center" role="alert" style="display:none;" id="msg-copy"><i class="fas fa-check"></i> Copiado com sucesso</div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <textarea class="form-control" style="height:100px;" id="embed-code"><div class="ipco-embed-petition" id="ipco-embed-petition" data-id="{{ $item->slug }}"></div><script src="{{ env('APP_URL')}}assets/js/ipco-embeds.js" type="text/javascript"></script></textarea>
+                </div>
+            </div>            
+        </div>
+        <p class="text-center">Visualizar</p>
+        <div class="ipco-embed-petition" id="ipco-embed-petition" data-id="{{ $item->slug }}"></div><script src="https://campanhas.ipco.org.br//assets/js/ipco-embeds.js" type="text/javascript"></script>     
+      </div>
+    </div>
+  </div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="modalShareByMail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -355,11 +386,11 @@
         </div>
       </div>
       <div class="modal-body">
-          <button type="submit" class="btn btn-success btn-lg btn-assinar-mobile"><i class="fa fa-check" aria-hidden="true"></i> Assinar</button>
+          <button type="submit" class="btn btn-success btn-lg btn-assinar-mobile"><i class="fa fa-check" aria-hidden="true"></i> @lang('words.peticao_assine_submit')</button>
       </div>
       {!! Form::close() !!}
       <div class="modal-body">
-          <p>Nota: Ao assinar, você aceita receber atualizações do IPCO. Você pode cancelar sua inscrição a qualquer momento. <a href="{{ url('pg/politica-de-privacidade') }}">Política de Privacidade</a></p>
+          <p>@lang('words.peticao_assine_nota') <a href="{{ url('pg/politica-de-privacidade') }}">@lang('words.peticao_assine_link_politica')</a></p>
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-success" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Fechar</button>
@@ -391,6 +422,13 @@
 //    function callback(response){}
 //    FB.ui(obj, callback);
 //}    
+</script>
+<script>
+    document.getElementById("embed-code").onclick = function() {
+        this.select();
+        document.execCommand('copy');
+        $('#msg-copy').fadeIn( "slow" ).fadeOut( "slow" );
+    }
 </script>
 
 <script>

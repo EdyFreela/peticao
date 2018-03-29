@@ -64,3 +64,5 @@ Route::get('/doacao/doe',            'DoacaoController@index');
 Route::get('/pg/politica-de-privacidade', 'PgController@privacy');
 Route::get('/pg/termos-de-uso',           'PgController@terms');
 Route::post('/pg/language',               'LanguageController@index');
+
+Route::get('/embed/{id}',             ['as'=>'peticaos.embed',      'uses' => 'PeticaoController@embed']);
