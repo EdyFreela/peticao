@@ -29,6 +29,7 @@ class LanguageController extends Controller
 	                    ->orwhere('slug_it', '=', $slug_origem)
 	                    ->orwhere('slug_en', '=', $slug_origem)
 	                    ->orwhere('slug_fr', '=', $slug_origem)
+	                    ->orwhere('slug_de', '=', $slug_origem)
 	                    ->first();
 
 	        if($slug!=null){
@@ -46,6 +47,7 @@ class LanguageController extends Controller
 	                    ->orwhere('slug_it', '=', $slug_origem)
 	                    ->orwhere('slug_en', '=', $slug_origem)
 	                    ->orwhere('slug_fr', '=', $slug_origem)
+	                    ->orwhere('slug_de', '=', $slug_origem)
 	                    ->first();
             
 	        if($slug!=null){
@@ -67,8 +69,8 @@ class LanguageController extends Controller
 	                    ->orwhere('slug_it', '=', $slug_origem)
 	                    ->orwhere('slug_en', '=', $slug_origem)
 	                    ->orwhere('slug_fr', '=', $slug_origem)
+	                    ->orwhere('slug_de', '=', $slug_origem)
 	                    ->first();
-
 	        
 	        if($slug!=null){
 	            if($slug->redirecionar_it=='y'){
@@ -89,8 +91,8 @@ class LanguageController extends Controller
 	                    ->orwhere('slug_it', '=', $slug_origem)
 	                    ->orwhere('slug_en', '=', $slug_origem)
 	                    ->orwhere('slug_fr', '=', $slug_origem)
+	                    ->orwhere('slug_de', '=', $slug_origem)
 	                    ->first();
-
 
 	        if($slug!=null){
 	            if($slug->redirecionar_en=='y'){
@@ -111,14 +113,36 @@ class LanguageController extends Controller
 	                    ->orwhere('slug_it', '=', $slug_origem)
 	                    ->orwhere('slug_en', '=', $slug_origem)
 	                    ->orwhere('slug_fr', '=', $slug_origem)
+	                    ->orwhere('slug_de', '=', $slug_origem)
 	                    ->first();
-
 
 	        if($slug!=null){
 	            if($slug->redirecionar_fr=='y'){
 	                return redirect($slug->redirecionar_url_fr);
 	            }else{
 	        		return redirect( url('/').'/'.$slug->slug_fr );
+	            }
+	        }else{
+	        	return redirect( url('/') );
+	        }
+		
+		}else if($language=='de'){
+	        
+	        $slug = DB::table('peticaos')
+	                	->select('slug_de', 'redirecionar_de', 'redirecionar_url_de')
+	                    ->where('slug', '=', $slug_origem)
+	                    ->orwhere('slug_es', '=', $slug_origem)
+	                    ->orwhere('slug_it', '=', $slug_origem)
+	                    ->orwhere('slug_en', '=', $slug_origem)
+	                    ->orwhere('slug_fr', '=', $slug_origem)
+	                    ->orwhere('slug_de', '=', $slug_origem)
+	                    ->first();
+
+	        if($slug!=null){
+	            if($slug->redirecionar_de=='y'){
+	                return redirect($slug->redirecionar_url_de);
+	            }else{
+	        		return redirect( url('/').'/'.$slug->slug_de );
 	            }
 	        }else{
 	        	return redirect( url('/') );

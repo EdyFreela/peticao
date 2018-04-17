@@ -73,6 +73,15 @@ class WelcomeController extends Controller
                         ->select('title_fr as title', 'slug_fr as slug', 'imagem')
                         ->limit(3)
                         ->get();                        
+        }else if(App::getLocale()=='de'){
+            $items = Peticao::orderBy('created_at','DESC')
+                        ->select('title_de as title', 'slug_de as slug', 'descricao_de as descricao', 'imagem')
+                        ->limit(5)
+                        ->get();
+            $items2 = Peticao::orderBy('created_at','DESC')
+                        ->select('title_de as title', 'slug_de as slug', 'imagem')
+                        ->limit(3)
+                        ->get();                        
         }
 
         return view('welcome', compact('items', 'items2'));

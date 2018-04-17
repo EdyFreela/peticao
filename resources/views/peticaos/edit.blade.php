@@ -105,6 +105,7 @@
             <li role="presentation"><a href="#italiano" aria-controls="italiano" role="tab" data-toggle="tab"><img src="{{ asset('assets/img/flag-it-admin.png') }}"> Italiano</a></li>
             <li role="presentation"><a href="#ingles" aria-controls="ingles" role="tab" data-toggle="tab"><img src="{{ asset('assets/img/flag-en-admin.png') }}"> Inglês</a></li>
             <li role="presentation"><a href="#frances" aria-controls="frances" role="tab" data-toggle="tab"><img src="{{ asset('assets/img/flag-fr-admin.png') }}"> Francês</a></li>
+            <li role="presentation"><a href="#alemao" aria-controls="alemao" role="tab" data-toggle="tab"><img src="{{ asset('assets/img/flag-de-admin.png') }}"> Alemão</a></li>
           </ul>
 
           <!-- Tab panes -->
@@ -529,7 +530,95 @@
                     </div>
                 </div>                               
             </div>
-
+            <div role="tabpanel" class="tab-pane fade" id="alemao">
+                <!--
+                <div class="col-xs-12 col-sm-12 col-md-3 idioma-ativo">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="radioBtn btn-group btn-group-justified">
+                                <a id="ativo_en_y" class="btn btn-success notActive" data-toggle="ativo_en" data-title="Y">Ativado</a>
+                                <a id="ativo_en_n" class="btn btn-danger active" data-toggle="ativo_en" data-title="N">Desativado</a>
+                            </div>
+                            -->
+                            {{ Form::hidden('ativo_de', $item->ativo_de, array('class'=>'ativo_de', 'id'=>'ativo_de')) }}
+                            <!--
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-9">
+                -->
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                {{ Form::checkbox('redirecionar_de', 'y') }} Redirecionar
+                            </span>
+                            {!! Form::text('redirecionar_url_de', null, array('placeholder' => 'URL de Redirecionamento','class' => 'form-control')) !!}
+                        </div>
+                    </div>
+                </div>                 
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Titulo:</strong>
+                        {!! Form::text('title_de', null, array('placeholder' => 'Titulo','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Link:</strong>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon3">{{ env('APP_URL') }}/</span>
+                            {!! Form::text('slug_de', null, array('placeholder' => 'Titulo','class' => 'form-control')) !!}
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" type="button" title="Visualizar" onclick="javascript:window.open('{{ env('APP_URL') }}/{{ $item->slug_fr }}');"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>                
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Descrição:</strong>
+                        {!! Form::textarea('descricao_de', null, array('placeholder' => 'Descrição','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Conteúdo:</strong>
+                        {!! Form::textarea('conteudo_de', $item_de[0]->conteudo, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Petição:</strong>
+                        {!! Form::textarea('peticao_de', $item_de[0]->peticao, array('placeholder' => 'Conteúdo','class' => 'form-control')) !!}
+                    </div>
+                </div>                               
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <strong>Twitter Hashtags:</strong>
+                        {!! Form::text('twitterhashtags_de', null, array('placeholder' => 'Twitter Hashtags','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Facebook Titulo:</strong>
+                        {!! Form::text('facebooktitulo_de', null, array('placeholder' => 'Titulo de Compartilhamento Facebook','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Facebook Descricao:</strong>
+                        {!! Form::text('facebookdescricao_de', null, array('placeholder' => 'Descrição de Compartilhamento Facebook','class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>ATENÇÂO AO ATUALIZAR</strong>
+                        <p>O facebook cria um cache da pagina a ser compartilhada, quando vc altera não atualiza automaticamente, salve, acesse a URL abaixo e click em Extrair Novamente</p>
+                        <a href="https://developers.facebook.com/tools/debug/" target="_blank">Atualizar no Facebook</a>
+                    </div>
+                </div>                               
+            </div>
           </div>
 
         </div>

@@ -162,7 +162,10 @@
                 }                
                 if (App::isLocale('fr')) {
                     echo 'this.language = "fr";';
-                }                 
+                }
+                if (App::isLocale('de')) {
+                    echo 'this.language = "de";';
+                }                                 
                 if (App::isLocale('pt-br')) {
                     echo 'this.language = "pt_BR";';
                 }                                
@@ -235,7 +238,7 @@
                     <p>@lang('words.peticao_assine_nota') <a href="{{ url('pg/politica-de-privacidade') }}">@lang('words.peticao_assine_link_politica')</a></p>
                 </div>
             </div>
-            <?php if($_SERVER['REMOTE_ADDR']=='127.0.0.1' || $_SERVER['REMOTE_ADDR']=='187.19.183.61' || $_SERVER['REMOTE_ADDR']=='187.19.190.88'){ ?>
+            <?php if($_SERVER['REMOTE_ADDR']=='127.0.0.1' || $_SERVER['REMOTE_ADDR']=='187.19.183.61' || $_SERVER['REMOTE_ADDR']=='191.23.22.170'){ ?>
             <div class="panel panel-default peticao-banner-embedar">
                 <div class="panel-body text-center">
                     <button type="button" class="btn btn-default btn-embedar" data-toggle="modal" data-target="#modalEmbedar"><i class="fas fa-code"></i> Embedar</button>                   

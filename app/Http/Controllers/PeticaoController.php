@@ -149,7 +149,28 @@ class PeticaoController extends Controller
             }
         }
 
-        $validate_arr = array_merge($validate_comum, $validate_pt, $validate_es, $validate_it, $validate_en, $validate_fr);
+        // VALIDAR ALEMAO
+        $validate_de = [];
+
+        if($request->get('ativo_de')=='Y'){
+            if($request->get('redirecionar_de')){
+                $validate_de = [
+                    'redirecionar_url_de' => 'required'
+                ];
+            }else{
+                $validate_de = [
+                    'title_de' => 'required',
+                    'descricao_de' => 'required',
+                    'conteudo_de' => 'required',
+                    'peticao_de' => 'required',
+                    'twitterhashtags_de' => 'required',
+                    'facebooktitulo_de' => 'required',
+                    'facebookdescricao_de' => 'required'
+                ];
+            }
+        }
+
+        $validate_arr = array_merge($validate_comum, $validate_pt, $validate_es, $validate_it, $validate_en, $validate_fr, $validate_de);
 
         $this->validate($request, $validate_arr);
 
@@ -203,7 +224,16 @@ class PeticaoController extends Controller
             'descricao_fr'         => $request->get('descricao_fr'),  
             'twitterhashtags_fr'   => $request->get('twitterhashtags_fr'),
             'facebooktitulo_fr'    => $request->get('facebooktitulo_fr'),
-            'facebookdescricao_fr' => $request->get('facebookdescricao_fr'),                       
+            'facebookdescricao_fr' => $request->get('facebookdescricao_fr'),
+
+            'ativo_de'             => $request->get('ativo_de'), 
+            'redirecionar_de'      => $request->get('redirecionar_de'), 
+            'redirecionar_url_de'  => $request->get('redirecionar_url_de'), 
+            'title_de'             => $request->get('title_de'), 
+            'descricao_de'         => $request->get('descricao_de'),  
+            'twitterhashtags_de'   => $request->get('twitterhashtags_de'),
+            'facebooktitulo_de'    => $request->get('facebooktitulo_de'),
+            'facebookdescricao_de' => $request->get('facebookdescricao_de'),             
         ));
 
         $input->save();
@@ -215,7 +245,8 @@ class PeticaoController extends Controller
             ['peticao_id' => $lastInsertedId, 'idioma' => 'es', 'conteudo' => $request->get('conteudo_es'), 'peticao' => $request->get('peticao_es')],
             ['peticao_id' => $lastInsertedId, 'idioma' => 'it', 'conteudo' => $request->get('conteudo_it'), 'peticao' => $request->get('peticao_it')],
             ['peticao_id' => $lastInsertedId, 'idioma' => 'en', 'conteudo' => $request->get('conteudo_en'), 'peticao' => $request->get('peticao_en')],
-            ['peticao_id' => $lastInsertedId, 'idioma' => 'fr', 'conteudo' => $request->get('conteudo_fr'), 'peticao' => $request->get('peticao_fr')]
+            ['peticao_id' => $lastInsertedId, 'idioma' => 'fr', 'conteudo' => $request->get('conteudo_fr'), 'peticao' => $request->get('peticao_fr')],
+            ['peticao_id' => $lastInsertedId, 'idioma' => 'de', 'conteudo' => $request->get('conteudo_de'), 'peticao' => $request->get('peticao_de')]
         ]);
 
         return redirect()->route('peticaos.index')
@@ -237,6 +268,7 @@ class PeticaoController extends Controller
         $slug_idioma_it = DB::table('peticaos')->where('slug_it', $slug)->first();
         $slug_idioma_en = DB::table('peticaos')->where('slug_en', $slug)->first();
         $slug_idioma_fr = DB::table('peticaos')->where('slug_fr', $slug)->first();
+        $slug_idioma_de = DB::table('peticaos')->where('slug_de', $slug)->first();
 
         if($slug_idioma != null){
             $idioma = 'pt';
@@ -330,6 +362,25 @@ class PeticaoController extends Controller
             if($item->redirecionar_fr=='y'){
                 return redirect($item->redirecionar_url_fr);
             }
+        }else if($slug_idioma_de != null){
+            $idioma = 'de';
+            $sqlpeticao   = DB::table('peticaos')
+                        ->select('id', 'mostrar_progresso', 'objetivo', 'assinaturas_fisica', 'imagem', 'created_at', 'ativo_de', 'redirecionar_de', 'redirecionar_url_de', 'title_de as title', 'slug_de as slug', 'descricao_de as descricao', 'twitterhashtags_de as twitterhashtags', 'facebooktitulo_de as facebooktitulo', 'facebookdescricao_de as facebookdescricao')
+                        ->where('slug_de', $slug)
+                        ->first();
+
+            $sqlconteudo = DB::table('peticaos_conteudos')
+                        ->select('conteudo', 'peticao')
+                        ->where([['peticao_id', '=', $sqlpeticao->id], ['idioma', '=', 'de'],])
+                        ->first();
+
+            $item = (object) array_merge((array)$sqlpeticao, (array)$sqlconteudo);
+
+            App::setLocale('de');
+
+            if($item->redirecionar_de=='y'){
+                return redirect($item->redirecionar_url_de);
+            }
         }
 
         $apoiantes  = DB::table('assinantes')->where('peticao_id', $item->id)->count();
@@ -387,12 +438,17 @@ class PeticaoController extends Controller
         $item_fr = DB::table('peticaos_conteudos')
                     ->select('conteudo', 'peticao')
                     ->where([['peticao_id', '=', $item->id], ['idioma', '=', 'fr'],])
-                    ->get(); 
+                    ->get();
+
+        $item_de = DB::table('peticaos_conteudos')
+                    ->select('conteudo', 'peticao')
+                    ->where([['peticao_id', '=', $item->id], ['idioma', '=', 'de'],])
+                    ->get();                    
 
         //print($item_br[0]);
         //die;
 
-        return view('peticaos.edit',compact('item', 'item_br', 'item_es', 'item_it', 'item_en', 'item_fr'));
+        return view('peticaos.edit',compact('item', 'item_br', 'item_es', 'item_it', 'item_en', 'item_fr', 'item_de'));
     }
 
     /**
@@ -495,7 +551,26 @@ class PeticaoController extends Controller
             }
         }
 
-        $validate_arr = array_merge($validate_comum, $validate_pt, $validate_es, $validate_it, $validate_en, $validate_fr);
+        // VALIDAR ALEMAO
+        $validate_de = [];
+
+        if($request->get('ativo_de')=='Y'){
+            if($request->get('redirecionar_de')){
+                $validate_de = [
+                    'redirecionar_url_de' => 'required'
+                ];
+            }else{
+                $validate_de = [
+                    'title_de' => 'required',
+                    'descricao_de' => 'required',
+                    'twitterhashtags_de' => 'required',
+                    'facebooktitulo_de' => 'required',
+                    'facebookdescricao_de' => 'required'
+                ];
+            }
+        }
+
+        $validate_arr = array_merge($validate_comum, $validate_pt, $validate_es, $validate_it, $validate_en, $validate_fr, $validate_de);
 
         $this->validate($request, $validate_arr);
 
@@ -571,7 +646,19 @@ class PeticaoController extends Controller
                 'twitterhashtags_fr'   => $request->get('twitterhashtags_fr'),
                 'facebooktitulo_fr'    => $request->get('facebooktitulo_fr'),
                 'facebookdescricao_fr' => $request->get('facebookdescricao_fr'),                
-            );            
+            );
+
+            $input_de = array( 
+                'ativo_de'             => $request->get('ativo_de'), 
+                'redirecionar_de'      => $request->get('redirecionar_de'), 
+                'redirecionar_url_de'  => $request->get('redirecionar_url_de'), 
+                'title_de'             => $request->get('title_de'),
+                'slug_de'              => $request->get('slug_de'), 
+                'descricao_de'         => $request->get('descricao_de'),
+                'twitterhashtags_de'   => $request->get('twitterhashtags_de'),
+                'facebooktitulo_de'    => $request->get('facebooktitulo_de'),
+                'facebookdescricao_de' => $request->get('facebookdescricao_de'),                
+            );             
         }else{
 
             $file = $request->file('imagem');
@@ -646,6 +733,18 @@ class PeticaoController extends Controller
                 'facebooktitulo_fr'    => $request->get('facebooktitulo_fr'),
                 'facebookdescricao_fr' => $request->get('facebookdescricao_fr'),                
             );            
+
+            $input_de = array(
+                'ativo_de'             => $request->get('ativo_de'), 
+                'redirecionar_de'      => $request->get('redirecionar_de'), 
+                'redirecionar_url_de'  => $request->get('redirecionar_url_de'), 
+                'title_de'             => $request->get('title_de'),
+                'slug_de'              => $request->get('slug_de'), 
+                'descricao_de'         => $request->get('descricao_de'),  
+                'twitterhashtags_de'   => $request->get('twitterhashtags_de'),
+                'facebooktitulo_de'    => $request->get('facebooktitulo_de'),
+                'facebookdescricao_de' => $request->get('facebookdescricao_de'),                
+            );            
         }
 
         Peticao::find($id)->update($input);
@@ -653,6 +752,7 @@ class PeticaoController extends Controller
         Peticao::find($id)->update($input_it);
         Peticao::find($id)->update($input_en);
         Peticao::find($id)->update($input_fr);
+        Peticao::find($id)->update($input_de);
 
 
         // PT-BR  ////////////////////////////////////////////////////////////////////////////////////////
@@ -768,6 +868,29 @@ class PeticaoController extends Controller
             ->where([['peticao_id', '=', $id], ['idioma', '=', 'fr'],])
             ->update($input2_fr);
 
+        // DE     ////////////////////////////////////////////////////////////////////////////////////////
+
+        if($request->get('conteudo_de')=='' || $request->get('conteudo_de')==null){
+            $conteudo_de = '.';
+        }else{
+            $conteudo_de = $request->get('conteudo_de');
+        }
+
+        if($request->get('peticao_de')=='' || $request->get('peticao_de')==null){
+            $peticao_de = '.';
+        }else{
+            $peticao_de = $request->get('peticao_de');
+        }
+
+        $input2_de = array(
+            'conteudo' => $conteudo_de, 
+            'peticao'  => $peticao_de,
+        );
+
+        DB::table('peticaos_conteudos')
+            ->where([['peticao_id', '=', $id], ['idioma', '=', 'de'],])
+            ->update($input2_de);
+
         return redirect()->route('peticaos.index')
                         ->with('success','Petição atualizada com sucesso');
     }
@@ -860,6 +983,7 @@ class PeticaoController extends Controller
         $slug_idioma_it = DB::table('peticaos')->where('slug_it', $slug)->first();
         $slug_idioma_en = DB::table('peticaos')->where('slug_en', $slug)->first();
         $slug_idioma_fr = DB::table('peticaos')->where('slug_fr', $slug)->first();
+        $slug_idioma_de = DB::table('peticaos')->where('slug_de', $slug)->first();
 
         if($slug_idioma != null){
             $idioma = 'pt';
@@ -927,6 +1051,20 @@ class PeticaoController extends Controller
             $sqlconteudo = DB::table('peticaos_conteudos')
                         ->select('conteudo', 'peticao')
                         ->where([['peticao_id', '=', $sqlpeticao->id], ['idioma', '=', 'fr'],])
+                        ->first();
+
+            $item = (object) array_merge((array)$sqlpeticao, (array)$sqlconteudo);
+        
+        }else if($slug_idioma_de != null){
+            $idioma = 'de';
+            $sqlpeticao   = DB::table('peticaos')
+                        ->select('id', 'slug_de as slug', 'mostrar_progresso', 'objetivo', 'assinaturas_fisica', 'imagem', 'facebooktitulo_de as facebooktitulo', 'facebookdescricao_de as facebookdescricao')
+                        ->where('slug_de', $slug)
+                        ->first();
+
+            $sqlconteudo = DB::table('peticaos_conteudos')
+                        ->select('conteudo', 'peticao')
+                        ->where([['peticao_id', '=', $sqlpeticao->id], ['idioma', '=', 'de'],])
                         ->first();
 
             $item = (object) array_merge((array)$sqlpeticao, (array)$sqlconteudo);

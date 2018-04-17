@@ -16,6 +16,7 @@ class Peticao extends Model
         'ativo_it', 'redirecionar_it', 'redirecionar_url_it', 'title_it', 'slug_it', 'descricao_it', 'twitterhashtags_it', 'facebooktitulo_it', 'facebookdescricao_it',
         'ativo_en', 'redirecionar_en', 'redirecionar_url_en', 'title_en', 'slug_en', 'descricao_en', 'twitterhashtags_en', 'facebooktitulo_en', 'facebookdescricao_en',
         'ativo_fr', 'redirecionar_fr', 'redirecionar_url_fr', 'title_fr', 'slug_fr', 'descricao_fr', 'twitterhashtags_fr', 'facebooktitulo_fr', 'facebookdescricao_fr',
+        'ativo_de', 'redirecionar_de', 'redirecionar_url_de', 'title_de', 'slug_de', 'descricao_de', 'twitterhashtags_de', 'facebooktitulo_de', 'facebookdescricao_de',
         'mostrar_progresso', 'imagem', 'objetivo', 'assinaturas_fisica'
     ];
 
@@ -41,6 +42,9 @@ class Peticao extends Model
             ],
             'slug_fr' => [
                 'source' => 'title_fr'
+            ],
+            'slug_de' => [
+                'source' => 'title_de'
             ]
         ];
     }

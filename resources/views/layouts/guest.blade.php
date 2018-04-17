@@ -15,9 +15,7 @@ if($_SERVER['REQUEST_URI']=='/'){
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <?php
-if($_SERVER['REQUEST_URI']=='/'){
-    
-}else{
+if($_SERVER['REQUEST_URI']!='/'){
     ?>
     <meta name="title" content="{{ $item->facebooktitulo }}">
     <meta name="description" content="{{ $item->facebookdescricao }}">
@@ -69,7 +67,8 @@ if($_SERVER['REQUEST_URI']=='/'){
         .navbar .titulo-ipco-full .language .flag-en,
         .navbar .titulo-ipco-full .language .flag-es,
         .navbar .titulo-ipco-full .language .flag-it,
-        .navbar .titulo-ipco-full .language .flag-fr{
+        .navbar .titulo-ipco-full .language .flag-fr,
+        .navbar .titulo-ipco-full .language .flag-de{
             padding-right:10px;
         }
         .navbar-nav-links .language-mobile{
@@ -95,7 +94,8 @@ if($_SERVER['REQUEST_URI']=='/'){
         .navbar-nav-links .language-mobile li .flag-en,
         .navbar-nav-links .language-mobile li .flag-es,
         .navbar-nav-links .language-mobile li .flag-it,
-        .navbar-nav-links .language-mobile li .flag-fr{
+        .navbar-nav-links .language-mobile li .flag-fr,
+        .navbar-nav-links .language-mobile li .flag-de{
             width:35px;
             padding-right: 10px;
         }
@@ -151,6 +151,7 @@ if($_SERVER['REQUEST_URI']=='/'){
                                 <li><a href="javascript:return false;" onclick="changeLanguage('it');"><img src="{{ asset('/assets/img/flag-it.png') }}" class="flag-it"></a></li>
                                 <?php //if($_SERVER['REMOTE_ADDR']=='127.0.0.1' || $_SERVER['REMOTE_ADDR']=='187.19.183.61' || $_SERVER['REMOTE_ADDR']=='187.19.190.88'){ ?>
                                 <li><a href="javascript:return false;" onclick="changeLanguage('fr');"><img src="{{ asset('/assets/img/flag-fr.png') }}" class="flag-fr"></a></li>
+                                <li><a href="javascript:return false;" onclick="changeLanguage('de');"><img src="{{ asset('/assets/img/flag-de.png') }}" class="flag-de"></a></li>
                                 <?php //} ?>                    
                                 <li><a href="javascript:return false;" onclick="changeLanguage('pt-br');"><img src="{{ asset('/assets/img/flag-pt-br.png') }}" class="flag-pt-br"></a></li>
                             </ul>
@@ -171,6 +172,7 @@ if($_SERVER['REQUEST_URI']=='/'){
                             <li><a href="javascript:return false;" onclick="changeLanguage('it');"><img src="{{ asset('/assets/img/flag-it.png') }}" class="flag-it"></a></li>
                             <?php //if($_SERVER['REMOTE_ADDR']=='127.0.0.1' || $_SERVER['REMOTE_ADDR']=='187.19.183.61' || $_SERVER['REMOTE_ADDR']=='187.19.190.88'){ ?>
                             <li><a href="javascript:return false;" onclick="changeLanguage('fr');"><img src="{{ asset('/assets/img/flag-fr.png') }}" class="flag-fr"></a></li>
+                            <li><a href="javascript:return false;" onclick="changeLanguage('de');"><img src="{{ asset('/assets/img/flag-de.png') }}" class="flag-de"></a></li>
                             <?php //} ?>                    
                             <li><a href="javascript:return false;" onclick="changeLanguage('pt-br');"><img src="{{ asset('/assets/img/flag-pt-br.png') }}" class="flag-pt-br"></a></li>
                         </ul>
