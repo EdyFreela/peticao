@@ -34,6 +34,7 @@ return [
     'peticao_assine_submit' => 'Assinar',
     'peticao_assine_nota' => 'Nota: Ao assinar, você aceita receber atualizações do IPCO. Você pode cancelar sua inscrição a qualquer momento.',
     'peticao_assine_link_politica' => 'Política de Privacidade',
+    'peticao_incorpore' => 'Incorpore no seu site!',
 
     'peticao_banner_title' => 'A luta começa com você.',
     'peticao_banner_subtitle' => 'Não esqueça de compartilhar esta petição.',
@@ -49,5 +50,4 @@ return [
     'assinar_msg_3' => 'Você assinou',
     'assinar_msg_4' => 'Obrigado por não ser omisso ou acomodado!',
     'assinar_msg_5' => 'Felizmente, você já assinou essa petição!',
-
 ];

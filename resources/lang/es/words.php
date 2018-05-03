@@ -34,6 +34,7 @@ return [
     'peticao_assine_submit' => 'Firmar',
     'peticao_assine_nota' => 'Nota: Al firmar, acepta recibir actualizaciones de IPCO. Usted puede cancelar su inscripción en cualquier momento.',
     'peticao_assine_link_politica' => 'Política de privacidad',
+    'peticao_incorpore' => 'Incorpore en su sitio!',
 
     'peticao_banner_title' => 'La lucha comienza con ti.',
     'peticao_banner_subtitle' => 'No olvide compartir esta petición.',
@@ -48,5 +49,11 @@ return [
     'assinar_msg_2' => 'Son personas como tú que están haciendo la diferencia.',
     'assinar_msg_3' => 'Usted ha firmado',
     'assinar_msg_4' => 'Gracias por no ser omiso o acomodado!',
-    'assinar_msg_5' => 'Afortunadamente, ya ha firmado esta petición.',            
+    'assinar_msg_5' => 'Afortunadamente, ya ha firmado esta petición.',   
+
+    'embedar_title'            => 'Incorporar abajo firmado',
+    'embedar_cutpaste'         => 'Copie el código siguiente para incorporar el abajo firmante en su sitio.',
+    'embedar_cutpaste_success' => 'Copiado con éxito',
+    'embedar_visualizar'       => 'Ver',
+    'embedar_assine_ja'        => 'Suscríbase Ya',
 ];

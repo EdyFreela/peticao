@@ -218,14 +218,14 @@ if($_SERVER['REQUEST_URI']!='/'){
 
                             <ul class="dropdown-menu" role="menu">
                                 @if(\Auth::user()->admin==1)
-                                    <li><a href="{{ url('/admin/peticoes') }}"><i class="fa fa-btn fa-tachometer"></i>Painel</a></li>
+                                    <li><a href="{{ url('/admin/peticoes') }}"><i class="fas fa-tachometer-alt"></i> Painel</a></li>
                                     <li role="separator" class="divider"></li>
                                 @else
                                     
                                 @endif
-                                <li><a href="{{ route('profile.edit',Auth::user()->id) }}"><i class="fa fa-btn fa-user" aria-hidden="true"></i> Perfil</a></li> 
+                                <li><a href="{{ route('profile.edit',Auth::user()->id) }}"><i class="fas fa-btn fa-user" aria-hidden="true"></i> Perfil</a></li> 
                                 <li role="separator" class="divider"></li>
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Sair</a></li>
+                                <li><a href="{{ url('/logout') }}"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
                             </ul>
                         </li>
                     @endif
@@ -251,11 +251,11 @@ if($_SERVER['REQUEST_URI']!='/'){
                 <div class="col-xs-12 col-md-5 text-right footer-siganos">
                     <h4>@lang('words.footer_siga')</h4>
                     <div class="btn-group" role="group" aria-label="...">
-                      <button type="button" class="btn btn-default btn-siga-facebook" onclick="window.open('https://www.facebook.com/Inst.PCO')"><i class="fa fa-facebook" aria-hidden="true"></i></button>
-                      <button type="button" class="btn btn-default btn-siga-google" onclick="window.open('https://plus.google.com/u/0/+InstitutoPlinioCorr%C3%AAadeOliveiraIPCO')"><i class="fa fa-google-plus" aria-hidden="true"></i></button>
-                      <button type="button" class="btn btn-default btn-siga-feed" onclick="window.open('http://feeds.feedburner.com/feedipco')"><i class="fa fa-rss" aria-hidden="true"></i></button>
-                      <button type="button" class="btn btn-default btn-siga-twitter" onclick="window.open('https://twitter.com/InstitutoPCO')"><i class="fa fa-twitter" aria-hidden="true"></i></button>
-                      <button type="button" class="btn btn-default btn-siga-youtube" onclick="window.open('https://www.youtube.com/user/caravanaipco')"><i class="fa fa-youtube-play" aria-hidden="true"></i></button>
+                      <button type="button" class="btn btn-default btn-siga-facebook" onclick="window.open('https://www.facebook.com/Inst.PCO')"><i class="fab fa-facebook-f" aria-hidden="true"></i></button>
+                      <button type="button" class="btn btn-default btn-siga-google" onclick="window.open('https://plus.google.com/u/0/+InstitutoPlinioCorr%C3%AAadeOliveiraIPCO')"><i class="fab fa-google-plus-g" aria-hidden="true"></i></button>
+                      <button type="button" class="btn btn-default btn-siga-feed" onclick="window.open('http://feeds.feedburner.com/feedipco')"><i class="fas fa-rss" aria-hidden="true"></i></button>
+                      <button type="button" class="btn btn-default btn-siga-twitter" onclick="window.open('https://twitter.com/InstitutoPCO')"><i class="fab fa-twitter" aria-hidden="true"></i></button>
+                      <button type="button" class="btn btn-default btn-siga-youtube" onclick="window.open('https://www.youtube.com/user/caravanaipco')"><i class="fab fa-youtube" aria-hidden="true"></i></button>
                     </div>
                 </div>
             </div>
@@ -274,6 +274,15 @@ if($_SERVER['REQUEST_URI']!='/'){
             $("#formLanguage").submit();
         }
     </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108397451-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-108397451-1');
+    </script>    
 
     @yield('script')
 

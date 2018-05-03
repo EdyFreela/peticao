@@ -34,6 +34,7 @@ return [
     'peticao_assine_submit'  => 'Sign',
     'peticao_assine_nota'    => 'Note: By signing, you agree to receive updates from IPCO. You can unsubscribe at any time.',
     'peticao_assine_link_politica' => 'Privacy Policy',
+    'peticao_incorpore' => 'Embed on your site!',
 
     'peticao_banner_title'    => 'The fight starts with you.',
     'peticao_banner_subtitle' => 'Do not forget to share this petition.',
@@ -47,6 +48,5 @@ return [
     'assinar_msg_2' => 'It\'s people like you who are making a difference.',
     'assinar_msg_3' => 'You signed',
     'assinar_msg_4' => 'Thank you for not being overlooked or accommodated!',
-    'assinar_msg_5' => 'Fortunately, you have already signed this petition!',     
-
+    'assinar_msg_5' => 'Fortunately, you have already signed this petition!',
 ];

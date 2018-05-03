@@ -65,4 +65,5 @@ Route::get('/pg/politica-de-privacidade', 'PgController@privacy');
 Route::get('/pg/termos-de-uso',           'PgController@terms');
 Route::post('/pg/language',               'LanguageController@index');
 
-Route::get('/embed/{id}',             ['as'=>'peticaos.embed',      'uses' => 'PeticaoController@embed']);
+Route::get('/embed/{id}',   ['as'=>'peticaos.embed',      'uses' => 'PeticaoController@embed']);
+Route::post('/embed/form',  ['as'=>'peticaos.embedForm',  'uses' => 'PeticaoController@embedForm']);

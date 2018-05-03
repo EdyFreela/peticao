@@ -34,6 +34,7 @@ return [
     'peticao_assine_submit' => 'S\'abonner',
     'peticao_assine_nota' => 'Remarque: En signant, vous acceptez de recevoir les mises à jour de IPCO. Vous pouvez vous désabonner à tout moment.',
     'peticao_assine_link_politica' => 'Politique de confidentialité',
+    'peticao_incorpore' => 'Intégrer sur votre site!',
 
     'peticao_banner_title' => 'Le combat commence avec toi.',
     'peticao_banner_subtitle' => 'N\'oubliez pas de partager cette pétition.',

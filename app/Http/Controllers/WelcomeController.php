@@ -26,7 +26,7 @@ class WelcomeController extends Controller
             App::setLocale(session('locale'));
         }
 
-        if(App::getLocale()=='pt-br'){
+        if(App::getLocale()=='pt-br' || App::getLocale()=='pt'){
             $items = Peticao::orderBy('created_at','DESC')
                         ->select('title', 'slug', 'descricao', 'imagem')
                         ->limit(5)

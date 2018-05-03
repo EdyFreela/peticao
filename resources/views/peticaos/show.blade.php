@@ -102,7 +102,9 @@
 </style>
 @endsection
 
+
 @section('content')
+
 <div class="container">
     <div class="row">
         <div class="col-md-8">
@@ -199,6 +201,7 @@
 
                     {!! Form::open(array('url' => url('/', $item->slug), 'method'=>'POST')) !!}
                     {{ Form::hidden('peticao_id', $item->id) }}
+                    {{ Form::hidden('peticao_slug', $item->slug) }}
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group assinarnome">
@@ -241,7 +244,7 @@
             <?php if($_SERVER['REMOTE_ADDR']=='127.0.0.1' || $_SERVER['REMOTE_ADDR']=='187.19.183.61' || $_SERVER['REMOTE_ADDR']=='191.23.22.170'){ ?>
             <div class="panel panel-default peticao-banner-embedar">
                 <div class="panel-body text-center">
-                    <button type="button" class="btn btn-default btn-embedar" data-toggle="modal" data-target="#modalEmbedar"><i class="fas fa-code"></i> Embedar</button>                   
+                    <button type="button" class="btn btn-default btn-embedar" data-toggle="modal" data-target="#modalEmbedar"><i class="fas fa-code"></i> @lang('words.peticao_incorpore')</button>                   
                 </div>
             </div>
             <?php } ?>            
@@ -266,11 +269,11 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title" id="myModalLabel">Embedar abaixo-assinado</h3>
+        <h3 class="modal-title" id="myModalLabel">{{ $item_interface[0]['embedar_title'] }}</h3>
       </div>
       <div class="modal-body">
-        <p>Copie o código abaixo para embedar o abaixo-assinado no seu site.</p>
-        <div class="alert alert-success text-center" role="alert" style="display:none;" id="msg-copy"><i class="fas fa-check"></i> Copiado com sucesso</div>
+        <p>{{ $item_interface[0]['embedar_cutpaste'] }}</p>
+        <div class="alert alert-success text-center" role="alert" style="display:none;" id="msg-copy"><i class="fas fa-check"></i> {{ $item_interface[0]['embedar_cutpaste_success'] }}</div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
@@ -278,8 +281,8 @@
                 </div>
             </div>            
         </div>
-        <p class="text-center">Visualizar</p>
-        <div class="ipco-embed-petition" id="ipco-embed-petition" data-id="{{ $item->slug }}"></div><script src="https://campanhas.ipco.org.br//assets/js/ipco-embeds.js" type="text/javascript"></script>     
+        <p class="text-center">{{ $item_interface[0]['embedar_visualizar'] }}</p>
+        <div class="ipco-embed-petition" id="ipco-embed-petition" data-id="{{ $item->slug }}"></div><script src="https://campanhas.ipco.org.br/assets/js/ipco-embeds.js" type="text/javascript"></script>     
       </div>
     </div>
   </div>

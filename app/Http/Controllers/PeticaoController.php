@@ -282,6 +282,15 @@ class PeticaoController extends Controller
                         ->where([['peticao_id', '=', $sqlpeticao->id], ['idioma', '=', 'br'],])
                         ->first();
 
+            $item_interface[] = array(
+                                'embedar_title'            => 'Incorporar abaixo assinado',
+                                'embedar_apoiantes'        => 'Apoiantes',
+                                'embedar_cutpaste'         => 'Copie o código abaixo para incorporar o abaixo-assinado no seu site.',
+                                'embedar_cutpaste_success' => 'Copiado com sucesso',
+                                'embedar_visualizar'       => 'Visualizar',
+                                'embedar_assine_ja'        => 'Assine Já',
+            );
+
             $item = (object) array_merge((array)$sqlpeticao, (array)$sqlconteudo);
 
             App::setLocale('pt-br');
@@ -297,6 +306,15 @@ class PeticaoController extends Controller
                         ->select('conteudo', 'peticao')
                         ->where([['peticao_id', '=', $sqlpeticao->id], ['idioma', '=', 'es'],])
                         ->first();
+
+            $item_interface[] = array(
+                                'embedar_title'            => 'Incorporar abajo firmado',
+                                'embedar_apoiantes'        => 'Partidarios',
+                                'embedar_cutpaste'         => 'Copie el código siguiente para incorporar el abajo firmante en su sitio.',
+                                'embedar_cutpaste_success' => 'Copiado con éxito',
+                                'embedar_visualizar'       => 'Ver',
+                                'embedar_assine_ja'        => 'Suscríbase Ya',                
+            ); 
 
             $item = (object) array_merge((array)$sqlpeticao, (array)$sqlconteudo);
 
@@ -315,6 +333,15 @@ class PeticaoController extends Controller
                         ->select('conteudo', 'peticao')
                         ->where([['peticao_id', '=', $sqlpeticao->id], ['idioma', '=', 'it'],])
                         ->first();
+
+            $item_interface[] = array(
+                                'embedar_title'            => 'Incorpora sotto firmato',
+                                'embedar_apoiantes'        => 'Sostenitori',
+                                'embedar_cutpaste'         => 'Copia il seguente codice per incorporare il sottoscritto nel tuo sito Web.',
+                                'embedar_cutpaste_success' => 'Copiato con successo',
+                                'embedar_visualizar'       => 'View',
+                                'embedar_assine_ja'        => 'Firma già',                                                
+            );
 
             $item = (object) array_merge((array)$sqlpeticao, (array)$sqlconteudo);
 
@@ -336,6 +363,15 @@ class PeticaoController extends Controller
                         ->where([['peticao_id', '=', $sqlpeticao->id], ['idioma', '=', 'en'],])
                         ->first();
 
+            $item_interface[] = array(
+                                'embedar_title'            => 'Embed below signed',
+                                'embedar_apoiantes'        => 'Supporters',
+                                'embedar_cutpaste'         => 'Copy the code below to incorporate the undersigned into your website',
+                                'embedar_cutpaste_success' => 'Successfully copied',
+                                'embedar_visualizar'       => 'To view',
+                                'embedar_assine_ja'        => 'Subscribe now',                                                
+            );
+
             $item = (object) array_merge((array)$sqlpeticao, (array)$sqlconteudo);
 
             App::setLocale('en');
@@ -355,6 +391,15 @@ class PeticaoController extends Controller
                         ->where([['peticao_id', '=', $sqlpeticao->id], ['idioma', '=', 'fr'],])
                         ->first();
 
+            $item_interface[] = array(
+                                'embedar_title'            => 'Intégrer ci-dessous signé',
+                                'embedar_apoiantes'        => 'Supporters',
+                                'embedar_cutpaste'         => 'Copiez le code ci-dessous pour incorporer le soussigné dans votre site Web.',
+                                'embedar_cutpaste_success' => 'Copié avec succès',
+                                'embedar_visualizar'       => 'Aperçu',
+                                'embedar_assine_ja'        => 'Signe déjà',                                                                                                              
+            ); 
+
             $item = (object) array_merge((array)$sqlpeticao, (array)$sqlconteudo);
 
             App::setLocale('fr');
@@ -373,6 +418,15 @@ class PeticaoController extends Controller
                         ->select('conteudo', 'peticao')
                         ->where([['peticao_id', '=', $sqlpeticao->id], ['idioma', '=', 'de'],])
                         ->first();
+
+            $item_interface[] = array(
+                                'embedar_title'            => 'Unterschreiben unterschreiben',
+                                'embedar_apoiantes'        => 'Unterstützer',
+                                'embedar_cutpaste'         => 'Kopieren Sie den folgenden Code, um den Unterzeichneten in Ihre Website einzubetten.',
+                                'embedar_cutpaste_success' => 'Erfolgreich kopiert',
+                                'embedar_visualizar'       => 'Vorschau',
+                                'embedar_assine_ja'        => 'Unterschreiben Sie schon',                                                                               
+            );
 
             $item = (object) array_merge((array)$sqlpeticao, (array)$sqlconteudo);
 
@@ -402,7 +456,7 @@ class PeticaoController extends Controller
             App::setLocale($locale);
         }
 
-        return view('peticaos.show', compact('item', 'item2'));
+        return view('peticaos.show', compact('item', 'item2', 'item_interface'));
     }    
 
     /**
@@ -999,6 +1053,15 @@ class PeticaoController extends Controller
 
             $item = (object) array_merge((array)$sqlpeticao, (array)$sqlconteudo);
 
+            $item_interface[] = array(
+                                'embedar_title'            => 'Incorporar abaixo assinado',
+                                'embedar_apoiantes'        => 'Apoiantes',
+                                'embedar_cutpaste'         => 'Copie o código abaixo para incorporar o abaixo-assinado no seu site.',
+                                'embedar_cutpaste_success' => 'Copiado com sucesso',
+                                'embedar_visualizar'       => 'Visualizar',
+                                'embedar_assine_ja'        => 'Assine Já',
+            );
+
         }else if($slug_idioma_es != null){
             $idioma = 'es';
             $sqlpeticao   = DB::table('peticaos')
@@ -1012,6 +1075,15 @@ class PeticaoController extends Controller
                         ->first();
 
             $item = (object) array_merge((array)$sqlpeticao, (array)$sqlconteudo);
+
+            $item_interface[] = array(
+                                'embedar_title'            => 'Incorporar abajo firmado',
+                                'embedar_apoiantes'        => 'Partidarios',
+                                'embedar_cutpaste'         => 'Copie el código siguiente para incorporar el abajo firmante en su sitio.',
+                                'embedar_cutpaste_success' => 'Copiado con éxito',
+                                'embedar_visualizar'       => 'Ver',
+                                'embedar_assine_ja'        => 'Suscríbase Ya',                
+            );            
             
         }else if($slug_idioma_it != null){
             $idioma = 'it';
@@ -1027,6 +1099,15 @@ class PeticaoController extends Controller
 
             $item = (object) array_merge((array)$sqlpeticao, (array)$sqlconteudo);
 
+            $item_interface[] = array(
+                                'embedar_title'            => 'Incorpora sotto firmato',
+                                'embedar_apoiantes'        => 'Sostenitori',
+                                'embedar_cutpaste'         => 'Copia il seguente codice per incorporare il sottoscritto nel tuo sito Web.',
+                                'embedar_cutpaste_success' => 'Copiato con successo',
+                                'embedar_visualizar'       => 'View',
+                                'embedar_assine_ja'        => 'Firma già',                                                
+            );            
+
         }else if($slug_idioma_en != null){
             $idioma = 'en';
             $sqlpeticao   = DB::table('peticaos')
@@ -1041,6 +1122,15 @@ class PeticaoController extends Controller
 
             $item = (object) array_merge((array)$sqlpeticao, (array)$sqlconteudo);
 
+            $item_interface[] = array(
+                                'embedar_title'            => 'Embed below signed',
+                                'embedar_apoiantes'        => 'Supporters',
+                                'embedar_cutpaste'         => 'Copy the code below to incorporate the undersigned into your website',
+                                'embedar_cutpaste_success' => 'Successfully copied',
+                                'embedar_visualizar'       => 'To view',
+                                'embedar_assine_ja'        => 'Subscribe now',                                                
+            );
+
         }else if($slug_idioma_fr != null){
             $idioma = 'fr';
             $sqlpeticao   = DB::table('peticaos')
@@ -1054,6 +1144,15 @@ class PeticaoController extends Controller
                         ->first();
 
             $item = (object) array_merge((array)$sqlpeticao, (array)$sqlconteudo);
+
+            $item_interface[] = array(
+                                'embedar_title'            => 'Intégrer ci-dessous signé',
+                                'embedar_apoiantes'        => 'Supporters',
+                                'embedar_cutpaste'         => 'Copiez le code ci-dessous pour incorporer le soussigné dans votre site Web.',
+                                'embedar_cutpaste_success' => 'Copié avec succès',
+                                'embedar_visualizar'       => 'Aperçu',
+                                'embedar_assine_ja'        => 'Signe déjà',                                                                                                              
+            );             
         
         }else if($slug_idioma_de != null){
             $idioma = 'de';
@@ -1069,6 +1168,15 @@ class PeticaoController extends Controller
 
             $item = (object) array_merge((array)$sqlpeticao, (array)$sqlconteudo);
 
+            $item_interface[] = array(
+                                'embedar_title'            => 'Unterschreiben unterschreiben',
+                                'embedar_apoiantes'        => 'Unterstützer',
+                                'embedar_cutpaste'         => 'Kopieren Sie den folgenden Code, um den Unterzeichneten in Ihre Website einzubetten.',
+                                'embedar_cutpaste_success' => 'Erfolgreich kopiert',
+                                'embedar_visualizar'       => 'Vorschau',
+                                'embedar_assine_ja'        => 'Unterschreiben Sie schon',                                                                               
+            );            
+
         }
 
         $apoiantes  = DB::table('assinantes')->where('peticao_id', $item->id)->count();
@@ -1076,8 +1184,78 @@ class PeticaoController extends Controller
         $apoiantes_porcetagem = ( ($item->assinaturas_fisica + $apoiantes) / $item->objetivo ) * 100;
         $item2 = array('apoiantes' => $apoiantes, 'valuenow' => $apoiantes_porcetagem);
 
-        return view('peticaos.embed', compact('item', 'item2'));
+        session(['locale' => $idioma]);
 
-    }    
+        return view('peticaos.embed', compact('item', 'item2', 'item_interface'));
+
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function embedForm(Request $request)
+    {
+
+        $id   = $request->peticao_id;
+        $slug = $request->peticao_slug;
+
+        $slug_idioma    = DB::table('peticaos')->where('slug', $slug)->first();
+        $slug_idioma_es = DB::table('peticaos')->where('slug_es', $slug)->first();
+        $slug_idioma_it = DB::table('peticaos')->where('slug_it', $slug)->first();
+        $slug_idioma_en = DB::table('peticaos')->where('slug_en', $slug)->first();
+        $slug_idioma_fr = DB::table('peticaos')->where('slug_fr', $slug)->first();
+        $slug_idioma_de = DB::table('peticaos')->where('slug_de', $slug)->first();
+
+        if($slug_idioma != null){
+            $idioma = 'pt';
+            $sqlpeticao  = DB::table('peticaos')
+                        ->select('title')
+                        ->where('slug', $slug)
+                        ->first();
+
+        }else if($slug_idioma_es != null){
+            $idioma = 'es';
+            $sqlpeticao  = DB::table('peticaos')
+                        ->select('title')
+                        ->where('slug_es', $slug)
+                        ->first();
+            
+        }else if($slug_idioma_it != null){
+            $idioma = 'it';
+            $sqlpeticao  = DB::table('peticaos')
+                        ->select('title')
+                        ->where('slug_it', $slug)
+                        ->first();
+
+        }else if($slug_idioma_en != null){
+            $idioma = 'en';
+            $sqlpeticao  = DB::table('peticaos')
+                        ->select('title')
+                        ->where('slug_en', $slug)
+                        ->first();
+
+        }else if($slug_idioma_fr != null){
+            $idioma = 'fr';
+            $sqlpeticao  = DB::table('peticaos')
+                        ->select('title')
+                        ->where('slug_fr', $slug)
+                        ->first();
+        
+        }else if($slug_idioma_de != null){
+            $idioma = 'de';
+            $sqlpeticao  = DB::table('peticaos')
+                        ->select('title')
+                        ->where('slug_de', $slug)
+                        ->first();
+
+        }
+
+        $title = $sqlpeticao->title;
+
+        return view('peticaos.embedform', compact('id', 'slug', 'title'));
+    }
 
 }

@@ -34,6 +34,7 @@ return [
     'peticao_assine_submit' => 'Abonnieren',
     'peticao_assine_nota' => 'Hinweis: Mit Ihrer Unterschrift stimmen Sie zu, Updates von IPCO zu erhalten. Sie können sich jederzeit abmelden.',
     'peticao_assine_link_politica' => 'Datenschutz',
+    'peticao_incorpore' => 'Einbetten auf Ihrer Website!',
 
     'peticao_banner_title' => 'Der Kampf beginnt mit dir.',
     'peticao_banner_subtitle' => 'Vergiss nicht, diese Petition zu teilen.',
