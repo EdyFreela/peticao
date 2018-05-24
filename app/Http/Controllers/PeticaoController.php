@@ -10,6 +10,7 @@ use App\Assinante;
 use DB;
 use App;
 use Illuminate\Support\Facades\Session;
+use Auth;
 
 class PeticaoController extends Controller
 {
@@ -456,7 +457,34 @@ class PeticaoController extends Controller
             App::setLocale($locale);
         }
 
-        return view('peticaos.show', compact('item', 'item2', 'item_interface'));
+        if(Auth::guest()){
+            // Visitante
+            $social = array(
+                'nome' => '',
+                'sobrenome' => '',
+                'email' => '',
+            );            
+        }else{
+            $usuario   = explode(" ", Auth::user()->name);
+            $nome      = $usuario[0];
+            $sobrenome = $usuario[1];
+
+            if(Auth::user()->email!=null){
+                $social = array(
+                    'nome' => $nome,
+                    'sobrenome' => $sobrenome,
+                    'email' => Auth::user()->email,
+                );
+            }else{
+                $social = array(
+                    'nome' => '',
+                    'sobrenome' => '',
+                    'email' => '',
+                );
+            }
+        }
+
+        return view('peticaos.show', compact('item', 'item2', 'item_interface', 'social'));
     }    
 
     /**

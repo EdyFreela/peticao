@@ -202,22 +202,23 @@
                     {!! Form::open(array('url' => url('/', $item->slug), 'method'=>'POST')) !!}
                     {{ Form::hidden('peticao_id', $item->id) }}
                     {{ Form::hidden('peticao_slug', $item->slug) }}
+                    
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group assinarnome">
-                                {!! Form::text('nome', null, array('placeholder' => trans('words.peticao_assine_input_1'),'class' => 'form-control input-lg', 'id'=>'nome')) !!}
+                                {!! Form::text('nome', $social['nome'], array('placeholder' => trans('words.peticao_assine_input_1'),'class' => 'form-control input-lg', 'id'=>'nome')) !!}
                                 <span id="nomemsg"></span>
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group assinarsobrenome">
-                                {!! Form::text('sobrenome', null, array('placeholder' => trans('words.peticao_assine_input_2'),'class' => 'form-control input-lg', 'id'=>'sobrenome')) !!}
+                                {!! Form::text('sobrenome', $social['sobrenome'], array('placeholder' => trans('words.peticao_assine_input_2'),'class' => 'form-control input-lg', 'id'=>'sobrenome')) !!}
                                 <span id="sobrenomemsg"></span>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group assinaremail">
-                                {!! Form::text('email', null, array('placeholder' => trans('words.peticao_assine_input_3'),'class' => 'form-control input-lg', 'id'=>'email')) !!}
+                                {!! Form::text('email', $social['email'], array('placeholder' => trans('words.peticao_assine_input_3'),'class' => 'form-control input-lg', 'id'=>'email')) !!}
                                 <span id="emailmsg"></span>
                             </div>
                         </div>

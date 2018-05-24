@@ -14,7 +14,6 @@ class PeticaosConteudo extends Migration
     {
         Schema::create('peticaos_conteudos', function (Blueprint $table) {
            $table->increments('id');
-
            $table->integer('peticao_id');
            $table->string('idioma');
            $table->longText('descricao');

@@ -2,6 +2,22 @@
 
 if($_SERVER['REQUEST_URI']=='/'){
     $title = trans('words.title');
+}else if($_SERVER['REQUEST_URI']=='/register'){
+    $item = new stdClass();
+    $item->title = 'Registre-se IPCO.org.br';
+    $item->facebooktitulo = 'Registre-se IPCO.org.br';
+    $item->facebookdescricao = 'Registre-se em Campanhas IPCO.org.br';
+    $item->slug = 'register';
+    $item->imagem = 'xxx';
+    $title = $item->title;
+}else if($_SERVER['REQUEST_URI']=='/password/reset'){
+    $item = new stdClass();
+    $item->title = 'Redefinir Senha IPCO.org.br';
+    $item->facebooktitulo = 'Redefinir Senha IPCO.org.br';
+    $item->facebookdescricao = 'Redefinir Senha em Campanhas IPCO.org.br';
+    $item->slug = 'password/reset';
+    $item->imagem = 'xxx';
+    $title = $item->title;    
 }else{
     $title = $item->title;
 }
@@ -48,29 +64,49 @@ if($_SERVER['REQUEST_URI']!='/'){
             background-image: url("{{ asset('assets/img/bg-header.png') }}");
             background-repeat: no-repeat;
         }
-        .navbar .titulo-ipco-full li{
-            display:inline-block;
+        @media (min-width: 768px){
+            .navbar-nav>li>a {
+                padding-top: 6px;
+            }
+            .navbar-nav>.dropdown-login>a div:first-child{
+                padding-right:10px;
+            }            
         }
-        .navbar .titulo-ipco-full .language{
-            float:right;
+        .language-login{
+            margin-bottom: 0;
         }
-        .navbar .titulo-ipco-full .language p {
-            font-size: 12px;
+        .language-login p{
+            font-size: 10px;
             color: #9d9d9d;
-            float: right;
             margin-bottom: 5px;
-            margin-top: 10px;
+            margin-top: 15px;
+            text-align: right;
+            line-height: 1.2em;
         }
-        .navbar .titulo-ipco-full .language form {
-            clear:both;
+        .language-large{
+            list-style: none;
         }
-        .navbar .titulo-ipco-full .language .flag-en,
-        .navbar .titulo-ipco-full .language .flag-es,
-        .navbar .titulo-ipco-full .language .flag-it,
-        .navbar .titulo-ipco-full .language .flag-fr,
-        .navbar .titulo-ipco-full .language .flag-de{
-            padding-right:10px;
+        .language-large li{
+            display:inline-block;
+            padding-left:2px;
+            padding-right:2px;
         }
+        .language-large li a img{
+            border: 2px solid transparent;
+            border-radius: 100%;
+        }
+        .language-large li a img:hover{
+            border: 2px solid #ffffff87;
+            border-radius: 100%;
+        }        
+        .language-login .dropdown-login div{
+            float:left;
+        } 
+        .language-login .dropdown-login div p{
+            font-size: 16px;            
+            margin: 5px 0px 0px 0px;
+            padding: 0;
+        }       
         .navbar-nav-links .language-mobile{
             display:none;
         }
@@ -99,9 +135,37 @@ if($_SERVER['REQUEST_URI']!='/'){
             width:35px;
             padding-right: 10px;
         }
+        .navlinks {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: inline-flex;
+            font-size: 18px;
+        }
+        .navlinks li a{
+            color: #9d9d9d;
+        }
+        .navlinks li a:hover{
+            color: #fff;
+            text-decoration: none;
+        }
+        .navlinks li:first-child {
+            padding-right: 20px;
+        }
+        .navlinks li:last-child {
+            padding-left: 20px;
+        }                                  
         @media only screen and (max-width : 770px) {
             .navbar-nav-links .language-mobile{
                 display:block;
+            }
+            .language-large, .language-large-title{
+                display:none;
+            }
+            .language-login{
+                float: left !important;
+                margin: 0;
+                padding: 0;
             }       
         }                        
     </style>
@@ -138,97 +202,97 @@ if($_SERVER['REQUEST_URI']!='/'){
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <ul class="titulo-ipco-full">
-                    <li><span>I</span>NSTITUTO <span>P</span>LINIO <span>C</span>ORRÊA DE <span>O</span>LIVEIRA</li>
-                        <li class="language">
-                            <p>@lang('words.header_link_4')</p>
-                            {!! Form::open(array('url' => url('/pg/language/'), 'name' => 'formLanguage', 'id' => 'formLanguage', 'method'=>'POST')) !!}
-                            {{ Form::hidden('language', 'pt-br', array('id'=> 'language')) }}
-
-                            <ul>
-                                <li><a href="javascript:return false;" onclick="changeLanguage('en');"><img src="{{ asset('/assets/img/flag-en.png') }}" class="flag-en"></a></li>
-                                <li><a href="javascript:return false;" onclick="changeLanguage('es');"><img src="{{ asset('/assets/img/flag-es.png') }}" class="flag-es"></a></li>
-                                <li><a href="javascript:return false;" onclick="changeLanguage('it');"><img src="{{ asset('/assets/img/flag-it.png') }}" class="flag-it"></a></li>
-                                <?php //if($_SERVER['REMOTE_ADDR']=='127.0.0.1' || $_SERVER['REMOTE_ADDR']=='187.19.183.61' || $_SERVER['REMOTE_ADDR']=='187.19.190.88'){ ?>
-                                <li><a href="javascript:return false;" onclick="changeLanguage('fr');"><img src="{{ asset('/assets/img/flag-fr.png') }}" class="flag-fr"></a></li>
-                                <li><a href="javascript:return false;" onclick="changeLanguage('de');"><img src="{{ asset('/assets/img/flag-de.png') }}" class="flag-de"></a></li>
-                                <?php //} ?>                    
-                                <li><a href="javascript:return false;" onclick="changeLanguage('pt-br');"><img src="{{ asset('/assets/img/flag-pt-br.png') }}" class="flag-pt-br"></a></li>
-                            </ul>
-
-                            {!! Form::close() !!}                            
-                        </li>
-
-                </ul>
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-nav-links">
-                    <li class="language-mobile">
-                        {!! Form::open(array('url' => url('/pg/language/'), 'name' => 'formLanguageMobile', 'id' => 'formLanguageMobile', 'method'=>'POST')) !!}
-                        {{ Form::hidden('languageMobile', 'pt-br', array('id'=> 'language')) }}                       
-                        <ul>
-                            <li><p>@lang('words.header_link_4')</p></li>
-                            <li><a href="javascript:return false;" onclick="changeLanguage('en');"><img src="{{ asset('/assets/img/flag-en.png') }}" class="flag-en"></a></li>
-                            <li><a href="javascript:return false;" onclick="changeLanguage('es');"><img src="{{ asset('/assets/img/flag-es.png') }}" class="flag-es"></a></li>
-                            <li><a href="javascript:return false;" onclick="changeLanguage('it');"><img src="{{ asset('/assets/img/flag-it.png') }}" class="flag-it"></a></li>
-                            <?php //if($_SERVER['REMOTE_ADDR']=='127.0.0.1' || $_SERVER['REMOTE_ADDR']=='187.19.183.61' || $_SERVER['REMOTE_ADDR']=='187.19.190.88'){ ?>
-                            <li><a href="javascript:return false;" onclick="changeLanguage('fr');"><img src="{{ asset('/assets/img/flag-fr.png') }}" class="flag-fr"></a></li>
-                            <li><a href="javascript:return false;" onclick="changeLanguage('de');"><img src="{{ asset('/assets/img/flag-de.png') }}" class="flag-de"></a></li>
-                            <?php //} ?>                    
-                            <li><a href="javascript:return false;" onclick="changeLanguage('pt-br');"><img src="{{ asset('/assets/img/flag-pt-br.png') }}" class="flag-pt-br"></a></li>
+                <ul class="nav-left">
+                    <li>
+                        <ul class="titulo-ipco-full">
+                            <li><span>I</span>NSTITUTO <span>P</span>LINIO <span>C</span>ORRÊA DE <span>O</span>LIVEIRA</li>
+                            <li>
+                                <ul class="navlinks">
+                                    <li><a id="quemsomos" href="https://ipco.org.br/quem-somos" target="_blank">@lang('words.header_link_1')</a></li>
+                                    <li><a id="faleconosco" href="https://ipco.org.br/fale-conosco" target="_blank">@lang('words.header_link_2')</a></li>
+                                    <li><a id="doacao" href="https://ipco.org.br/doacao" target="_blank">@lang('words.header_link_3')</a></li>
+                                </ul>
+                            </li>
                         </ul>
-                        {!! Form::close() !!}
-                    </li>                  
-                    <li><a id="quemsomos" href="https://ipco.org.br/quem-somos" target="_blank">@lang('words.header_link_1')</a></li>
-                    <li><a id="faleconosco" href="https://ipco.org.br/fale-conosco" target="_blank">@lang('words.header_link_2')</a></li>
-                    <li><a id="doacao" href="https://ipco.org.br/doacao" target="_blank">@lang('words.header_link_3')</a></li>
-                    <!--
-                        // DOAÇÃO
-                        <li><a id="doacao" href="{{ url('/doacao/doe') }}">Doação</a></li>
-                    -->
+                        <!-- Left Side Of Navbar -->
+                        <ul class="nav navbar-nav navbar-nav-links">
+                            <li class="language-mobile">
+                                {!! Form::open(array('url' => url('/pg/language/'), 'name' => 'formLanguage', 'id' => 'formLanguage', 'method'=>'POST')) !!}
+                                {{ Form::hidden('language', 'pt-br', array('id'=> 'language')) }}                       
+                                <ul>
+                                    <li><p>@lang('words.header_link_4')</p></li>
+                                    <li><a href="javascript:void(0);" onclick="changeLanguage('en');"><img src="{{ asset('/assets/img/flag-en.png') }}" class="flag-en"></a></li>
+                                    <li><a href="javascript:void(0);" onclick="changeLanguage('es');"><img src="{{ asset('/assets/img/flag-es.png') }}" class="flag-es"></a></li>
+                                    <li><a href="javascript:void(0);" onclick="changeLanguage('it');"><img src="{{ asset('/assets/img/flag-it.png') }}" class="flag-it"></a></li>
+                                    <li><a href="javascript:void(0);" onclick="changeLanguage('fr');"><img src="{{ asset('/assets/img/flag-fr.png') }}" class="flag-fr"></a></li>
+                                    <li><a href="javascript:void(0);" onclick="changeLanguage('de');"><img src="{{ asset('/assets/img/flag-de.png') }}" class="flag-de"></a></li>                  
+                                    <li><a href="javascript:void(0);" onclick="changeLanguage('pt-br');"><img src="{{ asset('/assets/img/flag-pt-br.png') }}" class="flag-pt-br"></a></li>
+                                </ul>
+                                {!! Form::close() !!}
+                            </li>                  
+                            <li class="language-mobile"><a id="quemsomos" href="https://ipco.org.br/quem-somos" target="_blank">@lang('words.header_link_1')</a></li>
+                            <li class="language-mobile"><a id="faleconosco" href="https://ipco.org.br/fale-conosco" target="_blank">@lang('words.header_link_2')</a></li>
+                            <li class="language-mobile"><a id="doacao" href="https://ipco.org.br/doacao" target="_blank">@lang('words.header_link_3')</a></li>
+                            <!--
+                                // DOAÇÃO
+                                <li><a id="doacao" href="{{ url('/doacao/doe') }}">Doação</a></li>
+                            -->
+                        </ul>                             
+                    </li>
                 </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
-                    @if (Auth::guest())
-                        <!--
-                        <li><a href="{{ url('/login') }}">Acesso</a></li>
-                        <li><a href="{{ url('/register') }}">Registrar</a></li>
-                        -->
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle dropdown-toggle-login" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <div>
-                                    <p><strong>{{ Auth::user()->name }}</strong></p>
-                                    @if(\Auth::user()->admin==1)
-                                        <p>Administrador</p>
-                                    @else
-                                        <p>Usuário</p>
-                                    @endif                                          
-                                </div>
-                                <div>
-                                    @if(\Auth::user()->avatar==null)
-                                        <img src="{{ asset('/assets/img/user/default_avatar.jpg') }}" class="dropdown-login-avatar">
-                                    @else
-                                        <img src="{{ asset('/assets/img/user') }}/{{ Auth::user()->avatar }}" class="dropdown-login-avatar">
-                                    @endif
-                                </div>
-                                <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                @if(\Auth::user()->admin==1)
-                                    <li><a href="{{ url('/admin/peticoes') }}"><i class="fas fa-tachometer-alt"></i> Painel</a></li>
-                                    <li role="separator" class="divider"></li>
-                                @else
-                                    
-                                @endif
-                                <li><a href="{{ route('profile.edit',Auth::user()->id) }}"><i class="fas fa-btn fa-user" aria-hidden="true"></i> Perfil</a></li> 
-                                <li role="separator" class="divider"></li>
-                                <li><a href="{{ url('/logout') }}"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                <ul class="nav-right language-login">
+                    <li>
+                        <div style="float:right;">
+                            {!! Form::open(array('url' => url('/pg/language/'), 'name' => 'formLanguageMobile', 'id' => 'formLanguageMobile', 'method'=>'POST')) !!}
+                            {{ Form::hidden('languageMobile', 'pt-br', array('id'=> 'languageMobile')) }}                            
+                            <p class="language-large-title">@lang('words.header_link_4')</p>
+                            <ul class="language-large">
+                                <li><a href="javascript:void(0);" onclick="changeLanguageMobile('en');"><img src="{{ asset('/assets/img/flag-en.png') }}" class="flag-en"></a></li>
+                                <li><a href="javascript:void(0);" onclick="changeLanguageMobile('es');"><img src="{{ asset('/assets/img/flag-es.png') }}" class="flag-es"></a></li>
+                                <li><a href="javascript:void(0);" onclick="changeLanguageMobile('it');"><img src="{{ asset('/assets/img/flag-it.png') }}" class="flag-it"></a></li>
+                                <li><a href="javascript:void(0);" onclick="changeLanguageMobile('fr');"><img src="{{ asset('/assets/img/flag-fr.png') }}" class="flag-fr"></a></li>
+                                <li><a href="javascript:void(0);" onclick="changeLanguageMobile('de');"><img src="{{ asset('/assets/img/flag-de.png') }}" class="flag-de"></a></li>                   
+                                <li><a href="javascript:void(0);" onclick="changeLanguageMobile('pt-br');"><img src="{{ asset('/assets/img/flag-pt-br.png') }}" class="flag-pt-br"></a></li>
                             </ul>
-                        </li>
-                    @endif
+                            {!! Form::close() !!}                            
+                        </div>
+                        <div>
+                            <ul class="nav navbar-nav navbar-right">
+                                @if (Auth::guest())
+                                    <li><a href="{{ url('/login') }}"><i class="fas fa-sign-in-alt"></i> Acesso</a></li>
+                                    <li><a href="{{ url('/register') }}"><i class="far fa-edit"></i> Registrar</a></li>
+                                @else                               
+                                    <li class="dropdown dropdown-login">
+                                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <div>
+                                            <p><strong>{{ Auth::user()->name }}</strong></p>                                          
+                                        </div>
+                                        <div>
+                                            @if(\Auth::user()->avatar==null)
+                                                <img src="{{ asset('/assets/img/user/default_avatar.jpg') }}" class="dropdown-login-avatar">
+                                            @else
+                                                <img src="{{ Auth::user()->avatar }}" class="dropdown-login-avatar">
+                                            @endif
+                                        </div>
+                                        <span class="caret"></span>
+                                      </a>
+                                      <ul class="dropdown-menu">
+                                        @if(\Auth::user()->admin==1)
+                                            <li><a href="{{ url('/admin/peticoes') }}"><i class="fas fa-tachometer-alt"></i> Painel</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="{{ route('profile.edit',Auth::user()->id) }}"><i class="fas fa-btn fa-user" aria-hidden="true"></i> Perfil</a></li> 
+                                            <li role="separator" class="divider"></li>
+                                        @else
+                                            
+                                        @endif
+                                        <li><a href="{{ url('/logout') }}"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                                      </ul>
+                                    </li>
+                                @endif
+                            </ul>
+
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -269,6 +333,10 @@ if($_SERVER['REQUEST_URI']!='/'){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script>
+        function changeLanguageMobile(id){
+            $("#languageMobile").val(id);
+            $("#formLanguageMobile").submit();
+        }
         function changeLanguage(id){
             $("#language").val(id);
             $("#formLanguage").submit();

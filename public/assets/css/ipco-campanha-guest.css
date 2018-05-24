@@ -28,6 +28,14 @@ body > .container > .row{
 .brand #mini{
    display: none;
 }
+.nav-left {
+    float: left;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.nav-right {
+    float: right;
+}
 .navbar-brand{
     height:100px;
     padding: 0px 15px;
@@ -41,8 +49,10 @@ body > .container > .row{
     font-size: 22px;
     margin-top: 15px;
     margin-bottom: 0px;
+    padding-left:0px;
     display: block;
     font-family: 'Merriweather', serif;
+    float:left;
 }
 .navbar .titulo-ipco-full li span{
     font-size:28px !important;
@@ -151,7 +161,7 @@ body > .container > .row{
 @media (min-width: 768px){
     .navbar-nav>li>a {
         padding-top: 10px;
-        padding-bottom: 15px;
+        padding-bottom: 13px;
     }   
 }
 .btn-group-share .btn-share-facebook,

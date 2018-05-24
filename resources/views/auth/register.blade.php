@@ -73,6 +73,15 @@
                                 </button>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <a href="redirect" class="btn btn-primary">
+                                    <i class="fab fa-facebook-square"></i> Registrar com Facebook
+                                </a>
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>

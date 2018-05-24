@@ -38,7 +38,7 @@ return [
     'facebook' => [
         'client_id' => '453922445063431',
         'client_secret' => 'b2368d73abfab131b45867d8fd53ad37',
-        'redirect' => '',
+        'redirect' => 'https://campanhas.ipco.org.br/callback',
     ],    
 
 ];

@@ -162,6 +162,8 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         App\Providers\ConfiguracaosServiceProvider::class,
         Felixkiss\UniqueWithValidator\ServiceProvider::class,
+        Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
     ],
 
@@ -213,6 +215,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,        
 
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];

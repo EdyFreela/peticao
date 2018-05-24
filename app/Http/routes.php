@@ -18,6 +18,11 @@ Route::auth();
 
 #Route::get('/admin', 'AdminController@index', ['middleware' => ['auth', 'admin']]);
 
+//Auth::routes();
+
+Route::get('/redirect', 'SocialAuthController@redirect');
+Route::get('/callback', 'SocialAuthController@callback');
+
 Route::get('admin/peticoes',             ['as'=>'peticaos.index',     'uses' => 'PeticaoController@index',   'middleware' => ['auth', 'admin']]);
 Route::get('admin/peticoes/create',      ['as'=>'peticaos.create',    'uses' => 'PeticaoController@create',  'middleware' => ['auth', 'admin']]);
 Route::post('admin/peticoes/create',     ['as'=>'peticaos.store',     'uses' => 'PeticaoController@store',   'middleware' => ['auth', 'admin']]);
@@ -67,3 +72,8 @@ Route::post('/pg/language',               'LanguageController@index');
 
 Route::get('/embed/{id}',   ['as'=>'peticaos.embed',      'uses' => 'PeticaoController@embed']);
 Route::post('/embed/form',  ['as'=>'peticaos.embedForm',  'uses' => 'PeticaoController@embedForm']);
+
+Route::get('/clear/cache', function() {
+    $exitCode = Artisan::call('cache:clear');
+    // return what you want
+});

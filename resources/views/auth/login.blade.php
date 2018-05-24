@@ -67,11 +67,20 @@
                         <div class="form-group">
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary btn-login" tabindex="3">
-                                    <i class="fa fa-btn fa-sign-in"></i> Acesso
+                                    <i class="fas fa-sign-in-alt"></i> Acesso
                                 </button>
 
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <a href="redirect" class="btn btn-primary col-sm-12 col-md-12 col-lg-12">
+                                    <i class="fab fa-facebook-square"></i> Acessar com Facebook
+                                </a>
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>

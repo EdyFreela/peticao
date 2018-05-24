@@ -51,4 +51,20 @@ return [
     'assinar_msg_4' => 'Danke, dass du nicht ausgelassen oder untergebracht bist!',
     'assinar_msg_5' => 'Zum Glück hast du diese Petition bereits unterschrieben!',
 
+    'login-email'       => 'E-Mail',
+    'login-senha'       => 'Passwort',
+    'login-esqueceu'    => 'Passwort vergessen?',
+    'login-lembre'      => 'Erinnere dich an mich',
+    'login-acesso'      => 'Zugang',
+    'login-registrar'   => 'Registrieren',
+    'login-crie'        => 'Erstelle ein Konto',
+    'login-termos'      => 'Bedingungen',
+    'login-privacidade' => 'Privatsphäre',
+    'login-contatenos'  => 'Kontaktieren Sie uns',
+    'login-redefinir'   => 'Passwort zurücksetzen',
+    'login-enviar-link' => 'Passwort zurücksetzen Link zurücksetzen',
+    'login-nome'        => 'Name',
+    'login-confirmar'   => 'Passwort bestätigen',
+    'login-facebook'    => 'Bei Facebook registrieren', 
+
 ];

@@ -51,4 +51,20 @@ return [
     'assinar_msg_4' => 'Merci de ne pas être oublié ou hébergé!',
     'assinar_msg_5' => 'Heureusement, vous avez déjà signé cette pétition!',
 
+    'login-email'       => 'E-Mail',
+    'login-senha'       => 'Mot de passe',
+    'login-esqueceu'    => 'Mot de passe oublié?',
+    'login-lembre'      => 'Souviens-toi de moi',
+    'login-acesso'      => 'Accès',
+    'login-registrar'   => 'Inscription',
+    'login-crie'        => 'Créer un compte',
+    'login-termos'      => 'Conditions',
+    'login-privacidade' => 'Confidentialité',
+    'login-contatenos'  => 'Contactez-nous',
+    'login-redefinir'   => 'Réinitialiser le mot de passe'
+    'login-enviar-link' => 'Envoyer le mot de passe Réinitialiser le lien',
+    'login-nome'        => 'Nom',
+    'login-confirmar'   => 'Confirmer le mot de passe',
+    'login-facebook'    => 'S\'inscrire avec Facebook',
+
 ];

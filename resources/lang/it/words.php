@@ -51,4 +51,20 @@ return [
     'assinar_msg_4' => 'Grazie per non essere trascurato o ospitato!',
     'assinar_msg_5' => 'Fortunatamente, hai già firmato questa petizione!',   
 
+    'login-email'       => 'E-Mail',
+    'login-senha'       => 'Password',
+    'login-esqueceu'    => 'Hai dimenticato la password?',
+    'login-lembre'      => 'Ricordami di me',
+    'login-acesso'      => 'Accesso',
+    'login-registrar'   => 'Registrati',
+    'login-crie'        => 'Crea un account',
+    'login-termos'      => 'Termini',
+    'login-privacidade' => 'Privacy',
+    'login-contatenos'  => 'Contattaci',
+    'login-redefinir'   => 'Reimposta password',
+    'login-enviar-link' => 'Invia link di reimpostazione password',
+    'login-nome'        => 'Nome',
+    'login-confirmar'   => 'Conferma password',
+    'login-facebook'    => 'Registra con Facebook',
+
 ];

@@ -13,7 +13,12 @@ class LanguageController extends Controller
 {
     public function index(Request $request){
  
-    	$language       = $request->get('language');
+    	if($request->get('languageMobile')!=NULL){
+    		$language = $request->get('languageMobile');
+    	}else{
+    		$language = $request->get('language');
+    	}
+
     	session(['locale' => $language]);
 
 		$url_prev       = url()->previous();
